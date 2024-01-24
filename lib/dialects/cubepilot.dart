@@ -8140,128 +8140,6 @@ const MissionState missionStatePaused = 4;
 /// MISSION_STATE_COMPLETE
 const MissionState missionStateComplete = 5;
 
-///
-/// MAV_AVSS_COMMAND_FAILURE_REASON
-typedef MavAvssCommandFailureReason = int;
-
-/// AVSS defined command failure reason. PRS not steady.
-///
-/// PRS_NOT_STEADY
-const MavAvssCommandFailureReason prsNotSteady = 1;
-
-/// AVSS defined command failure reason. PRS DTM not armed.
-///
-/// PRS_DTM_NOT_ARMED
-const MavAvssCommandFailureReason prsDtmNotArmed = 2;
-
-/// AVSS defined command failure reason. PRS OTM not armed.
-///
-/// PRS_OTM_NOT_ARMED
-const MavAvssCommandFailureReason prsOtmNotArmed = 3;
-
-///
-/// AVSS_M300_OPERATION_MODE
-typedef AvssM300OperationMode = int;
-
-/// In manual control mode
-///
-/// MODE_M300_MANUAL_CTRL
-const AvssM300OperationMode modeM300ManualCtrl = 0;
-
-/// In attitude mode
-///
-/// MODE_M300_ATTITUDE
-const AvssM300OperationMode modeM300Attitude = 1;
-
-/// In GPS mode
-///
-/// MODE_M300_P_GPS
-const AvssM300OperationMode modeM300PGps = 6;
-
-/// In hotpoint mode
-///
-/// MODE_M300_HOTPOINT_MODE
-const AvssM300OperationMode modeM300HotpointMode = 9;
-
-/// In assisted takeoff mode
-///
-/// MODE_M300_ASSISTED_TAKEOFF
-const AvssM300OperationMode modeM300AssistedTakeoff = 10;
-
-/// In auto takeoff mode
-///
-/// MODE_M300_AUTO_TAKEOFF
-const AvssM300OperationMode modeM300AutoTakeoff = 11;
-
-/// In auto landing mode
-///
-/// MODE_M300_AUTO_LANDING
-const AvssM300OperationMode modeM300AutoLanding = 12;
-
-/// In go home mode
-///
-/// MODE_M300_NAVI_GO_HOME
-const AvssM300OperationMode modeM300NaviGoHome = 15;
-
-/// In sdk control mode
-///
-/// MODE_M300_NAVI_SDK_CTRL
-const AvssM300OperationMode modeM300NaviSdkCtrl = 17;
-
-/// In sport mode
-///
-/// MODE_M300_S_SPORT
-const AvssM300OperationMode modeM300SSport = 31;
-
-/// In force auto landing mode
-///
-/// MODE_M300_FORCE_AUTO_LANDING
-const AvssM300OperationMode modeM300ForceAutoLanding = 33;
-
-/// In tripod mode
-///
-/// MODE_M300_T_TRIPOD
-const AvssM300OperationMode modeM300TTripod = 38;
-
-/// In search mode
-///
-/// MODE_M300_SEARCH_MODE
-const AvssM300OperationMode modeM300SearchMode = 40;
-
-/// In engine mode
-///
-/// MODE_M300_ENGINE_START
-const AvssM300OperationMode modeM300EngineStart = 41;
-
-///
-/// AVSS_HORSEFLY_OPERATION_MODE
-typedef AvssHorseflyOperationMode = int;
-
-/// In manual control mode
-///
-/// MODE_HORSEFLY_MANUAL_CTRL
-const AvssHorseflyOperationMode modeHorseflyManualCtrl = 0;
-
-/// In auto takeoff mode
-///
-/// MODE_HORSEFLY_AUTO_TAKEOFF
-const AvssHorseflyOperationMode modeHorseflyAutoTakeoff = 1;
-
-/// In auto landing mode
-///
-/// MODE_HORSEFLY_AUTO_LANDING
-const AvssHorseflyOperationMode modeHorseflyAutoLanding = 2;
-
-/// In go home mode
-///
-/// MODE_HORSEFLY_NAVI_GO_HOME
-const AvssHorseflyOperationMode modeHorseflyNaviGoHome = 3;
-
-/// In drop mode
-///
-/// MODE_HORSEFLY_DROP
-const AvssHorseflyOperationMode modeHorseflyDrop = 4;
-
 /// The heartbeat message shows that a system or component is present and responding. The type and autopilot fields (along with the message component id), allow the receiving system to treat further messages from this system appropriately (e.g. by laying out the user interface based on the autopilot). This microservice is documented at https://mavlink.io/en/services/heartbeat.html
 ///
 /// HEARTBEAT
@@ -38674,15 +38552,15 @@ class HygrometerSensor implements MavlinkMessage {
   }
 }
 
-/// AVSS PRS system status.
+/// Raw RC Data
 ///
-/// AVSS_PRS_SYS_STATUS
-class AvssPrsSysStatus implements MavlinkMessage {
-  static const int _mavlinkMessageId = 60050;
+/// CUBEPILOT_RAW_RC
+class CubepilotRawRc implements MavlinkMessage {
+  static const int _mavlinkMessageId = 50001;
 
-  static const int _mavlinkCrcExtra = 220;
+  static const int _mavlinkCrcExtra = 246;
 
-  static const int mavlinkEncodedLength = 14;
+  static const int mavlinkEncodedLength = 32;
 
   @override
   int get mavlinkMessageId => _mavlinkMessageId;
@@ -38690,92 +38568,181 @@ class AvssPrsSysStatus implements MavlinkMessage {
   @override
   int get mavlinkCrcExtra => _mavlinkCrcExtra;
 
-  /// Timestamp (time since PRS boot).
+  ///
+  ///
+  /// MAVLink type: uint8_t[32]
+  ///
+  /// rc_raw
+  final List<int8_t> rcRaw;
+
+  CubepilotRawRc({
+    required this.rcRaw,
+  });
+
+  factory CubepilotRawRc.parse(ByteData data_) {
+    if (data_.lengthInBytes < CubepilotRawRc.mavlinkEncodedLength) {
+      var len = CubepilotRawRc.mavlinkEncodedLength - data_.lengthInBytes;
+      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      data_ = Uint8List.fromList(d).buffer.asByteData();
+    }
+    var rcRaw = MavlinkMessage.asUint8List(data_, 0, 32);
+
+    return CubepilotRawRc(rcRaw: rcRaw);
+  }
+
+  @override
+  ByteData serialize() {
+    var data_ = ByteData(mavlinkEncodedLength);
+    MavlinkMessage.setUint8List(data_, 0, rcRaw);
+    return data_;
+  }
+}
+
+/// Information about video stream
+///
+/// HERELINK_VIDEO_STREAM_INFORMATION
+class HerelinkVideoStreamInformation implements MavlinkMessage {
+  static const int _mavlinkMessageId = 50002;
+
+  static const int _mavlinkCrcExtra = 181;
+
+  static const int mavlinkEncodedLength = 246;
+
+  @override
+  int get mavlinkMessageId => _mavlinkMessageId;
+
+  @override
+  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+
+  /// Frame rate.
+  ///
+  /// MAVLink type: float
+  ///
+  /// units: Hz
+  ///
+  /// framerate
+  final float framerate;
+
+  /// Bit rate.
   ///
   /// MAVLink type: uint32_t
   ///
-  /// units: ms
+  /// units: bits/s
   ///
-  /// time_boot_ms
-  final uint32_t timeBootMs;
+  /// bitrate
+  final uint32_t bitrate;
 
-  /// PRS error statuses
+  /// Horizontal resolution.
   ///
-  /// MAVLink type: uint32_t
+  /// MAVLink type: uint16_t
   ///
-  /// error_status
-  final uint32_t errorStatus;
+  /// units: pix
+  ///
+  /// resolution_h
+  final uint16_t resolutionH;
 
-  /// Estimated battery run-time without a remote connection and PRS battery voltage
+  /// Vertical resolution.
   ///
-  /// MAVLink type: uint32_t
+  /// MAVLink type: uint16_t
   ///
-  /// battery_status
-  final uint32_t batteryStatus;
+  /// units: pix
+  ///
+  /// resolution_v
+  final uint16_t resolutionV;
 
-  /// PRS arm statuses
+  /// Video image rotation clockwise.
+  ///
+  /// MAVLink type: uint16_t
+  ///
+  /// units: deg
+  ///
+  /// rotation
+  final uint16_t rotation;
+
+  /// Video Stream ID (1 for first, 2 for second, etc.)
   ///
   /// MAVLink type: uint8_t
   ///
-  /// arm_status
-  final uint8_t armStatus;
+  /// camera_id
+  final uint8_t cameraId;
 
-  /// PRS battery charge statuses
+  /// Number of streams available.
   ///
   /// MAVLink type: uint8_t
   ///
-  /// charge_status
-  final uint8_t chargeStatus;
+  /// status
+  final uint8_t status;
 
-  AvssPrsSysStatus({
-    required this.timeBootMs,
-    required this.errorStatus,
-    required this.batteryStatus,
-    required this.armStatus,
-    required this.chargeStatus,
+  /// Video stream URI (TCP or RTSP URI ground station should connect to) or port number (UDP port ground station should listen to).
+  ///
+  /// MAVLink type: char[230]
+  ///
+  /// uri
+  final List<char> uri;
+
+  HerelinkVideoStreamInformation({
+    required this.framerate,
+    required this.bitrate,
+    required this.resolutionH,
+    required this.resolutionV,
+    required this.rotation,
+    required this.cameraId,
+    required this.status,
+    required this.uri,
   });
 
-  factory AvssPrsSysStatus.parse(ByteData data_) {
-    if (data_.lengthInBytes < AvssPrsSysStatus.mavlinkEncodedLength) {
-      var len = AvssPrsSysStatus.mavlinkEncodedLength - data_.lengthInBytes;
+  factory HerelinkVideoStreamInformation.parse(ByteData data_) {
+    if (data_.lengthInBytes <
+        HerelinkVideoStreamInformation.mavlinkEncodedLength) {
+      var len = HerelinkVideoStreamInformation.mavlinkEncodedLength -
+          data_.lengthInBytes;
       var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
-    var timeBootMs = data_.getUint32(0, Endian.little);
-    var errorStatus = data_.getUint32(4, Endian.little);
-    var batteryStatus = data_.getUint32(8, Endian.little);
-    var armStatus = data_.getUint8(12);
-    var chargeStatus = data_.getUint8(13);
+    var framerate = data_.getFloat32(0, Endian.little);
+    var bitrate = data_.getUint32(4, Endian.little);
+    var resolutionH = data_.getUint16(8, Endian.little);
+    var resolutionV = data_.getUint16(10, Endian.little);
+    var rotation = data_.getUint16(12, Endian.little);
+    var cameraId = data_.getUint8(14);
+    var status = data_.getUint8(15);
+    var uri = MavlinkMessage.asInt8List(data_, 16, 230);
 
-    return AvssPrsSysStatus(
-        timeBootMs: timeBootMs,
-        errorStatus: errorStatus,
-        batteryStatus: batteryStatus,
-        armStatus: armStatus,
-        chargeStatus: chargeStatus);
+    return HerelinkVideoStreamInformation(
+        framerate: framerate,
+        bitrate: bitrate,
+        resolutionH: resolutionH,
+        resolutionV: resolutionV,
+        rotation: rotation,
+        cameraId: cameraId,
+        status: status,
+        uri: uri);
   }
 
   @override
   ByteData serialize() {
     var data_ = ByteData(mavlinkEncodedLength);
-    data_.setUint32(0, timeBootMs, Endian.little);
-    data_.setUint32(4, errorStatus, Endian.little);
-    data_.setUint32(8, batteryStatus, Endian.little);
-    data_.setUint8(12, armStatus);
-    data_.setUint8(13, chargeStatus);
+    data_.setFloat32(0, framerate, Endian.little);
+    data_.setUint32(4, bitrate, Endian.little);
+    data_.setUint16(8, resolutionH, Endian.little);
+    data_.setUint16(10, resolutionV, Endian.little);
+    data_.setUint16(12, rotation, Endian.little);
+    data_.setUint8(14, cameraId);
+    data_.setUint8(15, status);
+    MavlinkMessage.setInt8List(data_, 16, uri);
     return data_;
   }
 }
 
-/// Drone position.
+/// Herelink Telemetry
 ///
-/// AVSS_DRONE_POSITION
-class AvssDronePosition implements MavlinkMessage {
-  static const int _mavlinkMessageId = 60051;
+/// HERELINK_TELEM
+class HerelinkTelem implements MavlinkMessage {
+  static const int _mavlinkMessageId = 50003;
 
-  static const int _mavlinkCrcExtra = 245;
+  static const int _mavlinkCrcExtra = 62;
 
-  static const int mavlinkEncodedLength = 24;
+  static const int mavlinkEncodedLength = 19;
 
   @override
   int get mavlinkMessageId => _mavlinkMessageId;
@@ -38783,113 +38750,112 @@ class AvssDronePosition implements MavlinkMessage {
   @override
   int get mavlinkCrcExtra => _mavlinkCrcExtra;
 
-  /// Timestamp (time since FC boot).
+  ///
   ///
   /// MAVLink type: uint32_t
   ///
-  /// units: ms
-  ///
-  /// time_boot_ms
-  final uint32_t timeBootMs;
+  /// rf_freq
+  final uint32_t rfFreq;
 
-  /// Latitude, expressed
   ///
-  /// MAVLink type: int32_t
   ///
-  /// units: degE7
+  /// MAVLink type: uint32_t
   ///
-  /// lat
-  final int32_t lat;
+  /// link_bw
+  final uint32_t linkBw;
 
-  /// Longitude, expressed
   ///
-  /// MAVLink type: int32_t
   ///
-  /// units: degE7
+  /// MAVLink type: uint32_t
   ///
-  /// lon
-  final int32_t lon;
+  /// link_rate
+  final uint32_t linkRate;
 
-  /// Altitude (MSL). Note that virtually all GPS modules provide both WGS84 and MSL.
   ///
-  /// MAVLink type: int32_t
   ///
-  /// units: mm
+  /// MAVLink type: int16_t
   ///
-  /// alt
-  final int32_t alt;
+  /// snr
+  final int16_t snr;
 
-  /// Altitude above ground, This altitude is measured by a ultrasound, Laser rangefinder or millimeter-wave radar
   ///
-  /// MAVLink type: float
   ///
-  /// units: m
+  /// MAVLink type: int16_t
   ///
-  /// ground_alt
-  final float groundAlt;
+  /// cpu_temp
+  final int16_t cpuTemp;
 
-  /// This altitude is measured by a barometer
   ///
-  /// MAVLink type: float
   ///
-  /// units: m
+  /// MAVLink type: int16_t
   ///
-  /// barometer_alt
-  final float barometerAlt;
+  /// board_temp
+  final int16_t boardTemp;
 
-  AvssDronePosition({
-    required this.timeBootMs,
-    required this.lat,
-    required this.lon,
-    required this.alt,
-    required this.groundAlt,
-    required this.barometerAlt,
+  ///
+  ///
+  /// MAVLink type: uint8_t
+  ///
+  /// rssi
+  final uint8_t rssi;
+
+  HerelinkTelem({
+    required this.rfFreq,
+    required this.linkBw,
+    required this.linkRate,
+    required this.snr,
+    required this.cpuTemp,
+    required this.boardTemp,
+    required this.rssi,
   });
 
-  factory AvssDronePosition.parse(ByteData data_) {
-    if (data_.lengthInBytes < AvssDronePosition.mavlinkEncodedLength) {
-      var len = AvssDronePosition.mavlinkEncodedLength - data_.lengthInBytes;
+  factory HerelinkTelem.parse(ByteData data_) {
+    if (data_.lengthInBytes < HerelinkTelem.mavlinkEncodedLength) {
+      var len = HerelinkTelem.mavlinkEncodedLength - data_.lengthInBytes;
       var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
-    var timeBootMs = data_.getUint32(0, Endian.little);
-    var lat = data_.getInt32(4, Endian.little);
-    var lon = data_.getInt32(8, Endian.little);
-    var alt = data_.getInt32(12, Endian.little);
-    var groundAlt = data_.getFloat32(16, Endian.little);
-    var barometerAlt = data_.getFloat32(20, Endian.little);
+    var rfFreq = data_.getUint32(0, Endian.little);
+    var linkBw = data_.getUint32(4, Endian.little);
+    var linkRate = data_.getUint32(8, Endian.little);
+    var snr = data_.getInt16(12, Endian.little);
+    var cpuTemp = data_.getInt16(14, Endian.little);
+    var boardTemp = data_.getInt16(16, Endian.little);
+    var rssi = data_.getUint8(18);
 
-    return AvssDronePosition(
-        timeBootMs: timeBootMs,
-        lat: lat,
-        lon: lon,
-        alt: alt,
-        groundAlt: groundAlt,
-        barometerAlt: barometerAlt);
+    return HerelinkTelem(
+        rfFreq: rfFreq,
+        linkBw: linkBw,
+        linkRate: linkRate,
+        snr: snr,
+        cpuTemp: cpuTemp,
+        boardTemp: boardTemp,
+        rssi: rssi);
   }
 
   @override
   ByteData serialize() {
     var data_ = ByteData(mavlinkEncodedLength);
-    data_.setUint32(0, timeBootMs, Endian.little);
-    data_.setInt32(4, lat, Endian.little);
-    data_.setInt32(8, lon, Endian.little);
-    data_.setInt32(12, alt, Endian.little);
-    data_.setFloat32(16, groundAlt, Endian.little);
-    data_.setFloat32(20, barometerAlt, Endian.little);
+    data_.setUint32(0, rfFreq, Endian.little);
+    data_.setUint32(4, linkBw, Endian.little);
+    data_.setUint32(8, linkRate, Endian.little);
+    data_.setInt16(12, snr, Endian.little);
+    data_.setInt16(14, cpuTemp, Endian.little);
+    data_.setInt16(16, boardTemp, Endian.little);
+    data_.setUint8(18, rssi);
     return data_;
   }
 }
 
-/// Drone IMU data. Quaternion order is w, x, y, z and a zero rotation would be expressed as (1 0 0 0).
+/// Start firmware update with encapsulated data.
 ///
-/// AVSS_DRONE_IMU
-class AvssDroneImu implements MavlinkMessage {
-  static const int _mavlinkMessageId = 60052;
+/// CUBEPILOT_FIRMWARE_UPDATE_START
+class CubepilotFirmwareUpdateStart implements MavlinkMessage {
+  static const int _mavlinkMessageId = 50004;
 
-  static const int _mavlinkCrcExtra = 101;
+  static const int _mavlinkCrcExtra = 240;
 
-  static const int mavlinkEncodedLength = 44;
+  static const int mavlinkEncodedLength = 10;
 
   @override
   int get mavlinkMessageId => _mavlinkMessageId;
@@ -38897,168 +38863,81 @@ class AvssDroneImu implements MavlinkMessage {
   @override
   int get mavlinkCrcExtra => _mavlinkCrcExtra;
 
-  /// Timestamp (time since FC boot).
+  /// FW Size.
   ///
   /// MAVLink type: uint32_t
   ///
-  /// units: ms
+  /// units: bytes
   ///
-  /// time_boot_ms
-  final uint32_t timeBootMs;
+  /// size
+  final uint32_t size;
 
-  /// Quaternion component 1, w (1 in null-rotation)
+  /// FW CRC.
   ///
-  /// MAVLink type: float
+  /// MAVLink type: uint32_t
   ///
-  /// q1
-  final float q1;
+  /// crc
+  final uint32_t crc;
 
-  /// Quaternion component 2, x (0 in null-rotation)
+  /// System ID.
   ///
-  /// MAVLink type: float
+  /// MAVLink type: uint8_t
   ///
-  /// q2
-  final float q2;
+  /// target_system
+  final uint8_t targetSystem;
 
-  /// Quaternion component 3, y (0 in null-rotation)
+  /// Component ID.
   ///
-  /// MAVLink type: float
+  /// MAVLink type: uint8_t
   ///
-  /// q3
-  final float q3;
+  /// target_component
+  final uint8_t targetComponent;
 
-  /// Quaternion component 4, z (0 in null-rotation)
-  ///
-  /// MAVLink type: float
-  ///
-  /// q4
-  final float q4;
-
-  /// X acceleration
-  ///
-  /// MAVLink type: float
-  ///
-  /// units: m/s/s
-  ///
-  /// xacc
-  final float xacc;
-
-  /// Y acceleration
-  ///
-  /// MAVLink type: float
-  ///
-  /// units: m/s/s
-  ///
-  /// yacc
-  final float yacc;
-
-  /// Z acceleration
-  ///
-  /// MAVLink type: float
-  ///
-  /// units: m/s/s
-  ///
-  /// zacc
-  final float zacc;
-
-  /// Angular speed around X axis
-  ///
-  /// MAVLink type: float
-  ///
-  /// units: rad/s
-  ///
-  /// xgyro
-  final float xgyro;
-
-  /// Angular speed around Y axis
-  ///
-  /// MAVLink type: float
-  ///
-  /// units: rad/s
-  ///
-  /// ygyro
-  final float ygyro;
-
-  /// Angular speed around Z axis
-  ///
-  /// MAVLink type: float
-  ///
-  /// units: rad/s
-  ///
-  /// zgyro
-  final float zgyro;
-
-  AvssDroneImu({
-    required this.timeBootMs,
-    required this.q1,
-    required this.q2,
-    required this.q3,
-    required this.q4,
-    required this.xacc,
-    required this.yacc,
-    required this.zacc,
-    required this.xgyro,
-    required this.ygyro,
-    required this.zgyro,
+  CubepilotFirmwareUpdateStart({
+    required this.size,
+    required this.crc,
+    required this.targetSystem,
+    required this.targetComponent,
   });
 
-  factory AvssDroneImu.parse(ByteData data_) {
-    if (data_.lengthInBytes < AvssDroneImu.mavlinkEncodedLength) {
-      var len = AvssDroneImu.mavlinkEncodedLength - data_.lengthInBytes;
+  factory CubepilotFirmwareUpdateStart.parse(ByteData data_) {
+    if (data_.lengthInBytes <
+        CubepilotFirmwareUpdateStart.mavlinkEncodedLength) {
+      var len = CubepilotFirmwareUpdateStart.mavlinkEncodedLength -
+          data_.lengthInBytes;
       var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
-    var timeBootMs = data_.getUint32(0, Endian.little);
-    var q1 = data_.getFloat32(4, Endian.little);
-    var q2 = data_.getFloat32(8, Endian.little);
-    var q3 = data_.getFloat32(12, Endian.little);
-    var q4 = data_.getFloat32(16, Endian.little);
-    var xacc = data_.getFloat32(20, Endian.little);
-    var yacc = data_.getFloat32(24, Endian.little);
-    var zacc = data_.getFloat32(28, Endian.little);
-    var xgyro = data_.getFloat32(32, Endian.little);
-    var ygyro = data_.getFloat32(36, Endian.little);
-    var zgyro = data_.getFloat32(40, Endian.little);
+    var size = data_.getUint32(0, Endian.little);
+    var crc = data_.getUint32(4, Endian.little);
+    var targetSystem = data_.getUint8(8);
+    var targetComponent = data_.getUint8(9);
 
-    return AvssDroneImu(
-        timeBootMs: timeBootMs,
-        q1: q1,
-        q2: q2,
-        q3: q3,
-        q4: q4,
-        xacc: xacc,
-        yacc: yacc,
-        zacc: zacc,
-        xgyro: xgyro,
-        ygyro: ygyro,
-        zgyro: zgyro);
+    return CubepilotFirmwareUpdateStart(
+        size: size,
+        crc: crc,
+        targetSystem: targetSystem,
+        targetComponent: targetComponent);
   }
 
   @override
   ByteData serialize() {
     var data_ = ByteData(mavlinkEncodedLength);
-    data_.setUint32(0, timeBootMs, Endian.little);
-    data_.setFloat32(4, q1, Endian.little);
-    data_.setFloat32(8, q2, Endian.little);
-    data_.setFloat32(12, q3, Endian.little);
-    data_.setFloat32(16, q4, Endian.little);
-    data_.setFloat32(20, xacc, Endian.little);
-    data_.setFloat32(24, yacc, Endian.little);
-    data_.setFloat32(28, zacc, Endian.little);
-    data_.setFloat32(32, xgyro, Endian.little);
-    data_.setFloat32(36, ygyro, Endian.little);
-    data_.setFloat32(40, zgyro, Endian.little);
+    data_.setUint32(0, size, Endian.little);
+    data_.setUint32(4, crc, Endian.little);
+    data_.setUint8(8, targetSystem);
+    data_.setUint8(9, targetComponent);
     return data_;
   }
 }
 
-/// Drone operation mode.
+/// offset response to encapsulated data.
 ///
-/// AVSS_DRONE_OPERATION_MODE
-class AvssDroneOperationMode implements MavlinkMessage {
-  static const int _mavlinkMessageId = 60053;
+/// CUBEPILOT_FIRMWARE_UPDATE_RESP
+class CubepilotFirmwareUpdateResp implements MavlinkMessage {
+  static const int _mavlinkMessageId = 50005;
 
-  static const int _mavlinkCrcExtra = 45;
+  static const int _mavlinkCrcExtra = 152;
 
   static const int mavlinkEncodedLength = 6;
 
@@ -39068,64 +38947,65 @@ class AvssDroneOperationMode implements MavlinkMessage {
   @override
   int get mavlinkCrcExtra => _mavlinkCrcExtra;
 
-  /// Timestamp (time since FC boot).
+  /// FW Offset.
   ///
   /// MAVLink type: uint32_t
   ///
-  /// units: ms
+  /// units: bytes
   ///
-  /// time_boot_ms
-  final uint32_t timeBootMs;
+  /// offset
+  final uint32_t offset;
 
-  /// DJI M300 operation mode
+  /// System ID.
   ///
   /// MAVLink type: uint8_t
   ///
-  /// M300_operation_mode
-  final uint8_t m300OperationMode;
+  /// target_system
+  final uint8_t targetSystem;
 
-  /// horsefly operation mode
+  /// Component ID.
   ///
   /// MAVLink type: uint8_t
   ///
-  /// horsefly_operation_mode
-  final uint8_t horseflyOperationMode;
+  /// target_component
+  final uint8_t targetComponent;
 
-  AvssDroneOperationMode({
-    required this.timeBootMs,
-    required this.m300OperationMode,
-    required this.horseflyOperationMode,
+  CubepilotFirmwareUpdateResp({
+    required this.offset,
+    required this.targetSystem,
+    required this.targetComponent,
   });
 
-  factory AvssDroneOperationMode.parse(ByteData data_) {
-    if (data_.lengthInBytes < AvssDroneOperationMode.mavlinkEncodedLength) {
-      var len =
-          AvssDroneOperationMode.mavlinkEncodedLength - data_.lengthInBytes;
+  factory CubepilotFirmwareUpdateResp.parse(ByteData data_) {
+    if (data_.lengthInBytes <
+        CubepilotFirmwareUpdateResp.mavlinkEncodedLength) {
+      var len = CubepilotFirmwareUpdateResp.mavlinkEncodedLength -
+          data_.lengthInBytes;
       var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
-    var timeBootMs = data_.getUint32(0, Endian.little);
-    var m300OperationMode = data_.getUint8(4);
-    var horseflyOperationMode = data_.getUint8(5);
+    var offset = data_.getUint32(0, Endian.little);
+    var targetSystem = data_.getUint8(4);
+    var targetComponent = data_.getUint8(5);
 
-    return AvssDroneOperationMode(
-        timeBootMs: timeBootMs,
-        m300OperationMode: m300OperationMode,
-        horseflyOperationMode: horseflyOperationMode);
+    return CubepilotFirmwareUpdateResp(
+        offset: offset,
+        targetSystem: targetSystem,
+        targetComponent: targetComponent);
   }
 
   @override
   ByteData serialize() {
     var data_ = ByteData(mavlinkEncodedLength);
-    data_.setUint32(0, timeBootMs, Endian.little);
-    data_.setUint8(4, m300OperationMode);
-    data_.setUint8(5, horseflyOperationMode);
+    data_.setUint32(0, offset, Endian.little);
+    data_.setUint8(4, targetSystem);
+    data_.setUint8(5, targetComponent);
     return data_;
   }
 }
 
-class MavlinkDialectAvssuas implements MavlinkDialect {
-  static const int mavlinkVersion = 2;
+class MavlinkDialectCubepilot implements MavlinkDialect {
+  static const int mavlinkVersion = 3;
 
   @override
   int get version => mavlinkVersion;
@@ -39575,14 +39455,16 @@ class MavlinkDialectAvssuas implements MavlinkDialect {
         return OpenDroneIdSystemUpdate.parse(data);
       case 12920:
         return HygrometerSensor.parse(data);
-      case 60050:
-        return AvssPrsSysStatus.parse(data);
-      case 60051:
-        return AvssDronePosition.parse(data);
-      case 60052:
-        return AvssDroneImu.parse(data);
-      case 60053:
-        return AvssDroneOperationMode.parse(data);
+      case 50001:
+        return CubepilotRawRc.parse(data);
+      case 50002:
+        return HerelinkVideoStreamInformation.parse(data);
+      case 50003:
+        return HerelinkTelem.parse(data);
+      case 50004:
+        return CubepilotFirmwareUpdateStart.parse(data);
+      case 50005:
+        return CubepilotFirmwareUpdateResp.parse(data);
       default:
         return null;
     }
@@ -40033,14 +39915,16 @@ class MavlinkDialectAvssuas implements MavlinkDialect {
         return OpenDroneIdSystemUpdate._mavlinkCrcExtra;
       case 12920:
         return HygrometerSensor._mavlinkCrcExtra;
-      case 60050:
-        return AvssPrsSysStatus._mavlinkCrcExtra;
-      case 60051:
-        return AvssDronePosition._mavlinkCrcExtra;
-      case 60052:
-        return AvssDroneImu._mavlinkCrcExtra;
-      case 60053:
-        return AvssDroneOperationMode._mavlinkCrcExtra;
+      case 50001:
+        return CubepilotRawRc._mavlinkCrcExtra;
+      case 50002:
+        return HerelinkVideoStreamInformation._mavlinkCrcExtra;
+      case 50003:
+        return HerelinkTelem._mavlinkCrcExtra;
+      case 50004:
+        return CubepilotFirmwareUpdateStart._mavlinkCrcExtra;
+      case 50005:
+        return CubepilotFirmwareUpdateResp._mavlinkCrcExtra;
       default:
         return -1;
     }
