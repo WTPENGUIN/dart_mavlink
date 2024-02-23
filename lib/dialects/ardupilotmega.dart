@@ -10166,7 +10166,8 @@ class Heartbeat implements MavlinkMessage {
   factory Heartbeat.parse(ByteData data_) {
     if (data_.lengthInBytes < Heartbeat.mavlinkEncodedLength) {
       var len = Heartbeat.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var customMode = data_.getUint32(0, Endian.little);
@@ -10260,7 +10261,8 @@ class ProtocolVersion implements MavlinkMessage {
   factory ProtocolVersion.parse(ByteData data_) {
     if (data_.lengthInBytes < ProtocolVersion.mavlinkEncodedLength) {
       var len = ProtocolVersion.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var version = data_.getUint16(0, Endian.little);
@@ -10467,7 +10469,8 @@ class SysStatus implements MavlinkMessage {
   factory SysStatus.parse(ByteData data_) {
     if (data_.lengthInBytes < SysStatus.mavlinkEncodedLength) {
       var len = SysStatus.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var onboardControlSensorsPresent = data_.getUint32(0, Endian.little);
@@ -10577,7 +10580,8 @@ class SystemTime implements MavlinkMessage {
   factory SystemTime.parse(ByteData data_) {
     if (data_.lengthInBytes < SystemTime.mavlinkEncodedLength) {
       var len = SystemTime.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeUnixUsec = data_.getUint64(0, Endian.little);
@@ -10651,7 +10655,8 @@ class Ping implements MavlinkMessage {
   factory Ping.parse(ByteData data_) {
     if (data_.lengthInBytes < Ping.mavlinkEncodedLength) {
       var len = Ping.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeUsec = data_.getUint64(0, Endian.little);
@@ -10734,7 +10739,8 @@ class ChangeOperatorControl implements MavlinkMessage {
     if (data_.lengthInBytes < ChangeOperatorControl.mavlinkEncodedLength) {
       var len =
           ChangeOperatorControl.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var targetSystem = data_.getUint8(0);
@@ -10807,7 +10813,8 @@ class ChangeOperatorControlAck implements MavlinkMessage {
     if (data_.lengthInBytes < ChangeOperatorControlAck.mavlinkEncodedLength) {
       var len =
           ChangeOperatorControlAck.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var gcsSystemId = data_.getUint8(0);
@@ -10858,7 +10865,8 @@ class AuthKey implements MavlinkMessage {
   factory AuthKey.parse(ByteData data_) {
     if (data_.lengthInBytes < AuthKey.mavlinkEncodedLength) {
       var len = AuthKey.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var key = MavlinkMessage.asInt8List(data_, 0, 32);
@@ -11000,7 +11008,8 @@ class LinkNodeStatus implements MavlinkMessage {
   factory LinkNodeStatus.parse(ByteData data_) {
     if (data_.lengthInBytes < LinkNodeStatus.mavlinkEncodedLength) {
       var len = LinkNodeStatus.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timestamp = data_.getUint64(0, Endian.little);
@@ -11095,7 +11104,8 @@ class SetMode implements MavlinkMessage {
   factory SetMode.parse(ByteData data_) {
     if (data_.lengthInBytes < SetMode.mavlinkEncodedLength) {
       var len = SetMode.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var customMode = data_.getUint32(0, Endian.little);
@@ -11170,7 +11180,8 @@ class ParamRequestRead implements MavlinkMessage {
   factory ParamRequestRead.parse(ByteData data_) {
     if (data_.lengthInBytes < ParamRequestRead.mavlinkEncodedLength) {
       var len = ParamRequestRead.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var paramIndex = data_.getInt16(0, Endian.little);
@@ -11234,7 +11245,8 @@ class ParamRequestList implements MavlinkMessage {
   factory ParamRequestList.parse(ByteData data_) {
     if (data_.lengthInBytes < ParamRequestList.mavlinkEncodedLength) {
       var len = ParamRequestList.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var targetSystem = data_.getUint8(0);
@@ -11317,7 +11329,8 @@ class ParamValue implements MavlinkMessage {
   factory ParamValue.parse(ByteData data_) {
     if (data_.lengthInBytes < ParamValue.mavlinkEncodedLength) {
       var len = ParamValue.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var paramValue = data_.getFloat32(0, Endian.little);
@@ -11412,7 +11425,8 @@ class ParamSet implements MavlinkMessage {
   factory ParamSet.parse(ByteData data_) {
     if (data_.lengthInBytes < ParamSet.mavlinkEncodedLength) {
       var len = ParamSet.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var paramValue = data_.getFloat32(0, Endian.little);
@@ -11630,7 +11644,8 @@ class GpsRawInt implements MavlinkMessage {
   factory GpsRawInt.parse(ByteData data_) {
     if (data_.lengthInBytes < GpsRawInt.mavlinkEncodedLength) {
       var len = GpsRawInt.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeUsec = data_.getUint64(0, Endian.little);
@@ -11768,7 +11783,8 @@ class GpsStatus implements MavlinkMessage {
   factory GpsStatus.parse(ByteData data_) {
     if (data_.lengthInBytes < GpsStatus.mavlinkEncodedLength) {
       var len = GpsStatus.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var satellitesVisible = data_.getUint8(0);
@@ -11934,7 +11950,8 @@ class ScaledImu implements MavlinkMessage {
   factory ScaledImu.parse(ByteData data_) {
     if (data_.lengthInBytes < ScaledImu.mavlinkEncodedLength) {
       var len = ScaledImu.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeBootMs = data_.getUint32(0, Endian.little);
@@ -12107,7 +12124,8 @@ class RawImu implements MavlinkMessage {
   factory RawImu.parse(ByteData data_) {
     if (data_.lengthInBytes < RawImu.mavlinkEncodedLength) {
       var len = RawImu.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeUsec = data_.getUint64(0, Endian.little);
@@ -12221,7 +12239,8 @@ class RawPressure implements MavlinkMessage {
   factory RawPressure.parse(ByteData data_) {
     if (data_.lengthInBytes < RawPressure.mavlinkEncodedLength) {
       var len = RawPressure.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeUsec = data_.getUint64(0, Endian.little);
@@ -12324,7 +12343,8 @@ class ScaledPressure implements MavlinkMessage {
   factory ScaledPressure.parse(ByteData data_) {
     if (data_.lengthInBytes < ScaledPressure.mavlinkEncodedLength) {
       var len = ScaledPressure.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeBootMs = data_.getUint32(0, Endian.little);
@@ -12445,7 +12465,8 @@ class Attitude implements MavlinkMessage {
   factory Attitude.parse(ByteData data_) {
     if (data_.lengthInBytes < Attitude.mavlinkEncodedLength) {
       var len = Attitude.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeBootMs = data_.getUint32(0, Endian.little);
@@ -12584,7 +12605,8 @@ class AttitudeQuaternion implements MavlinkMessage {
   factory AttitudeQuaternion.parse(ByteData data_) {
     if (data_.lengthInBytes < AttitudeQuaternion.mavlinkEncodedLength) {
       var len = AttitudeQuaternion.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeBootMs = data_.getUint32(0, Endian.little);
@@ -12717,7 +12739,8 @@ class LocalPositionNed implements MavlinkMessage {
   factory LocalPositionNed.parse(ByteData data_) {
     if (data_.lengthInBytes < LocalPositionNed.mavlinkEncodedLength) {
       var len = LocalPositionNed.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeBootMs = data_.getUint32(0, Endian.little);
@@ -12859,7 +12882,8 @@ class GlobalPositionInt implements MavlinkMessage {
   factory GlobalPositionInt.parse(ByteData data_) {
     if (data_.lengthInBytes < GlobalPositionInt.mavlinkEncodedLength) {
       var len = GlobalPositionInt.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeBootMs = data_.getUint32(0, Endian.little);
@@ -13012,7 +13036,8 @@ class RcChannelsScaled implements MavlinkMessage {
   factory RcChannelsScaled.parse(ByteData data_) {
     if (data_.lengthInBytes < RcChannelsScaled.mavlinkEncodedLength) {
       var len = RcChannelsScaled.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeBootMs = data_.getUint32(0, Endian.little);
@@ -13187,7 +13212,8 @@ class RcChannelsRaw implements MavlinkMessage {
   factory RcChannelsRaw.parse(ByteData data_) {
     if (data_.lengthInBytes < RcChannelsRaw.mavlinkEncodedLength) {
       var len = RcChannelsRaw.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeBootMs = data_.getUint32(0, Endian.little);
@@ -13450,7 +13476,8 @@ class ServoOutputRaw implements MavlinkMessage {
   factory ServoOutputRaw.parse(ByteData data_) {
     if (data_.lengthInBytes < ServoOutputRaw.mavlinkEncodedLength) {
       var len = ServoOutputRaw.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeUsec = data_.getUint32(0, Endian.little);
@@ -13585,7 +13612,8 @@ class MissionRequestPartialList implements MavlinkMessage {
     if (data_.lengthInBytes < MissionRequestPartialList.mavlinkEncodedLength) {
       var len =
           MissionRequestPartialList.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var startIndex = data_.getInt16(0, Endian.little);
@@ -13681,7 +13709,8 @@ class MissionWritePartialList implements MavlinkMessage {
     if (data_.lengthInBytes < MissionWritePartialList.mavlinkEncodedLength) {
       var len =
           MissionWritePartialList.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var startIndex = data_.getInt16(0, Endian.little);
@@ -13861,7 +13890,8 @@ class MissionItem implements MavlinkMessage {
   factory MissionItem.parse(ByteData data_) {
     if (data_.lengthInBytes < MissionItem.mavlinkEncodedLength) {
       var len = MissionItem.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var param1 = data_.getFloat32(0, Endian.little);
@@ -13978,7 +14008,8 @@ class MissionRequest implements MavlinkMessage {
   factory MissionRequest.parse(ByteData data_) {
     if (data_.lengthInBytes < MissionRequest.mavlinkEncodedLength) {
       var len = MissionRequest.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var seq = data_.getUint16(0, Endian.little);
@@ -14058,7 +14089,8 @@ class MissionSetCurrent implements MavlinkMessage {
   factory MissionSetCurrent.parse(ByteData data_) {
     if (data_.lengthInBytes < MissionSetCurrent.mavlinkEncodedLength) {
       var len = MissionSetCurrent.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var seq = data_.getUint16(0, Endian.little);
@@ -14175,7 +14207,8 @@ class MissionCurrent implements MavlinkMessage {
   factory MissionCurrent.parse(ByteData data_) {
     if (data_.lengthInBytes < MissionCurrent.mavlinkEncodedLength) {
       var len = MissionCurrent.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var seq = data_.getUint16(0, Endian.little);
@@ -14260,7 +14293,8 @@ class MissionRequestList implements MavlinkMessage {
   factory MissionRequestList.parse(ByteData data_) {
     if (data_.lengthInBytes < MissionRequestList.mavlinkEncodedLength) {
       var len = MissionRequestList.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var targetSystem = data_.getUint8(0);
@@ -14357,7 +14391,8 @@ class MissionCount implements MavlinkMessage {
   factory MissionCount.parse(ByteData data_) {
     if (data_.lengthInBytes < MissionCount.mavlinkEncodedLength) {
       var len = MissionCount.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var count = data_.getUint16(0, Endian.little);
@@ -14436,7 +14471,8 @@ class MissionClearAll implements MavlinkMessage {
   factory MissionClearAll.parse(ByteData data_) {
     if (data_.lengthInBytes < MissionClearAll.mavlinkEncodedLength) {
       var len = MissionClearAll.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var targetSystem = data_.getUint8(0);
@@ -14489,7 +14525,8 @@ class MissionItemReached implements MavlinkMessage {
   factory MissionItemReached.parse(ByteData data_) {
     if (data_.lengthInBytes < MissionItemReached.mavlinkEncodedLength) {
       var len = MissionItemReached.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var seq = data_.getUint16(0, Endian.little);
@@ -14581,7 +14618,8 @@ class MissionAck implements MavlinkMessage {
   factory MissionAck.parse(ByteData data_) {
     if (data_.lengthInBytes < MissionAck.mavlinkEncodedLength) {
       var len = MissionAck.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var targetSystem = data_.getUint8(0);
@@ -14682,7 +14720,8 @@ class SetGpsGlobalOrigin implements MavlinkMessage {
   factory SetGpsGlobalOrigin.parse(ByteData data_) {
     if (data_.lengthInBytes < SetGpsGlobalOrigin.mavlinkEncodedLength) {
       var len = SetGpsGlobalOrigin.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var latitude = data_.getInt32(0, Endian.little);
@@ -14775,7 +14814,8 @@ class GpsGlobalOrigin implements MavlinkMessage {
   factory GpsGlobalOrigin.parse(ByteData data_) {
     if (data_.lengthInBytes < GpsGlobalOrigin.mavlinkEncodedLength) {
       var len = GpsGlobalOrigin.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var latitude = data_.getInt32(0, Endian.little);
@@ -14895,7 +14935,8 @@ class ParamMapRc implements MavlinkMessage {
   factory ParamMapRc.parse(ByteData data_) {
     if (data_.lengthInBytes < ParamMapRc.mavlinkEncodedLength) {
       var len = ParamMapRc.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var paramValue0 = data_.getFloat32(0, Endian.little);
@@ -14994,7 +15035,8 @@ class MissionRequestInt implements MavlinkMessage {
   factory MissionRequestInt.parse(ByteData data_) {
     if (data_.lengthInBytes < MissionRequestInt.mavlinkEncodedLength) {
       var len = MissionRequestInt.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var seq = data_.getUint16(0, Endian.little);
@@ -15128,7 +15170,8 @@ class SafetySetAllowedArea implements MavlinkMessage {
   factory SafetySetAllowedArea.parse(ByteData data_) {
     if (data_.lengthInBytes < SafetySetAllowedArea.mavlinkEncodedLength) {
       var len = SafetySetAllowedArea.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var p1x = data_.getFloat32(0, Endian.little);
@@ -15261,7 +15304,8 @@ class SafetyAllowedArea implements MavlinkMessage {
   factory SafetyAllowedArea.parse(ByteData data_) {
     if (data_.lengthInBytes < SafetyAllowedArea.mavlinkEncodedLength) {
       var len = SafetyAllowedArea.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var p1x = data_.getFloat32(0, Endian.little);
@@ -15375,7 +15419,8 @@ class AttitudeQuaternionCov implements MavlinkMessage {
     if (data_.lengthInBytes < AttitudeQuaternionCov.mavlinkEncodedLength) {
       var len =
           AttitudeQuaternionCov.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeUsec = data_.getUint64(0, Endian.little);
@@ -15509,7 +15554,8 @@ class NavControllerOutput implements MavlinkMessage {
   factory NavControllerOutput.parse(ByteData data_) {
     if (data_.lengthInBytes < NavControllerOutput.mavlinkEncodedLength) {
       var len = NavControllerOutput.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var navRoll = data_.getFloat32(0, Endian.little);
@@ -15667,7 +15713,8 @@ class GlobalPositionIntCov implements MavlinkMessage {
   factory GlobalPositionIntCov.parse(ByteData data_) {
     if (data_.lengthInBytes < GlobalPositionIntCov.mavlinkEncodedLength) {
       var len = GlobalPositionIntCov.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeUsec = data_.getUint64(0, Endian.little);
@@ -15851,7 +15898,8 @@ class LocalPositionNedCov implements MavlinkMessage {
   factory LocalPositionNedCov.parse(ByteData data_) {
     if (data_.lengthInBytes < LocalPositionNedCov.mavlinkEncodedLength) {
       var len = LocalPositionNedCov.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeUsec = data_.getUint64(0, Endian.little);
@@ -16129,7 +16177,8 @@ class RcChannels implements MavlinkMessage {
   factory RcChannels.parse(ByteData data_) {
     if (data_.lengthInBytes < RcChannels.mavlinkEncodedLength) {
       var len = RcChannels.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeBootMs = data_.getUint32(0, Endian.little);
@@ -16270,7 +16319,8 @@ class RequestDataStream implements MavlinkMessage {
   factory RequestDataStream.parse(ByteData data_) {
     if (data_.lengthInBytes < RequestDataStream.mavlinkEncodedLength) {
       var len = RequestDataStream.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var reqMessageRate = data_.getUint16(0, Endian.little);
@@ -16347,7 +16397,8 @@ class DataStream implements MavlinkMessage {
   factory DataStream.parse(ByteData data_) {
     if (data_.lengthInBytes < DataStream.mavlinkEncodedLength) {
       var len = DataStream.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var messageRate = data_.getUint16(0, Endian.little);
@@ -16538,7 +16589,8 @@ class ManualControl implements MavlinkMessage {
   factory ManualControl.parse(ByteData data_) {
     if (data_.lengthInBytes < ManualControl.mavlinkEncodedLength) {
       var len = ManualControl.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var x = data_.getInt16(0, Endian.little);
@@ -16838,7 +16890,8 @@ class RcChannelsOverride implements MavlinkMessage {
   factory RcChannelsOverride.parse(ByteData data_) {
     if (data_.lengthInBytes < RcChannelsOverride.mavlinkEncodedLength) {
       var len = RcChannelsOverride.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var chan1Raw = data_.getUint16(0, Endian.little);
@@ -17063,7 +17116,8 @@ class MissionItemInt implements MavlinkMessage {
   factory MissionItemInt.parse(ByteData data_) {
     if (data_.lengthInBytes < MissionItemInt.mavlinkEncodedLength) {
       var len = MissionItemInt.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var param1 = data_.getFloat32(0, Endian.little);
@@ -17204,7 +17258,8 @@ class VfrHud implements MavlinkMessage {
   factory VfrHud.parse(ByteData data_) {
     if (data_.lengthInBytes < VfrHud.mavlinkEncodedLength) {
       var len = VfrHud.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var airspeed = data_.getFloat32(0, Endian.little);
@@ -17366,7 +17421,8 @@ class CommandInt implements MavlinkMessage {
   factory CommandInt.parse(ByteData data_) {
     if (data_.lengthInBytes < CommandInt.mavlinkEncodedLength) {
       var len = CommandInt.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var param1 = data_.getFloat32(0, Endian.little);
@@ -17531,7 +17587,8 @@ class CommandLong implements MavlinkMessage {
   factory CommandLong.parse(ByteData data_) {
     if (data_.lengthInBytes < CommandLong.mavlinkEncodedLength) {
       var len = CommandLong.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var param1 = data_.getFloat32(0, Endian.little);
@@ -17662,7 +17719,8 @@ class CommandAck implements MavlinkMessage {
   factory CommandAck.parse(ByteData data_) {
     if (data_.lengthInBytes < CommandAck.mavlinkEncodedLength) {
       var len = CommandAck.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var command = data_.getUint16(0, Endian.little);
@@ -17742,7 +17800,8 @@ class CommandCancel implements MavlinkMessage {
   factory CommandCancel.parse(ByteData data_) {
     if (data_.lengthInBytes < CommandCancel.mavlinkEncodedLength) {
       var len = CommandCancel.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var command = data_.getUint16(0, Endian.little);
@@ -17851,7 +17910,8 @@ class ManualSetpoint implements MavlinkMessage {
   factory ManualSetpoint.parse(ByteData data_) {
     if (data_.lengthInBytes < ManualSetpoint.mavlinkEncodedLength) {
       var len = ManualSetpoint.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeBootMs = data_.getUint32(0, Endian.little);
@@ -18000,7 +18060,8 @@ class SetAttitudeTarget implements MavlinkMessage {
   factory SetAttitudeTarget.parse(ByteData data_) {
     if (data_.lengthInBytes < SetAttitudeTarget.mavlinkEncodedLength) {
       var len = SetAttitudeTarget.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeBootMs = data_.getUint32(0, Endian.little);
@@ -18132,7 +18193,8 @@ class AttitudeTarget implements MavlinkMessage {
   factory AttitudeTarget.parse(ByteData data_) {
     if (data_.lengthInBytes < AttitudeTarget.mavlinkEncodedLength) {
       var len = AttitudeTarget.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeBootMs = data_.getUint32(0, Endian.little);
@@ -18346,7 +18408,8 @@ class SetPositionTargetLocalNed implements MavlinkMessage {
     if (data_.lengthInBytes < SetPositionTargetLocalNed.mavlinkEncodedLength) {
       var len =
           SetPositionTargetLocalNed.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeBootMs = data_.getUint32(0, Endian.little);
@@ -18571,7 +18634,8 @@ class PositionTargetLocalNed implements MavlinkMessage {
     if (data_.lengthInBytes < PositionTargetLocalNed.mavlinkEncodedLength) {
       var len =
           PositionTargetLocalNed.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeBootMs = data_.getUint32(0, Endian.little);
@@ -18806,7 +18870,8 @@ class SetPositionTargetGlobalInt implements MavlinkMessage {
     if (data_.lengthInBytes < SetPositionTargetGlobalInt.mavlinkEncodedLength) {
       var len =
           SetPositionTargetGlobalInt.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeBootMs = data_.getUint32(0, Endian.little);
@@ -19031,7 +19096,8 @@ class PositionTargetGlobalInt implements MavlinkMessage {
     if (data_.lengthInBytes < PositionTargetGlobalInt.mavlinkEncodedLength) {
       var len =
           PositionTargetGlobalInt.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeBootMs = data_.getUint32(0, Endian.little);
@@ -19181,7 +19247,8 @@ class LocalPositionNedSystemGlobalOffset implements MavlinkMessage {
         LocalPositionNedSystemGlobalOffset.mavlinkEncodedLength) {
       var len = LocalPositionNedSystemGlobalOffset.mavlinkEncodedLength -
           data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeBootMs = data_.getUint32(0, Endian.little);
@@ -19398,7 +19465,8 @@ class HilState implements MavlinkMessage {
   factory HilState.parse(ByteData data_) {
     if (data_.lengthInBytes < HilState.mavlinkEncodedLength) {
       var len = HilState.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeUsec = data_.getUint64(0, Endian.little);
@@ -19574,7 +19642,8 @@ class HilControls implements MavlinkMessage {
   factory HilControls.parse(ByteData data_) {
     if (data_.lengthInBytes < HilControls.mavlinkEncodedLength) {
       var len = HilControls.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeUsec = data_.getUint64(0, Endian.little);
@@ -19781,7 +19850,8 @@ class HilRcInputsRaw implements MavlinkMessage {
   factory HilRcInputsRaw.parse(ByteData data_) {
     if (data_.lengthInBytes < HilRcInputsRaw.mavlinkEncodedLength) {
       var len = HilRcInputsRaw.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeUsec = data_.getUint64(0, Endian.little);
@@ -19895,7 +19965,8 @@ class HilActuatorControls implements MavlinkMessage {
   factory HilActuatorControls.parse(ByteData data_) {
     if (data_.lengthInBytes < HilActuatorControls.mavlinkEncodedLength) {
       var len = HilActuatorControls.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeUsec = data_.getUint64(0, Endian.little);
@@ -20040,7 +20111,8 @@ class OpticalFlow implements MavlinkMessage {
   factory OpticalFlow.parse(ByteData data_) {
     if (data_.lengthInBytes < OpticalFlow.mavlinkEncodedLength) {
       var len = OpticalFlow.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeUsec = data_.getUint64(0, Endian.little);
@@ -20198,7 +20270,8 @@ class GlobalVisionPositionEstimate implements MavlinkMessage {
         GlobalVisionPositionEstimate.mavlinkEncodedLength) {
       var len = GlobalVisionPositionEstimate.mavlinkEncodedLength -
           data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var usec = data_.getUint64(0, Endian.little);
@@ -20352,7 +20425,8 @@ class VisionPositionEstimate implements MavlinkMessage {
     if (data_.lengthInBytes < VisionPositionEstimate.mavlinkEncodedLength) {
       var len =
           VisionPositionEstimate.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var usec = data_.getUint64(0, Endian.little);
@@ -20475,7 +20549,8 @@ class VisionSpeedEstimate implements MavlinkMessage {
   factory VisionSpeedEstimate.parse(ByteData data_) {
     if (data_.lengthInBytes < VisionSpeedEstimate.mavlinkEncodedLength) {
       var len = VisionSpeedEstimate.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var usec = data_.getUint64(0, Endian.little);
@@ -20610,7 +20685,8 @@ class ViconPositionEstimate implements MavlinkMessage {
     if (data_.lengthInBytes < ViconPositionEstimate.mavlinkEncodedLength) {
       var len =
           ViconPositionEstimate.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var usec = data_.getUint64(0, Endian.little);
@@ -20828,7 +20904,8 @@ class HighresImu implements MavlinkMessage {
   factory HighresImu.parse(ByteData data_) {
     if (data_.lengthInBytes < HighresImu.mavlinkEncodedLength) {
       var len = HighresImu.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeUsec = data_.getUint64(0, Endian.little);
@@ -21028,7 +21105,8 @@ class OpticalFlowRad implements MavlinkMessage {
   factory OpticalFlowRad.parse(ByteData data_) {
     if (data_.lengthInBytes < OpticalFlowRad.mavlinkEncodedLength) {
       var len = OpticalFlowRad.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeUsec = data_.getUint64(0, Endian.little);
@@ -21258,7 +21336,8 @@ class HilSensor implements MavlinkMessage {
   factory HilSensor.parse(ByteData data_) {
     if (data_.lengthInBytes < HilSensor.mavlinkEncodedLength) {
       var len = HilSensor.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeUsec = data_.getUint64(0, Endian.little);
@@ -21558,7 +21637,8 @@ class SimState implements MavlinkMessage {
   factory SimState.parse(ByteData data_) {
     if (data_.lengthInBytes < SimState.mavlinkEncodedLength) {
       var len = SimState.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var q1 = data_.getFloat32(0, Endian.little);
@@ -21721,7 +21801,8 @@ class RadioStatus implements MavlinkMessage {
   factory RadioStatus.parse(ByteData data_) {
     if (data_.lengthInBytes < RadioStatus.mavlinkEncodedLength) {
       var len = RadioStatus.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var rxerrors = data_.getUint16(0, Endian.little);
@@ -21810,7 +21891,8 @@ class FileTransferProtocol implements MavlinkMessage {
   factory FileTransferProtocol.parse(ByteData data_) {
     if (data_.lengthInBytes < FileTransferProtocol.mavlinkEncodedLength) {
       var len = FileTransferProtocol.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var targetNetwork = data_.getUint8(0);
@@ -21907,7 +21989,8 @@ class Timesync implements MavlinkMessage {
   factory Timesync.parse(ByteData data_) {
     if (data_.lengthInBytes < Timesync.mavlinkEncodedLength) {
       var len = Timesync.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var tc1 = data_.getInt64(0, Endian.little);
@@ -21973,7 +22056,8 @@ class CameraTrigger implements MavlinkMessage {
   factory CameraTrigger.parse(ByteData data_) {
     if (data_.lengthInBytes < CameraTrigger.mavlinkEncodedLength) {
       var len = CameraTrigger.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeUsec = data_.getUint64(0, Endian.little);
@@ -22158,7 +22242,8 @@ class HilGps implements MavlinkMessage {
   factory HilGps.parse(ByteData data_) {
     if (data_.lengthInBytes < HilGps.mavlinkEncodedLength) {
       var len = HilGps.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeUsec = data_.getUint64(0, Endian.little);
@@ -22355,7 +22440,8 @@ class HilOpticalFlow implements MavlinkMessage {
   factory HilOpticalFlow.parse(ByteData data_) {
     if (data_.lengthInBytes < HilOpticalFlow.mavlinkEncodedLength) {
       var len = HilOpticalFlow.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeUsec = data_.getUint64(0, Endian.little);
@@ -22585,7 +22671,8 @@ class HilStateQuaternion implements MavlinkMessage {
   factory HilStateQuaternion.parse(ByteData data_) {
     if (data_.lengthInBytes < HilStateQuaternion.mavlinkEncodedLength) {
       var len = HilStateQuaternion.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeUsec = data_.getUint64(0, Endian.little);
@@ -22781,7 +22868,8 @@ class ScaledImu2 implements MavlinkMessage {
   factory ScaledImu2.parse(ByteData data_) {
     if (data_.lengthInBytes < ScaledImu2.mavlinkEncodedLength) {
       var len = ScaledImu2.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeBootMs = data_.getUint32(0, Endian.little);
@@ -22882,7 +22970,8 @@ class LogRequestList implements MavlinkMessage {
   factory LogRequestList.parse(ByteData data_) {
     if (data_.lengthInBytes < LogRequestList.mavlinkEncodedLength) {
       var len = LogRequestList.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var start = data_.getUint16(0, Endian.little);
@@ -22974,7 +23063,8 @@ class LogEntry implements MavlinkMessage {
   factory LogEntry.parse(ByteData data_) {
     if (data_.lengthInBytes < LogEntry.mavlinkEncodedLength) {
       var len = LogEntry.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeUtc = data_.getUint32(0, Endian.little);
@@ -23067,7 +23157,8 @@ class LogRequestData implements MavlinkMessage {
   factory LogRequestData.parse(ByteData data_) {
     if (data_.lengthInBytes < LogRequestData.mavlinkEncodedLength) {
       var len = LogRequestData.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var ofs = data_.getUint32(0, Endian.little);
@@ -23152,7 +23243,8 @@ class LogData implements MavlinkMessage {
   factory LogData.parse(ByteData data_) {
     if (data_.lengthInBytes < LogData.mavlinkEncodedLength) {
       var len = LogData.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var ofs = data_.getUint32(0, Endian.little);
@@ -23212,7 +23304,8 @@ class LogErase implements MavlinkMessage {
   factory LogErase.parse(ByteData data_) {
     if (data_.lengthInBytes < LogErase.mavlinkEncodedLength) {
       var len = LogErase.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var targetSystem = data_.getUint8(0);
@@ -23269,7 +23362,8 @@ class LogRequestEnd implements MavlinkMessage {
   factory LogRequestEnd.parse(ByteData data_) {
     if (data_.lengthInBytes < LogRequestEnd.mavlinkEncodedLength) {
       var len = LogRequestEnd.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var targetSystem = data_.getUint8(0);
@@ -23344,7 +23438,8 @@ class GpsInjectData implements MavlinkMessage {
   factory GpsInjectData.parse(ByteData data_) {
     if (data_.lengthInBytes < GpsInjectData.mavlinkEncodedLength) {
       var len = GpsInjectData.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var targetSystem = data_.getUint8(0);
@@ -23576,7 +23671,8 @@ class Gps2Raw implements MavlinkMessage {
   factory Gps2Raw.parse(ByteData data_) {
     if (data_.lengthInBytes < Gps2Raw.mavlinkEncodedLength) {
       var len = Gps2Raw.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeUsec = data_.getUint64(0, Endian.little);
@@ -23696,7 +23792,8 @@ class PowerStatus implements MavlinkMessage {
   factory PowerStatus.parse(ByteData data_) {
     if (data_.lengthInBytes < PowerStatus.mavlinkEncodedLength) {
       var len = PowerStatus.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var vcc = data_.getUint16(0, Endian.little);
@@ -23816,7 +23913,8 @@ class SerialControl implements MavlinkMessage {
   factory SerialControl.parse(ByteData data_) {
     if (data_.lengthInBytes < SerialControl.mavlinkEncodedLength) {
       var len = SerialControl.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var baudrate = data_.getUint32(0, Endian.little);
@@ -23994,7 +24092,8 @@ class GpsRtk implements MavlinkMessage {
   factory GpsRtk.parse(ByteData data_) {
     if (data_.lengthInBytes < GpsRtk.mavlinkEncodedLength) {
       var len = GpsRtk.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeLastBaselineMs = data_.getUint32(0, Endian.little);
@@ -24187,7 +24286,8 @@ class Gps2Rtk implements MavlinkMessage {
   factory Gps2Rtk.parse(ByteData data_) {
     if (data_.lengthInBytes < Gps2Rtk.mavlinkEncodedLength) {
       var len = Gps2Rtk.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeLastBaselineMs = data_.getUint32(0, Endian.little);
@@ -24374,7 +24474,8 @@ class ScaledImu3 implements MavlinkMessage {
   factory ScaledImu3.parse(ByteData data_) {
     if (data_.lengthInBytes < ScaledImu3.mavlinkEncodedLength) {
       var len = ScaledImu3.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeBootMs = data_.getUint32(0, Endian.little);
@@ -24508,7 +24609,8 @@ class DataTransmissionHandshake implements MavlinkMessage {
     if (data_.lengthInBytes < DataTransmissionHandshake.mavlinkEncodedLength) {
       var len =
           DataTransmissionHandshake.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var size = data_.getUint32(0, Endian.little);
@@ -24581,7 +24683,8 @@ class EncapsulatedData implements MavlinkMessage {
   factory EncapsulatedData.parse(ByteData data_) {
     if (data_.lengthInBytes < EncapsulatedData.mavlinkEncodedLength) {
       var len = EncapsulatedData.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var seqnr = data_.getUint16(0, Endian.little);
@@ -24745,7 +24848,8 @@ class DistanceSensor implements MavlinkMessage {
   factory DistanceSensor.parse(ByteData data_) {
     if (data_.lengthInBytes < DistanceSensor.mavlinkEncodedLength) {
       var len = DistanceSensor.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeBootMs = data_.getUint32(0, Endian.little);
@@ -24855,7 +24959,8 @@ class TerrainRequest implements MavlinkMessage {
   factory TerrainRequest.parse(ByteData data_) {
     if (data_.lengthInBytes < TerrainRequest.mavlinkEncodedLength) {
       var len = TerrainRequest.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var mask = data_.getUint64(0, Endian.little);
@@ -24948,7 +25053,8 @@ class TerrainData implements MavlinkMessage {
   factory TerrainData.parse(ByteData data_) {
     if (data_.lengthInBytes < TerrainData.mavlinkEncodedLength) {
       var len = TerrainData.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var lat = data_.getInt32(0, Endian.little);
@@ -25019,7 +25125,8 @@ class TerrainCheck implements MavlinkMessage {
   factory TerrainCheck.parse(ByteData data_) {
     if (data_.lengthInBytes < TerrainCheck.mavlinkEncodedLength) {
       var len = TerrainCheck.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var lat = data_.getInt32(0, Endian.little);
@@ -25123,7 +25230,8 @@ class TerrainReport implements MavlinkMessage {
   factory TerrainReport.parse(ByteData data_) {
     if (data_.lengthInBytes < TerrainReport.mavlinkEncodedLength) {
       var len = TerrainReport.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var lat = data_.getInt32(0, Endian.little);
@@ -25232,7 +25340,8 @@ class ScaledPressure2 implements MavlinkMessage {
   factory ScaledPressure2.parse(ByteData data_) {
     if (data_.lengthInBytes < ScaledPressure2.mavlinkEncodedLength) {
       var len = ScaledPressure2.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeBootMs = data_.getUint32(0, Endian.little);
@@ -25341,7 +25450,8 @@ class AttPosMocap implements MavlinkMessage {
   factory AttPosMocap.parse(ByteData data_) {
     if (data_.lengthInBytes < AttPosMocap.mavlinkEncodedLength) {
       var len = AttPosMocap.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeUsec = data_.getUint64(0, Endian.little);
@@ -25433,7 +25543,8 @@ class SetActuatorControlTarget implements MavlinkMessage {
     if (data_.lengthInBytes < SetActuatorControlTarget.mavlinkEncodedLength) {
       var len =
           SetActuatorControlTarget.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeUsec = data_.getUint64(0, Endian.little);
@@ -25511,7 +25622,8 @@ class ActuatorControlTarget implements MavlinkMessage {
     if (data_.lengthInBytes < ActuatorControlTarget.mavlinkEncodedLength) {
       var len =
           ActuatorControlTarget.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeUsec = data_.getUint64(0, Endian.little);
@@ -25624,7 +25736,8 @@ class Altitude implements MavlinkMessage {
   factory Altitude.parse(ByteData data_) {
     if (data_.lengthInBytes < Altitude.mavlinkEncodedLength) {
       var len = Altitude.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeUsec = data_.getUint64(0, Endian.little);
@@ -25721,7 +25834,8 @@ class ResourceRequest implements MavlinkMessage {
   factory ResourceRequest.parse(ByteData data_) {
     if (data_.lengthInBytes < ResourceRequest.mavlinkEncodedLength) {
       var len = ResourceRequest.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var requestId = data_.getUint8(0);
@@ -25824,7 +25938,8 @@ class ScaledPressure3 implements MavlinkMessage {
   factory ScaledPressure3.parse(ByteData data_) {
     if (data_.lengthInBytes < ScaledPressure3.mavlinkEncodedLength) {
       var len = ScaledPressure3.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeBootMs = data_.getUint32(0, Endian.little);
@@ -25975,7 +26090,8 @@ class FollowTarget implements MavlinkMessage {
   factory FollowTarget.parse(ByteData data_) {
     if (data_.lengthInBytes < FollowTarget.mavlinkEncodedLength) {
       var len = FollowTarget.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timestamp = data_.getUint64(0, Endian.little);
@@ -26208,7 +26324,8 @@ class ControlSystemState implements MavlinkMessage {
   factory ControlSystemState.parse(ByteData data_) {
     if (data_.lengthInBytes < ControlSystemState.mavlinkEncodedLength) {
       var len = ControlSystemState.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeUsec = data_.getUint64(0, Endian.little);
@@ -26443,7 +26560,8 @@ class BatteryStatus implements MavlinkMessage {
   factory BatteryStatus.parse(ByteData data_) {
     if (data_.lengthInBytes < BatteryStatus.mavlinkEncodedLength) {
       var len = BatteryStatus.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var currentConsumed = data_.getInt32(0, Endian.little);
@@ -26621,7 +26739,8 @@ class AutopilotVersion implements MavlinkMessage {
   factory AutopilotVersion.parse(ByteData data_) {
     if (data_.lengthInBytes < AutopilotVersion.mavlinkEncodedLength) {
       var len = AutopilotVersion.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var capabilities = data_.getUint64(0, Endian.little);
@@ -26839,7 +26958,8 @@ class LandingTarget implements MavlinkMessage {
   factory LandingTarget.parse(ByteData data_) {
     if (data_.lengthInBytes < LandingTarget.mavlinkEncodedLength) {
       var len = LandingTarget.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeUsec = data_.getUint64(0, Endian.little);
@@ -26965,7 +27085,8 @@ class FenceStatus implements MavlinkMessage {
   factory FenceStatus.parse(ByteData data_) {
     if (data_.lengthInBytes < FenceStatus.mavlinkEncodedLength) {
       var len = FenceStatus.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var breachTime = data_.getUint32(0, Endian.little);
@@ -27176,7 +27297,8 @@ class MagCalReport implements MavlinkMessage {
   factory MagCalReport.parse(ByteData data_) {
     if (data_.lengthInBytes < MagCalReport.mavlinkEncodedLength) {
       var len = MagCalReport.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var fitness = data_.getFloat32(0, Endian.little);
@@ -27452,7 +27574,8 @@ class EfiStatus implements MavlinkMessage {
   factory EfiStatus.parse(ByteData data_) {
     if (data_.lengthInBytes < EfiStatus.mavlinkEncodedLength) {
       var len = EfiStatus.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var ecuIndex = data_.getFloat32(0, Endian.little);
@@ -27633,7 +27756,8 @@ class EstimatorStatus implements MavlinkMessage {
   factory EstimatorStatus.parse(ByteData data_) {
     if (data_.lengthInBytes < EstimatorStatus.mavlinkEncodedLength) {
       var len = EstimatorStatus.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeUsec = data_.getUint64(0, Endian.little);
@@ -27789,7 +27913,8 @@ class WindCov implements MavlinkMessage {
   factory WindCov.parse(ByteData data_) {
     if (data_.lengthInBytes < WindCov.mavlinkEncodedLength) {
       var len = WindCov.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeUsec = data_.getUint64(0, Endian.little);
@@ -28032,7 +28157,8 @@ class GpsInput implements MavlinkMessage {
   factory GpsInput.parse(ByteData data_) {
     if (data_.lengthInBytes < GpsInput.mavlinkEncodedLength) {
       var len = GpsInput.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeUsec = data_.getUint64(0, Endian.little);
@@ -28151,7 +28277,8 @@ class GpsRtcmData implements MavlinkMessage {
   factory GpsRtcmData.parse(ByteData data_) {
     if (data_.lengthInBytes < GpsRtcmData.mavlinkEncodedLength) {
       var len = GpsRtcmData.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var flags = data_.getUint8(0);
@@ -28425,7 +28552,8 @@ class HighLatency implements MavlinkMessage {
   factory HighLatency.parse(ByteData data_) {
     if (data_.lengthInBytes < HighLatency.mavlinkEncodedLength) {
       var len = HighLatency.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var customMode = data_.getUint32(0, Endian.little);
@@ -28793,7 +28921,8 @@ class HighLatency2 implements MavlinkMessage {
   factory HighLatency2.parse(ByteData data_) {
     if (data_.lengthInBytes < HighLatency2.mavlinkEncodedLength) {
       var len = HighLatency2.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timestamp = data_.getUint32(0, Endian.little);
@@ -28968,7 +29097,8 @@ class Vibration implements MavlinkMessage {
   factory Vibration.parse(ByteData data_) {
     if (data_.lengthInBytes < Vibration.mavlinkEncodedLength) {
       var len = Vibration.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeUsec = data_.getUint64(0, Endian.little);
@@ -29147,7 +29277,8 @@ class HomePosition implements MavlinkMessage {
   factory HomePosition.parse(ByteData data_) {
     if (data_.lengthInBytes < HomePosition.mavlinkEncodedLength) {
       var len = HomePosition.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var latitude = data_.getInt32(0, Endian.little);
@@ -29342,7 +29473,8 @@ class SetHomePosition implements MavlinkMessage {
   factory SetHomePosition.parse(ByteData data_) {
     if (data_.lengthInBytes < SetHomePosition.mavlinkEncodedLength) {
       var len = SetHomePosition.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var latitude = data_.getInt32(0, Endian.little);
@@ -29436,7 +29568,8 @@ class MessageInterval implements MavlinkMessage {
   factory MessageInterval.parse(ByteData data_) {
     if (data_.lengthInBytes < MessageInterval.mavlinkEncodedLength) {
       var len = MessageInterval.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var intervalUs = data_.getInt32(0, Endian.little);
@@ -29496,7 +29629,8 @@ class ExtendedSysState implements MavlinkMessage {
   factory ExtendedSysState.parse(ByteData data_) {
     if (data_.lengthInBytes < ExtendedSysState.mavlinkEncodedLength) {
       var len = ExtendedSysState.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var vtolState = data_.getUint8(0);
@@ -29660,7 +29794,8 @@ class AdsbVehicle implements MavlinkMessage {
   factory AdsbVehicle.parse(ByteData data_) {
     if (data_.lengthInBytes < AdsbVehicle.mavlinkEncodedLength) {
       var len = AdsbVehicle.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var icaoAddress = data_.getUint32(0, Endian.little);
@@ -29803,7 +29938,8 @@ class Collision implements MavlinkMessage {
   factory Collision.parse(ByteData data_) {
     if (data_.lengthInBytes < Collision.mavlinkEncodedLength) {
       var len = Collision.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var id = data_.getUint32(0, Endian.little);
@@ -29900,7 +30036,8 @@ class V2Extension implements MavlinkMessage {
   factory V2Extension.parse(ByteData data_) {
     if (data_.lengthInBytes < V2Extension.mavlinkEncodedLength) {
       var len = V2Extension.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var messageType = data_.getUint16(0, Endian.little);
@@ -29983,7 +30120,8 @@ class MemoryVect implements MavlinkMessage {
   factory MemoryVect.parse(ByteData data_) {
     if (data_.lengthInBytes < MemoryVect.mavlinkEncodedLength) {
       var len = MemoryVect.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var address = data_.getUint16(0, Endian.little);
@@ -30069,7 +30207,8 @@ class DebugVect implements MavlinkMessage {
   factory DebugVect.parse(ByteData data_) {
     if (data_.lengthInBytes < DebugVect.mavlinkEncodedLength) {
       var len = DebugVect.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeUsec = data_.getUint64(0, Endian.little);
@@ -30141,7 +30280,8 @@ class NamedValueFloat implements MavlinkMessage {
   factory NamedValueFloat.parse(ByteData data_) {
     if (data_.lengthInBytes < NamedValueFloat.mavlinkEncodedLength) {
       var len = NamedValueFloat.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeBootMs = data_.getUint32(0, Endian.little);
@@ -30209,7 +30349,8 @@ class NamedValueInt implements MavlinkMessage {
   factory NamedValueInt.parse(ByteData data_) {
     if (data_.lengthInBytes < NamedValueInt.mavlinkEncodedLength) {
       var len = NamedValueInt.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeBootMs = data_.getUint32(0, Endian.little);
@@ -30289,7 +30430,8 @@ class Statustext implements MavlinkMessage {
   factory Statustext.parse(ByteData data_) {
     if (data_.lengthInBytes < Statustext.mavlinkEncodedLength) {
       var len = Statustext.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var severity = data_.getUint8(0);
@@ -30360,7 +30502,8 @@ class Debug implements MavlinkMessage {
   factory Debug.parse(ByteData data_) {
     if (data_.lengthInBytes < Debug.mavlinkEncodedLength) {
       var len = Debug.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeBootMs = data_.getUint32(0, Endian.little);
@@ -30434,7 +30577,8 @@ class SetupSigning implements MavlinkMessage {
   factory SetupSigning.parse(ByteData data_) {
     if (data_.lengthInBytes < SetupSigning.mavlinkEncodedLength) {
       var len = SetupSigning.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var initialTimestamp = data_.getUint64(0, Endian.little);
@@ -30510,7 +30654,8 @@ class ButtonChange implements MavlinkMessage {
   factory ButtonChange.parse(ByteData data_) {
     if (data_.lengthInBytes < ButtonChange.mavlinkEncodedLength) {
       var len = ButtonChange.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeBootMs = data_.getUint32(0, Endian.little);
@@ -30587,7 +30732,8 @@ class PlayTune implements MavlinkMessage {
   factory PlayTune.parse(ByteData data_) {
     if (data_.lengthInBytes < PlayTune.mavlinkEncodedLength) {
       var len = PlayTune.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var targetSystem = data_.getUint8(0);
@@ -30763,7 +30909,8 @@ class CameraInformation implements MavlinkMessage {
   factory CameraInformation.parse(ByteData data_) {
     if (data_.lengthInBytes < CameraInformation.mavlinkEncodedLength) {
       var len = CameraInformation.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeBootMs = data_.getUint32(0, Endian.little);
@@ -30881,7 +31028,8 @@ class CameraSettings implements MavlinkMessage {
   factory CameraSettings.parse(ByteData data_) {
     if (data_.lengthInBytes < CameraSettings.mavlinkEncodedLength) {
       var len = CameraSettings.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeBootMs = data_.getUint32(0, Endian.little);
@@ -31052,7 +31200,8 @@ class StorageInformation implements MavlinkMessage {
   factory StorageInformation.parse(ByteData data_) {
     if (data_.lengthInBytes < StorageInformation.mavlinkEncodedLength) {
       var len = StorageInformation.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeBootMs = data_.getUint32(0, Endian.little);
@@ -31190,7 +31339,8 @@ class CameraCaptureStatus implements MavlinkMessage {
   factory CameraCaptureStatus.parse(ByteData data_) {
     if (data_.lengthInBytes < CameraCaptureStatus.mavlinkEncodedLength) {
       var len = CameraCaptureStatus.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeBootMs = data_.getUint32(0, Endian.little);
@@ -31353,7 +31503,8 @@ class CameraImageCaptured implements MavlinkMessage {
   factory CameraImageCaptured.parse(ByteData data_) {
     if (data_.lengthInBytes < CameraImageCaptured.mavlinkEncodedLength) {
       var len = CameraImageCaptured.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeUtc = data_.getUint64(0, Endian.little);
@@ -31462,7 +31613,8 @@ class FlightInformation implements MavlinkMessage {
   factory FlightInformation.parse(ByteData data_) {
     if (data_.lengthInBytes < FlightInformation.mavlinkEncodedLength) {
       var len = FlightInformation.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var armingTimeUtc = data_.getUint64(0, Endian.little);
@@ -31562,7 +31714,8 @@ class MountOrientation implements MavlinkMessage {
   factory MountOrientation.parse(ByteData data_) {
     if (data_.lengthInBytes < MountOrientation.mavlinkEncodedLength) {
       var len = MountOrientation.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeBootMs = data_.getUint32(0, Endian.little);
@@ -31665,7 +31818,8 @@ class LoggingData implements MavlinkMessage {
   factory LoggingData.parse(ByteData data_) {
     if (data_.lengthInBytes < LoggingData.mavlinkEncodedLength) {
       var len = LoggingData.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var sequence = data_.getUint16(0, Endian.little);
@@ -31771,7 +31925,8 @@ class LoggingDataAcked implements MavlinkMessage {
   factory LoggingDataAcked.parse(ByteData data_) {
     if (data_.lengthInBytes < LoggingDataAcked.mavlinkEncodedLength) {
       var len = LoggingDataAcked.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var sequence = data_.getUint16(0, Endian.little);
@@ -31849,7 +32004,8 @@ class LoggingAck implements MavlinkMessage {
   factory LoggingAck.parse(ByteData data_) {
     if (data_.lengthInBytes < LoggingAck.mavlinkEncodedLength) {
       var len = LoggingAck.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var sequence = data_.getUint16(0, Endian.little);
@@ -32007,7 +32163,8 @@ class VideoStreamInformation implements MavlinkMessage {
     if (data_.lengthInBytes < VideoStreamInformation.mavlinkEncodedLength) {
       var len =
           VideoStreamInformation.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var framerate = data_.getFloat32(0, Endian.little);
@@ -32157,7 +32314,8 @@ class VideoStreamStatus implements MavlinkMessage {
   factory VideoStreamStatus.parse(ByteData data_) {
     if (data_.lengthInBytes < VideoStreamStatus.mavlinkEncodedLength) {
       var len = VideoStreamStatus.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var framerate = data_.getFloat32(0, Endian.little);
@@ -32315,7 +32473,8 @@ class CameraFovStatus implements MavlinkMessage {
   factory CameraFovStatus.parse(ByteData data_) {
     if (data_.lengthInBytes < CameraFovStatus.mavlinkEncodedLength) {
       var len = CameraFovStatus.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeBootMs = data_.getUint32(0, Endian.little);
@@ -32468,7 +32627,8 @@ class CameraTrackingImageStatus implements MavlinkMessage {
     if (data_.lengthInBytes < CameraTrackingImageStatus.mavlinkEncodedLength) {
       var len =
           CameraTrackingImageStatus.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var pointX = data_.getFloat32(0, Endian.little);
@@ -32665,7 +32825,8 @@ class CameraTrackingGeoStatus implements MavlinkMessage {
     if (data_.lengthInBytes < CameraTrackingGeoStatus.mavlinkEncodedLength) {
       var len =
           CameraTrackingGeoStatus.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var lat = data_.getInt32(0, Endian.little);
@@ -32829,7 +32990,8 @@ class GimbalManagerInformation implements MavlinkMessage {
     if (data_.lengthInBytes < GimbalManagerInformation.mavlinkEncodedLength) {
       var len =
           GimbalManagerInformation.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeBootMs = data_.getUint32(0, Endian.little);
@@ -32952,7 +33114,8 @@ class GimbalManagerStatus implements MavlinkMessage {
   factory GimbalManagerStatus.parse(ByteData data_) {
     if (data_.lengthInBytes < GimbalManagerStatus.mavlinkEncodedLength) {
       var len = GimbalManagerStatus.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeBootMs = data_.getUint32(0, Endian.little);
@@ -33082,7 +33245,8 @@ class GimbalManagerSetAttitude implements MavlinkMessage {
     if (data_.lengthInBytes < GimbalManagerSetAttitude.mavlinkEncodedLength) {
       var len =
           GimbalManagerSetAttitude.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var flags = data_.getUint32(0, Endian.little);
@@ -33289,7 +33453,8 @@ class GimbalDeviceInformation implements MavlinkMessage {
     if (data_.lengthInBytes < GimbalDeviceInformation.mavlinkEncodedLength) {
       var len =
           GimbalDeviceInformation.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var uid = data_.getUint64(0, Endian.little);
@@ -33449,7 +33614,8 @@ class GimbalDeviceSetAttitude implements MavlinkMessage {
     if (data_.lengthInBytes < GimbalDeviceSetAttitude.mavlinkEncodedLength) {
       var len =
           GimbalDeviceSetAttitude.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var q = MavlinkMessage.asFloat32List(data_, 0, 4);
@@ -33639,7 +33805,8 @@ class GimbalDeviceAttitudeStatus implements MavlinkMessage {
     if (data_.lengthInBytes < GimbalDeviceAttitudeStatus.mavlinkEncodedLength) {
       var len =
           GimbalDeviceAttitudeStatus.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeBootMs = data_.getUint32(0, Endian.little);
@@ -33839,7 +34006,8 @@ class AutopilotStateForGimbalDevice implements MavlinkMessage {
         AutopilotStateForGimbalDevice.mavlinkEncodedLength) {
       var len = AutopilotStateForGimbalDevice.mavlinkEncodedLength -
           data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeBootUs = data_.getUint64(0, Endian.little);
@@ -33989,7 +34157,8 @@ class GimbalManagerSetPitchyaw implements MavlinkMessage {
     if (data_.lengthInBytes < GimbalManagerSetPitchyaw.mavlinkEncodedLength) {
       var len =
           GimbalManagerSetPitchyaw.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var flags = data_.getUint32(0, Endian.little);
@@ -34117,7 +34286,8 @@ class GimbalManagerSetManualControl implements MavlinkMessage {
         GimbalManagerSetManualControl.mavlinkEncodedLength) {
       var len = GimbalManagerSetManualControl.mavlinkEncodedLength -
           data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var flags = data_.getUint32(0, Endian.little);
@@ -34257,7 +34427,8 @@ class EscInfo implements MavlinkMessage {
   factory EscInfo.parse(ByteData data_) {
     if (data_.lengthInBytes < EscInfo.mavlinkEncodedLength) {
       var len = EscInfo.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeUsec = data_.getUint64(0, Endian.little);
@@ -34368,7 +34539,8 @@ class EscStatus implements MavlinkMessage {
   factory EscStatus.parse(ByteData data_) {
     if (data_.lengthInBytes < EscStatus.mavlinkEncodedLength) {
       var len = EscStatus.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeUsec = data_.getUint64(0, Endian.little);
@@ -34459,7 +34631,8 @@ class WifiConfigAp implements MavlinkMessage {
   factory WifiConfigAp.parse(ByteData data_) {
     if (data_.lengthInBytes < WifiConfigAp.mavlinkEncodedLength) {
       var len = WifiConfigAp.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var ssid = MavlinkMessage.asInt8List(data_, 0, 32);
@@ -34668,7 +34841,8 @@ class AisVessel implements MavlinkMessage {
   factory AisVessel.parse(ByteData data_) {
     if (data_.lengthInBytes < AisVessel.mavlinkEncodedLength) {
       var len = AisVessel.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var mmsi = data_.getUint32(0, Endian.little);
@@ -34811,7 +34985,8 @@ class UavcanNodeStatus implements MavlinkMessage {
   factory UavcanNodeStatus.parse(ByteData data_) {
     if (data_.lengthInBytes < UavcanNodeStatus.mavlinkEncodedLength) {
       var len = UavcanNodeStatus.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeUsec = data_.getUint64(0, Endian.little);
@@ -34941,7 +35116,8 @@ class UavcanNodeInfo implements MavlinkMessage {
   factory UavcanNodeInfo.parse(ByteData data_) {
     if (data_.lengthInBytes < UavcanNodeInfo.mavlinkEncodedLength) {
       var len = UavcanNodeInfo.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeUsec = data_.getUint64(0, Endian.little);
@@ -35036,7 +35212,8 @@ class ParamExtRequestRead implements MavlinkMessage {
   factory ParamExtRequestRead.parse(ByteData data_) {
     if (data_.lengthInBytes < ParamExtRequestRead.mavlinkEncodedLength) {
       var len = ParamExtRequestRead.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var paramIndex = data_.getInt16(0, Endian.little);
@@ -35100,7 +35277,8 @@ class ParamExtRequestList implements MavlinkMessage {
   factory ParamExtRequestList.parse(ByteData data_) {
     if (data_.lengthInBytes < ParamExtRequestList.mavlinkEncodedLength) {
       var len = ParamExtRequestList.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var targetSystem = data_.getUint8(0);
@@ -35183,7 +35361,8 @@ class ParamExtValue implements MavlinkMessage {
   factory ParamExtValue.parse(ByteData data_) {
     if (data_.lengthInBytes < ParamExtValue.mavlinkEncodedLength) {
       var len = ParamExtValue.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var paramCount = data_.getUint16(0, Endian.little);
@@ -35276,7 +35455,8 @@ class ParamExtSet implements MavlinkMessage {
   factory ParamExtSet.parse(ByteData data_) {
     if (data_.lengthInBytes < ParamExtSet.mavlinkEncodedLength) {
       var len = ParamExtSet.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var targetSystem = data_.getUint8(0);
@@ -35363,7 +35543,8 @@ class ParamExtAck implements MavlinkMessage {
   factory ParamExtAck.parse(ByteData data_) {
     if (data_.lengthInBytes < ParamExtAck.mavlinkEncodedLength) {
       var len = ParamExtAck.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var paramId = MavlinkMessage.asInt8List(data_, 0, 16);
@@ -35507,7 +35688,8 @@ class ObstacleDistance implements MavlinkMessage {
   factory ObstacleDistance.parse(ByteData data_) {
     if (data_.lengthInBytes < ObstacleDistance.mavlinkEncodedLength) {
       var len = ObstacleDistance.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeUsec = data_.getUint64(0, Endian.little);
@@ -35748,7 +35930,8 @@ class Odometry implements MavlinkMessage {
   factory Odometry.parse(ByteData data_) {
     if (data_.lengthInBytes < Odometry.mavlinkEncodedLength) {
       var len = Odometry.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeUsec = data_.getUint64(0, Endian.little);
@@ -35978,7 +36161,8 @@ class TrajectoryRepresentationWaypoints implements MavlinkMessage {
         TrajectoryRepresentationWaypoints.mavlinkEncodedLength) {
       var len = TrajectoryRepresentationWaypoints.mavlinkEncodedLength -
           data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeUsec = data_.getUint64(0, Endian.little);
@@ -36126,7 +36310,8 @@ class TrajectoryRepresentationBezier implements MavlinkMessage {
         TrajectoryRepresentationBezier.mavlinkEncodedLength) {
       var len = TrajectoryRepresentationBezier.mavlinkEncodedLength -
           data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeUsec = data_.getUint64(0, Endian.little);
@@ -36245,7 +36430,8 @@ class CellularStatus implements MavlinkMessage {
   factory CellularStatus.parse(ByteData data_) {
     if (data_.lengthInBytes < CellularStatus.mavlinkEncodedLength) {
       var len = CellularStatus.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var mcc = data_.getUint16(0, Endian.little);
@@ -36370,7 +36556,8 @@ class IsbdLinkStatus implements MavlinkMessage {
   factory IsbdLinkStatus.parse(ByteData data_) {
     if (data_.lengthInBytes < IsbdLinkStatus.mavlinkEncodedLength) {
       var len = IsbdLinkStatus.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timestamp = data_.getUint64(0, Endian.little);
@@ -36498,7 +36685,8 @@ class CellularConfig implements MavlinkMessage {
   factory CellularConfig.parse(ByteData data_) {
     if (data_.lengthInBytes < CellularConfig.mavlinkEncodedLength) {
       var len = CellularConfig.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var enableLte = data_.getUint8(0);
@@ -36576,7 +36764,8 @@ class RawRpm implements MavlinkMessage {
   factory RawRpm.parse(ByteData data_) {
     if (data_.lengthInBytes < RawRpm.mavlinkEncodedLength) {
       var len = RawRpm.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var frequency = data_.getFloat32(0, Endian.little);
@@ -36794,7 +36983,8 @@ class UtmGlobalPosition implements MavlinkMessage {
   factory UtmGlobalPosition.parse(ByteData data_) {
     if (data_.lengthInBytes < UtmGlobalPosition.mavlinkEncodedLength) {
       var len = UtmGlobalPosition.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var time = data_.getUint64(0, Endian.little);
@@ -36920,7 +37110,8 @@ class DebugFloatArray implements MavlinkMessage {
   factory DebugFloatArray.parse(ByteData data_) {
     if (data_.lengthInBytes < DebugFloatArray.mavlinkEncodedLength) {
       var len = DebugFloatArray.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeUsec = data_.getUint64(0, Endian.little);
@@ -37021,7 +37212,8 @@ class OrbitExecutionStatus implements MavlinkMessage {
   factory OrbitExecutionStatus.parse(ByteData data_) {
     if (data_.lengthInBytes < OrbitExecutionStatus.mavlinkEncodedLength) {
       var len = OrbitExecutionStatus.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeUsec = data_.getUint64(0, Endian.little);
@@ -37238,7 +37430,8 @@ class SmartBatteryInfo implements MavlinkMessage {
   factory SmartBatteryInfo.parse(ByteData data_) {
     if (data_.lengthInBytes < SmartBatteryInfo.mavlinkEncodedLength) {
       var len = SmartBatteryInfo.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var capacityFullSpecification = data_.getInt32(0, Endian.little);
@@ -37435,7 +37628,8 @@ class GeneratorStatus implements MavlinkMessage {
   factory GeneratorStatus.parse(ByteData data_) {
     if (data_.lengthInBytes < GeneratorStatus.mavlinkEncodedLength) {
       var len = GeneratorStatus.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var status = data_.getUint64(0, Endian.little);
@@ -37530,7 +37724,8 @@ class ActuatorOutputStatus implements MavlinkMessage {
   factory ActuatorOutputStatus.parse(ByteData data_) {
     if (data_.lengthInBytes < ActuatorOutputStatus.mavlinkEncodedLength) {
       var len = ActuatorOutputStatus.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeUsec = data_.getUint64(0, Endian.little);
@@ -37623,7 +37818,8 @@ class TimeEstimateToTarget implements MavlinkMessage {
   factory TimeEstimateToTarget.parse(ByteData data_) {
     if (data_.lengthInBytes < TimeEstimateToTarget.mavlinkEncodedLength) {
       var len = TimeEstimateToTarget.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var safeReturn = data_.getInt32(0, Endian.little);
@@ -37716,7 +37912,8 @@ class Tunnel implements MavlinkMessage {
   factory Tunnel.parse(ByteData data_) {
     if (data_.lengthInBytes < Tunnel.mavlinkEncodedLength) {
       var len = Tunnel.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var payloadType = data_.getUint16(0, Endian.little);
@@ -37815,7 +38012,8 @@ class CanFrame implements MavlinkMessage {
   factory CanFrame.parse(ByteData data_) {
     if (data_.lengthInBytes < CanFrame.mavlinkEncodedLength) {
       var len = CanFrame.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var id = data_.getUint32(0, Endian.little);
@@ -38056,7 +38254,8 @@ class OnboardComputerStatus implements MavlinkMessage {
     if (data_.lengthInBytes < OnboardComputerStatus.mavlinkEncodedLength) {
       var len =
           OnboardComputerStatus.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeUsec = data_.getUint64(0, Endian.little);
@@ -38196,7 +38395,8 @@ class ComponentInformation implements MavlinkMessage {
   factory ComponentInformation.parse(ByteData data_) {
     if (data_.lengthInBytes < ComponentInformation.mavlinkEncodedLength) {
       var len = ComponentInformation.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeBootMs = data_.getUint32(0, Endian.little);
@@ -38284,7 +38484,8 @@ class ComponentMetadata implements MavlinkMessage {
   factory ComponentMetadata.parse(ByteData data_) {
     if (data_.lengthInBytes < ComponentMetadata.mavlinkEncodedLength) {
       var len = ComponentMetadata.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeBootMs = data_.getUint32(0, Endian.little);
@@ -38361,7 +38562,8 @@ class PlayTuneV2 implements MavlinkMessage {
   factory PlayTuneV2.parse(ByteData data_) {
     if (data_.lengthInBytes < PlayTuneV2.mavlinkEncodedLength) {
       var len = PlayTuneV2.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var format = data_.getUint32(0, Endian.little);
@@ -38435,7 +38637,8 @@ class SupportedTunes implements MavlinkMessage {
   factory SupportedTunes.parse(ByteData data_) {
     if (data_.lengthInBytes < SupportedTunes.mavlinkEncodedLength) {
       var len = SupportedTunes.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var format = data_.getUint32(0, Endian.little);
@@ -38538,7 +38741,8 @@ class Event implements MavlinkMessage {
   factory Event.parse(ByteData data_) {
     if (data_.lengthInBytes < Event.mavlinkEncodedLength) {
       var len = Event.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var id = data_.getUint32(0, Endian.little);
@@ -38613,7 +38817,8 @@ class CurrentEventSequence implements MavlinkMessage {
   factory CurrentEventSequence.parse(ByteData data_) {
     if (data_.lengthInBytes < CurrentEventSequence.mavlinkEncodedLength) {
       var len = CurrentEventSequence.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var sequence = data_.getUint16(0, Endian.little);
@@ -38685,7 +38890,8 @@ class RequestEvent implements MavlinkMessage {
   factory RequestEvent.parse(ByteData data_) {
     if (data_.lengthInBytes < RequestEvent.mavlinkEncodedLength) {
       var len = RequestEvent.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var firstSequence = data_.getUint16(0, Endian.little);
@@ -38775,7 +38981,8 @@ class ResponseEventError implements MavlinkMessage {
   factory ResponseEventError.parse(ByteData data_) {
     if (data_.lengthInBytes < ResponseEventError.mavlinkEncodedLength) {
       var len = ResponseEventError.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var sequence = data_.getUint16(0, Endian.little);
@@ -38874,7 +39081,8 @@ class CanfdFrame implements MavlinkMessage {
   factory CanfdFrame.parse(ByteData data_) {
     if (data_.lengthInBytes < CanfdFrame.mavlinkEncodedLength) {
       var len = CanfdFrame.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var id = data_.getUint32(0, Endian.little);
@@ -38978,7 +39186,8 @@ class CanFilterModify implements MavlinkMessage {
   factory CanFilterModify.parse(ByteData data_) {
     if (data_.lengthInBytes < CanFilterModify.mavlinkEncodedLength) {
       var len = CanFilterModify.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var ids = MavlinkMessage.asUint16List(data_, 0, 16);
@@ -39060,7 +39269,8 @@ class WheelDistance implements MavlinkMessage {
   factory WheelDistance.parse(ByteData data_) {
     if (data_.lengthInBytes < WheelDistance.mavlinkEncodedLength) {
       var len = WheelDistance.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeUsec = data_.getUint64(0, Endian.little);
@@ -39182,7 +39392,8 @@ class WinchStatus implements MavlinkMessage {
   factory WinchStatus.parse(ByteData data_) {
     if (data_.lengthInBytes < WinchStatus.mavlinkEncodedLength) {
       var len = WinchStatus.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeUsec = data_.getUint64(0, Endian.little);
@@ -39294,7 +39505,8 @@ class OpenDroneIdBasicId implements MavlinkMessage {
   factory OpenDroneIdBasicId.parse(ByteData data_) {
     if (data_.lengthInBytes < OpenDroneIdBasicId.mavlinkEncodedLength) {
       var len = OpenDroneIdBasicId.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var targetSystem = data_.getUint8(0);
@@ -39532,7 +39744,8 @@ class OpenDroneIdLocation implements MavlinkMessage {
   factory OpenDroneIdLocation.parse(ByteData data_) {
     if (data_.lengthInBytes < OpenDroneIdLocation.mavlinkEncodedLength) {
       var len = OpenDroneIdLocation.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var latitude = data_.getInt32(0, Endian.little);
@@ -39704,7 +39917,8 @@ class OpenDroneIdAuthentication implements MavlinkMessage {
     if (data_.lengthInBytes < OpenDroneIdAuthentication.mavlinkEncodedLength) {
       var len =
           OpenDroneIdAuthentication.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timestamp = data_.getUint32(0, Endian.little);
@@ -39809,7 +40023,8 @@ class OpenDroneIdSelfId implements MavlinkMessage {
   factory OpenDroneIdSelfId.parse(ByteData data_) {
     if (data_.lengthInBytes < OpenDroneIdSelfId.mavlinkEncodedLength) {
       var len = OpenDroneIdSelfId.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var targetSystem = data_.getUint8(0);
@@ -40002,7 +40217,8 @@ class OpenDroneIdSystem implements MavlinkMessage {
   factory OpenDroneIdSystem.parse(ByteData data_) {
     if (data_.lengthInBytes < OpenDroneIdSystem.mavlinkEncodedLength) {
       var len = OpenDroneIdSystem.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var operatorLatitude = data_.getInt32(0, Endian.little);
@@ -40126,7 +40342,8 @@ class OpenDroneIdOperatorId implements MavlinkMessage {
     if (data_.lengthInBytes < OpenDroneIdOperatorId.mavlinkEncodedLength) {
       var len =
           OpenDroneIdOperatorId.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var targetSystem = data_.getUint8(0);
@@ -40228,7 +40445,8 @@ class OpenDroneIdMessagePack implements MavlinkMessage {
     if (data_.lengthInBytes < OpenDroneIdMessagePack.mavlinkEncodedLength) {
       var len =
           OpenDroneIdMessagePack.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var targetSystem = data_.getUint8(0);
@@ -40300,7 +40518,8 @@ class OpenDroneIdArmStatus implements MavlinkMessage {
   factory OpenDroneIdArmStatus.parse(ByteData data_) {
     if (data_.lengthInBytes < OpenDroneIdArmStatus.mavlinkEncodedLength) {
       var len = OpenDroneIdArmStatus.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var status = data_.getUint8(0);
@@ -40397,7 +40616,8 @@ class OpenDroneIdSystemUpdate implements MavlinkMessage {
     if (data_.lengthInBytes < OpenDroneIdSystemUpdate.mavlinkEncodedLength) {
       var len =
           OpenDroneIdSystemUpdate.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var operatorLatitude = data_.getInt32(0, Endian.little);
@@ -40479,7 +40699,8 @@ class HygrometerSensor implements MavlinkMessage {
   factory HygrometerSensor.parse(ByteData data_) {
     if (data_.lengthInBytes < HygrometerSensor.mavlinkEncodedLength) {
       var len = HygrometerSensor.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var temperature = data_.getInt16(0, Endian.little);
@@ -40598,7 +40819,8 @@ class UavionixAdsbOutCfg implements MavlinkMessage {
   factory UavionixAdsbOutCfg.parse(ByteData data_) {
     if (data_.lengthInBytes < UavionixAdsbOutCfg.mavlinkEncodedLength) {
       var len = UavionixAdsbOutCfg.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var icao = data_.getUint32(0, Endian.little);
@@ -40815,7 +41037,8 @@ class UavionixAdsbOutDynamic implements MavlinkMessage {
     if (data_.lengthInBytes < UavionixAdsbOutDynamic.mavlinkEncodedLength) {
       var len =
           UavionixAdsbOutDynamic.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var utctime = data_.getUint32(0, Endian.little);
@@ -40911,7 +41134,8 @@ class UavionixAdsbTransceiverHealthReport implements MavlinkMessage {
         UavionixAdsbTransceiverHealthReport.mavlinkEncodedLength) {
       var len = UavionixAdsbTransceiverHealthReport.mavlinkEncodedLength -
           data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var rfhealth = data_.getUint8(0);
@@ -40959,7 +41183,8 @@ class IcarousHeartbeat implements MavlinkMessage {
   factory IcarousHeartbeat.parse(ByteData data_) {
     if (data_.lengthInBytes < IcarousHeartbeat.mavlinkEncodedLength) {
       var len = IcarousHeartbeat.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var status = data_.getUint8(0);
@@ -41156,7 +41381,8 @@ class IcarousKinematicBands implements MavlinkMessage {
     if (data_.lengthInBytes < IcarousKinematicBands.mavlinkEncodedLength) {
       var len =
           IcarousKinematicBands.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var min1 = data_.getFloat32(0, Endian.little);
@@ -41248,7 +41474,8 @@ class CubepilotRawRc implements MavlinkMessage {
   factory CubepilotRawRc.parse(ByteData data_) {
     if (data_.lengthInBytes < CubepilotRawRc.mavlinkEncodedLength) {
       var len = CubepilotRawRc.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var rcRaw = MavlinkMessage.asUint8List(data_, 0, 32);
@@ -41362,7 +41589,8 @@ class HerelinkVideoStreamInformation implements MavlinkMessage {
         HerelinkVideoStreamInformation.mavlinkEncodedLength) {
       var len = HerelinkVideoStreamInformation.mavlinkEncodedLength -
           data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var framerate = data_.getFloat32(0, Endian.little);
@@ -41478,7 +41706,8 @@ class HerelinkTelem implements MavlinkMessage {
   factory HerelinkTelem.parse(ByteData data_) {
     if (data_.lengthInBytes < HerelinkTelem.mavlinkEncodedLength) {
       var len = HerelinkTelem.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var rfFreq = data_.getUint32(0, Endian.little);
@@ -41571,7 +41800,8 @@ class CubepilotFirmwareUpdateStart implements MavlinkMessage {
         CubepilotFirmwareUpdateStart.mavlinkEncodedLength) {
       var len = CubepilotFirmwareUpdateStart.mavlinkEncodedLength -
           data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var size = data_.getUint32(0, Endian.little);
@@ -41647,7 +41877,8 @@ class CubepilotFirmwareUpdateResp implements MavlinkMessage {
         CubepilotFirmwareUpdateResp.mavlinkEncodedLength) {
       var len = CubepilotFirmwareUpdateResp.mavlinkEncodedLength -
           data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var offset = data_.getUint32(0, Endian.little);
@@ -41708,7 +41939,8 @@ class AirlinkAuth implements MavlinkMessage {
   factory AirlinkAuth.parse(ByteData data_) {
     if (data_.lengthInBytes < AirlinkAuth.mavlinkEncodedLength) {
       var len = AirlinkAuth.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var login = MavlinkMessage.asInt8List(data_, 0, 50);
@@ -41758,7 +41990,8 @@ class AirlinkAuthResponse implements MavlinkMessage {
   factory AirlinkAuthResponse.parse(ByteData data_) {
     if (data_.lengthInBytes < AirlinkAuthResponse.mavlinkEncodedLength) {
       var len = AirlinkAuthResponse.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var respType = data_.getUint8(0);
@@ -41808,7 +42041,8 @@ class AirlinkEyeGsHolePushRequest implements MavlinkMessage {
         AirlinkEyeGsHolePushRequest.mavlinkEncodedLength) {
       var len = AirlinkEyeGsHolePushRequest.mavlinkEncodedLength -
           data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var respType = data_.getUint8(0);
@@ -41892,7 +42126,8 @@ class AirlinkEyeGsHolePushResponse implements MavlinkMessage {
         AirlinkEyeGsHolePushResponse.mavlinkEncodedLength) {
       var len = AirlinkEyeGsHolePushResponse.mavlinkEncodedLength -
           data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var ipPort = data_.getUint32(0, Endian.little);
@@ -41953,7 +42188,8 @@ class AirlinkEyeHp implements MavlinkMessage {
   factory AirlinkEyeHp.parse(ByteData data_) {
     if (data_.lengthInBytes < AirlinkEyeHp.mavlinkEncodedLength) {
       var len = AirlinkEyeHp.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var respType = data_.getUint8(0);
@@ -42001,7 +42237,8 @@ class AirlinkEyeTurnInit implements MavlinkMessage {
   factory AirlinkEyeTurnInit.parse(ByteData data_) {
     if (data_.lengthInBytes < AirlinkEyeTurnInit.mavlinkEncodedLength) {
       var len = AirlinkEyeTurnInit.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var respType = data_.getUint8(0);
@@ -42137,7 +42374,8 @@ class SensorOffsets implements MavlinkMessage {
   factory SensorOffsets.parse(ByteData data_) {
     if (data_.lengthInBytes < SensorOffsets.mavlinkEncodedLength) {
       var len = SensorOffsets.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var magDeclination = data_.getFloat32(0, Endian.little);
@@ -42249,7 +42487,8 @@ class SetMagOffsets implements MavlinkMessage {
   factory SetMagOffsets.parse(ByteData data_) {
     if (data_.lengthInBytes < SetMagOffsets.mavlinkEncodedLength) {
       var len = SetMagOffsets.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var magOfsX = data_.getInt16(0, Endian.little);
@@ -42330,7 +42569,8 @@ class Meminfo implements MavlinkMessage {
   factory Meminfo.parse(ByteData data_) {
     if (data_.lengthInBytes < Meminfo.mavlinkEncodedLength) {
       var len = Meminfo.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var brkval = data_.getUint16(0, Endian.little);
@@ -42420,7 +42660,8 @@ class ApAdc implements MavlinkMessage {
   factory ApAdc.parse(ByteData data_) {
     if (data_.lengthInBytes < ApAdc.mavlinkEncodedLength) {
       var len = ApAdc.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var adc1 = data_.getUint16(0, Endian.little);
@@ -42559,7 +42800,8 @@ class DigicamConfigure implements MavlinkMessage {
   factory DigicamConfigure.parse(ByteData data_) {
     if (data_.lengthInBytes < DigicamConfigure.mavlinkEncodedLength) {
       var len = DigicamConfigure.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var extraValue = data_.getFloat32(0, Endian.little);
@@ -42708,7 +42950,8 @@ class DigicamControl implements MavlinkMessage {
   factory DigicamControl.parse(ByteData data_) {
     if (data_.lengthInBytes < DigicamControl.mavlinkEncodedLength) {
       var len = DigicamControl.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var extraValue = data_.getFloat32(0, Endian.little);
@@ -42824,7 +43067,8 @@ class MountConfigure implements MavlinkMessage {
   factory MountConfigure.parse(ByteData data_) {
     if (data_.lengthInBytes < MountConfigure.mavlinkEncodedLength) {
       var len = MountConfigure.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var targetSystem = data_.getUint8(0);
@@ -42926,7 +43170,8 @@ class MountControl implements MavlinkMessage {
   factory MountControl.parse(ByteData data_) {
     if (data_.lengthInBytes < MountControl.mavlinkEncodedLength) {
       var len = MountControl.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var inputA = data_.getInt32(0, Endian.little);
@@ -43038,7 +43283,8 @@ class MountStatus implements MavlinkMessage {
   factory MountStatus.parse(ByteData data_) {
     if (data_.lengthInBytes < MountStatus.mavlinkEncodedLength) {
       var len = MountStatus.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var pointingA = data_.getInt32(0, Endian.little);
@@ -43144,7 +43390,8 @@ class FencePoint implements MavlinkMessage {
   factory FencePoint.parse(ByteData data_) {
     if (data_.lengthInBytes < FencePoint.mavlinkEncodedLength) {
       var len = FencePoint.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var lat = data_.getFloat32(0, Endian.little);
@@ -43222,7 +43469,8 @@ class FenceFetchPoint implements MavlinkMessage {
   factory FenceFetchPoint.parse(ByteData data_) {
     if (data_.lengthInBytes < FenceFetchPoint.mavlinkEncodedLength) {
       var len = FenceFetchPoint.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var targetSystem = data_.getUint8(0);
@@ -43327,7 +43575,8 @@ class Ahrs implements MavlinkMessage {
   factory Ahrs.parse(ByteData data_) {
     if (data_.lengthInBytes < Ahrs.mavlinkEncodedLength) {
       var len = Ahrs.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var omegaix = data_.getFloat32(0, Endian.little);
@@ -43494,7 +43743,8 @@ class Simstate implements MavlinkMessage {
   factory Simstate.parse(ByteData data_) {
     if (data_.lengthInBytes < Simstate.mavlinkEncodedLength) {
       var len = Simstate.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var roll = data_.getFloat32(0, Endian.little);
@@ -43581,7 +43831,8 @@ class Hwstatus implements MavlinkMessage {
   factory Hwstatus.parse(ByteData data_) {
     if (data_.lengthInBytes < Hwstatus.mavlinkEncodedLength) {
       var len = Hwstatus.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var vcc = data_.getUint16(0, Endian.little);
@@ -43679,7 +43930,8 @@ class Radio implements MavlinkMessage {
   factory Radio.parse(ByteData data_) {
     if (data_.lengthInBytes < Radio.mavlinkEncodedLength) {
       var len = Radio.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var rxerrors = data_.getUint16(0, Endian.little);
@@ -43824,7 +44076,8 @@ class LimitsStatus implements MavlinkMessage {
   factory LimitsStatus.parse(ByteData data_) {
     if (data_.lengthInBytes < LimitsStatus.mavlinkEncodedLength) {
       var len = LimitsStatus.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var lastTrigger = data_.getUint32(0, Endian.little);
@@ -43917,7 +44170,8 @@ class Wind implements MavlinkMessage {
   factory Wind.parse(ByteData data_) {
     if (data_.lengthInBytes < Wind.mavlinkEncodedLength) {
       var len = Wind.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var direction = data_.getFloat32(0, Endian.little);
@@ -43985,7 +44239,8 @@ class Data16 implements MavlinkMessage {
   factory Data16.parse(ByteData data_) {
     if (data_.lengthInBytes < Data16.mavlinkEncodedLength) {
       var len = Data16.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var type = data_.getUint8(0);
@@ -44053,7 +44308,8 @@ class Data32 implements MavlinkMessage {
   factory Data32.parse(ByteData data_) {
     if (data_.lengthInBytes < Data32.mavlinkEncodedLength) {
       var len = Data32.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var type = data_.getUint8(0);
@@ -44121,7 +44377,8 @@ class Data64 implements MavlinkMessage {
   factory Data64.parse(ByteData data_) {
     if (data_.lengthInBytes < Data64.mavlinkEncodedLength) {
       var len = Data64.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var type = data_.getUint8(0);
@@ -44189,7 +44446,8 @@ class Data96 implements MavlinkMessage {
   factory Data96.parse(ByteData data_) {
     if (data_.lengthInBytes < Data96.mavlinkEncodedLength) {
       var len = Data96.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var type = data_.getUint8(0);
@@ -44251,7 +44509,8 @@ class Rangefinder implements MavlinkMessage {
   factory Rangefinder.parse(ByteData data_) {
     if (data_.lengthInBytes < Rangefinder.mavlinkEncodedLength) {
       var len = Rangefinder.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var distance = data_.getFloat32(0, Endian.little);
@@ -44395,7 +44654,8 @@ class AirspeedAutocal implements MavlinkMessage {
   factory AirspeedAutocal.parse(ByteData data_) {
     if (data_.lengthInBytes < AirspeedAutocal.mavlinkEncodedLength) {
       var len = AirspeedAutocal.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var vx = data_.getFloat32(0, Endian.little);
@@ -44559,7 +44819,8 @@ class RallyPoint implements MavlinkMessage {
   factory RallyPoint.parse(ByteData data_) {
     if (data_.lengthInBytes < RallyPoint.mavlinkEncodedLength) {
       var len = RallyPoint.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var lat = data_.getInt32(0, Endian.little);
@@ -44649,7 +44910,8 @@ class RallyFetchPoint implements MavlinkMessage {
   factory RallyFetchPoint.parse(ByteData data_) {
     if (data_.lengthInBytes < RallyFetchPoint.mavlinkEncodedLength) {
       var len = RallyFetchPoint.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var targetSystem = data_.getUint8(0);
@@ -44746,7 +45008,8 @@ class CompassmotStatus implements MavlinkMessage {
   factory CompassmotStatus.parse(ByteData data_) {
     if (data_.lengthInBytes < CompassmotStatus.mavlinkEncodedLength) {
       var len = CompassmotStatus.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var current = data_.getFloat32(0, Endian.little);
@@ -44860,7 +45123,8 @@ class Ahrs2 implements MavlinkMessage {
   factory Ahrs2.parse(ByteData data_) {
     if (data_.lengthInBytes < Ahrs2.mavlinkEncodedLength) {
       var len = Ahrs2.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var roll = data_.getFloat32(0, Endian.little);
@@ -44990,7 +45254,8 @@ class CameraStatus implements MavlinkMessage {
   factory CameraStatus.parse(ByteData data_) {
     if (data_.lengthInBytes < CameraStatus.mavlinkEncodedLength) {
       var len = CameraStatus.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeUsec = data_.getUint64(0, Endian.little);
@@ -45187,7 +45452,8 @@ class CameraFeedback implements MavlinkMessage {
   factory CameraFeedback.parse(ByteData data_) {
     if (data_.lengthInBytes < CameraFeedback.mavlinkEncodedLength) {
       var len = CameraFeedback.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeUsec = data_.getUint64(0, Endian.little);
@@ -45285,7 +45551,8 @@ class Battery2 implements MavlinkMessage {
   factory Battery2.parse(ByteData data_) {
     if (data_.lengthInBytes < Battery2.mavlinkEncodedLength) {
       var len = Battery2.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var voltage = data_.getUint16(0, Endian.little);
@@ -45417,7 +45684,8 @@ class Ahrs3 implements MavlinkMessage {
   factory Ahrs3.parse(ByteData data_) {
     if (data_.lengthInBytes < Ahrs3.mavlinkEncodedLength) {
       var len = Ahrs3.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var roll = data_.getFloat32(0, Endian.little);
@@ -45500,7 +45768,8 @@ class AutopilotVersionRequest implements MavlinkMessage {
     if (data_.lengthInBytes < AutopilotVersionRequest.mavlinkEncodedLength) {
       var len =
           AutopilotVersionRequest.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var targetSystem = data_.getUint8(0);
@@ -45575,7 +45844,8 @@ class RemoteLogDataBlock implements MavlinkMessage {
   factory RemoteLogDataBlock.parse(ByteData data_) {
     if (data_.lengthInBytes < RemoteLogDataBlock.mavlinkEncodedLength) {
       var len = RemoteLogDataBlock.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var seqno = data_.getUint32(0, Endian.little);
@@ -45657,7 +45927,8 @@ class RemoteLogBlockStatus implements MavlinkMessage {
   factory RemoteLogBlockStatus.parse(ByteData data_) {
     if (data_.lengthInBytes < RemoteLogBlockStatus.mavlinkEncodedLength) {
       var len = RemoteLogBlockStatus.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var seqno = data_.getUint32(0, Endian.little);
@@ -45753,7 +46024,8 @@ class LedControl implements MavlinkMessage {
   factory LedControl.parse(ByteData data_) {
     if (data_.lengthInBytes < LedControl.mavlinkEncodedLength) {
       var len = LedControl.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var targetSystem = data_.getUint8(0);
@@ -45883,7 +46155,8 @@ class MagCalProgress implements MavlinkMessage {
   factory MagCalProgress.parse(ByteData data_) {
     if (data_.lengthInBytes < MagCalProgress.mavlinkEncodedLength) {
       var len = MagCalProgress.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var directionX = data_.getFloat32(0, Endian.little);
@@ -46006,7 +46279,8 @@ class EkfStatusReport implements MavlinkMessage {
   factory EkfStatusReport.parse(ByteData data_) {
     if (data_.lengthInBytes < EkfStatusReport.mavlinkEncodedLength) {
       var len = EkfStatusReport.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var velocityVariance = data_.getFloat32(0, Endian.little);
@@ -46141,7 +46415,8 @@ class PidTuning implements MavlinkMessage {
   factory PidTuning.parse(ByteData data_) {
     if (data_.lengthInBytes < PidTuning.mavlinkEncodedLength) {
       var len = PidTuning.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var desired = data_.getFloat32(0, Endian.little);
@@ -46304,7 +46579,8 @@ class Deepstall implements MavlinkMessage {
   factory Deepstall.parse(ByteData data_) {
     if (data_.lengthInBytes < Deepstall.mavlinkEncodedLength) {
       var len = Deepstall.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var landingLat = data_.getInt32(0, Endian.little);
@@ -46486,7 +46762,8 @@ class GimbalReport implements MavlinkMessage {
   factory GimbalReport.parse(ByteData data_) {
     if (data_.lengthInBytes < GimbalReport.mavlinkEncodedLength) {
       var len = GimbalReport.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var deltaTime = data_.getFloat32(0, Endian.little);
@@ -46604,7 +46881,8 @@ class GimbalControl implements MavlinkMessage {
   factory GimbalControl.parse(ByteData data_) {
     if (data_.lengthInBytes < GimbalControl.mavlinkEncodedLength) {
       var len = GimbalControl.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var demandedRateX = data_.getFloat32(0, Endian.little);
@@ -46696,7 +46974,8 @@ class GimbalTorqueCmdReport implements MavlinkMessage {
     if (data_.lengthInBytes < GimbalTorqueCmdReport.mavlinkEncodedLength) {
       var len =
           GimbalTorqueCmdReport.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var rlTorqueCmd = data_.getInt16(0, Endian.little);
@@ -46777,7 +47056,8 @@ class GoproHeartbeat implements MavlinkMessage {
   factory GoproHeartbeat.parse(ByteData data_) {
     if (data_.lengthInBytes < GoproHeartbeat.mavlinkEncodedLength) {
       var len = GoproHeartbeat.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var status = data_.getUint8(0);
@@ -46846,7 +47126,8 @@ class GoproGetRequest implements MavlinkMessage {
   factory GoproGetRequest.parse(ByteData data_) {
     if (data_.lengthInBytes < GoproGetRequest.mavlinkEncodedLength) {
       var len = GoproGetRequest.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var targetSystem = data_.getUint8(0);
@@ -46919,7 +47200,8 @@ class GoproGetResponse implements MavlinkMessage {
   factory GoproGetResponse.parse(ByteData data_) {
     if (data_.lengthInBytes < GoproGetResponse.mavlinkEncodedLength) {
       var len = GoproGetResponse.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var cmdId = data_.getUint8(0);
@@ -46995,7 +47277,8 @@ class GoproSetRequest implements MavlinkMessage {
   factory GoproSetRequest.parse(ByteData data_) {
     if (data_.lengthInBytes < GoproSetRequest.mavlinkEncodedLength) {
       var len = GoproSetRequest.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var targetSystem = data_.getUint8(0);
@@ -47063,7 +47346,8 @@ class GoproSetResponse implements MavlinkMessage {
   factory GoproSetResponse.parse(ByteData data_) {
     if (data_.lengthInBytes < GoproSetResponse.mavlinkEncodedLength) {
       var len = GoproSetResponse.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var cmdId = data_.getUint8(0);
@@ -47119,7 +47403,8 @@ class Rpm implements MavlinkMessage {
   factory Rpm.parse(ByteData data_) {
     if (data_.lengthInBytes < Rpm.mavlinkEncodedLength) {
       var len = Rpm.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var rpm1 = data_.getFloat32(0, Endian.little);
@@ -47243,7 +47528,8 @@ class DeviceOpRead implements MavlinkMessage {
   factory DeviceOpRead.parse(ByteData data_) {
     if (data_.lengthInBytes < DeviceOpRead.mavlinkEncodedLength) {
       var len = DeviceOpRead.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var requestId = data_.getUint32(0, Endian.little);
@@ -47359,7 +47645,8 @@ class DeviceOpReadReply implements MavlinkMessage {
   factory DeviceOpReadReply.parse(ByteData data_) {
     if (data_.lengthInBytes < DeviceOpReadReply.mavlinkEncodedLength) {
       var len = DeviceOpReadReply.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var requestId = data_.getUint32(0, Endian.little);
@@ -47505,7 +47792,8 @@ class DeviceOpWrite implements MavlinkMessage {
   factory DeviceOpWrite.parse(ByteData data_) {
     if (data_.lengthInBytes < DeviceOpWrite.mavlinkEncodedLength) {
       var len = DeviceOpWrite.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var requestId = data_.getUint32(0, Endian.little);
@@ -47590,7 +47878,8 @@ class DeviceOpWriteReply implements MavlinkMessage {
   factory DeviceOpWriteReply.parse(ByteData data_) {
     if (data_.lengthInBytes < DeviceOpWriteReply.mavlinkEncodedLength) {
       var len = DeviceOpWriteReply.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var requestId = data_.getUint32(0, Endian.little);
@@ -47740,7 +48029,8 @@ class AdapTuning implements MavlinkMessage {
   factory AdapTuning.parse(ByteData data_) {
     if (data_.lengthInBytes < AdapTuning.mavlinkEncodedLength) {
       var len = AdapTuning.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var desired = data_.getFloat32(0, Endian.little);
@@ -47865,7 +48155,8 @@ class VisionPositionDelta implements MavlinkMessage {
   factory VisionPositionDelta.parse(ByteData data_) {
     if (data_.lengthInBytes < VisionPositionDelta.mavlinkEncodedLength) {
       var len = VisionPositionDelta.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeUsec = data_.getUint64(0, Endian.little);
@@ -47946,7 +48237,8 @@ class AoaSsa implements MavlinkMessage {
   factory AoaSsa.parse(ByteData data_) {
     if (data_.lengthInBytes < AoaSsa.mavlinkEncodedLength) {
       var len = AoaSsa.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeUsec = data_.getUint64(0, Endian.little);
@@ -48046,7 +48338,8 @@ class EscTelemetry1To4 implements MavlinkMessage {
   factory EscTelemetry1To4.parse(ByteData data_) {
     if (data_.lengthInBytes < EscTelemetry1To4.mavlinkEncodedLength) {
       var len = EscTelemetry1To4.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var voltage = MavlinkMessage.asUint16List(data_, 0, 4);
@@ -48158,7 +48451,8 @@ class EscTelemetry5To8 implements MavlinkMessage {
   factory EscTelemetry5To8.parse(ByteData data_) {
     if (data_.lengthInBytes < EscTelemetry5To8.mavlinkEncodedLength) {
       var len = EscTelemetry5To8.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var voltage = MavlinkMessage.asUint16List(data_, 0, 4);
@@ -48270,7 +48564,8 @@ class EscTelemetry9To12 implements MavlinkMessage {
   factory EscTelemetry9To12.parse(ByteData data_) {
     if (data_.lengthInBytes < EscTelemetry9To12.mavlinkEncodedLength) {
       var len = EscTelemetry9To12.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var voltage = MavlinkMessage.asUint16List(data_, 0, 4);
@@ -48406,7 +48701,8 @@ class OsdParamConfig implements MavlinkMessage {
   factory OsdParamConfig.parse(ByteData data_) {
     if (data_.lengthInBytes < OsdParamConfig.mavlinkEncodedLength) {
       var len = OsdParamConfig.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var requestId = data_.getUint32(0, Endian.little);
@@ -48490,7 +48786,8 @@ class OsdParamConfigReply implements MavlinkMessage {
   factory OsdParamConfigReply.parse(ByteData data_) {
     if (data_.lengthInBytes < OsdParamConfigReply.mavlinkEncodedLength) {
       var len = OsdParamConfigReply.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var requestId = data_.getUint32(0, Endian.little);
@@ -48570,7 +48867,8 @@ class OsdParamShowConfig implements MavlinkMessage {
   factory OsdParamShowConfig.parse(ByteData data_) {
     if (data_.lengthInBytes < OsdParamShowConfig.mavlinkEncodedLength) {
       var len = OsdParamShowConfig.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var requestId = data_.getUint32(0, Endian.little);
@@ -48682,7 +48980,8 @@ class OsdParamShowConfigReply implements MavlinkMessage {
     if (data_.lengthInBytes < OsdParamShowConfigReply.mavlinkEncodedLength) {
       var len =
           OsdParamShowConfigReply.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var requestId = data_.getUint32(0, Endian.little);
@@ -48827,7 +49126,8 @@ class ObstacleDistance3d implements MavlinkMessage {
   factory ObstacleDistance3d.parse(ByteData data_) {
     if (data_.lengthInBytes < ObstacleDistance3d.mavlinkEncodedLength) {
       var len = ObstacleDistance3d.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeBootMs = data_.getUint32(0, Endian.little);
@@ -48996,7 +49296,8 @@ class WaterDepth implements MavlinkMessage {
   factory WaterDepth.parse(ByteData data_) {
     if (data_.lengthInBytes < WaterDepth.mavlinkEncodedLength) {
       var len = WaterDepth.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var timeBootMs = data_.getUint32(0, Endian.little);
@@ -49113,7 +49414,8 @@ class McuStatus implements MavlinkMessage {
   factory McuStatus.parse(ByteData data_) {
     if (data_.lengthInBytes < McuStatus.mavlinkEncodedLength) {
       var len = McuStatus.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var mcuTemperature = data_.getInt16(0, Endian.little);

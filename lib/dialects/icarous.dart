@@ -79,7 +79,8 @@ class IcarousHeartbeat implements MavlinkMessage {
   factory IcarousHeartbeat.parse(ByteData data_) {
     if (data_.lengthInBytes < IcarousHeartbeat.mavlinkEncodedLength) {
       var len = IcarousHeartbeat.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var status = data_.getUint8(0);
@@ -276,7 +277,8 @@ class IcarousKinematicBands implements MavlinkMessage {
     if (data_.lengthInBytes < IcarousKinematicBands.mavlinkEncodedLength) {
       var len =
           IcarousKinematicBands.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var min1 = data_.getFloat32(0, Endian.little);

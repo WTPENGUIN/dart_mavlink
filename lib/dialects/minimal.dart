@@ -1241,7 +1241,8 @@ class Heartbeat implements MavlinkMessage {
   factory Heartbeat.parse(ByteData data_) {
     if (data_.lengthInBytes < Heartbeat.mavlinkEncodedLength) {
       var len = Heartbeat.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var customMode = data_.getUint32(0, Endian.little);
@@ -1335,7 +1336,8 @@ class ProtocolVersion implements MavlinkMessage {
   factory ProtocolVersion.parse(ByteData data_) {
     if (data_.lengthInBytes < ProtocolVersion.mavlinkEncodedLength) {
       var len = ProtocolVersion.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List() + List<int>.filled(len, 0);
+      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+          List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
     var version = data_.getUint16(0, Endian.little);
