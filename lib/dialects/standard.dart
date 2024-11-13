@@ -1238,10 +1238,28 @@ class Heartbeat implements MavlinkMessage {
     required this.mavlinkVersion,
   });
 
+  Heartbeat copyWith({
+    uint32_t? customMode,
+    MavType? type,
+    MavAutopilot? autopilot,
+    MavModeFlag? baseMode,
+    MavState? systemStatus,
+    uint8_t? mavlinkVersion,
+  }) {
+    return Heartbeat(
+      customMode: customMode ?? this.customMode,
+      type: type ?? this.type,
+      autopilot: autopilot ?? this.autopilot,
+      baseMode: baseMode ?? this.baseMode,
+      systemStatus: systemStatus ?? this.systemStatus,
+      mavlinkVersion: mavlinkVersion ?? this.mavlinkVersion,
+    );
+  }
+
   factory Heartbeat.parse(ByteData data_) {
     if (data_.lengthInBytes < Heartbeat.mavlinkEncodedLength) {
       var len = Heartbeat.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+      var d = data_.buffer.asUint8List().sublist(0, data_.lengthInBytes) +
           List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
@@ -1333,10 +1351,26 @@ class ProtocolVersion implements MavlinkMessage {
     required this.libraryVersionHash,
   });
 
+  ProtocolVersion copyWith({
+    uint16_t? version,
+    uint16_t? minVersion,
+    uint16_t? maxVersion,
+    List<int8_t>? specVersionHash,
+    List<int8_t>? libraryVersionHash,
+  }) {
+    return ProtocolVersion(
+      version: version ?? this.version,
+      minVersion: minVersion ?? this.minVersion,
+      maxVersion: maxVersion ?? this.maxVersion,
+      specVersionHash: specVersionHash ?? this.specVersionHash,
+      libraryVersionHash: libraryVersionHash ?? this.libraryVersionHash,
+    );
+  }
+
   factory ProtocolVersion.parse(ByteData data_) {
     if (data_.lengthInBytes < ProtocolVersion.mavlinkEncodedLength) {
       var len = ProtocolVersion.mavlinkEncodedLength - data_.lengthInBytes;
-      var d = data_.buffer.asUint8List(0, data_.lengthInBytes) +
+      var d = data_.buffer.asUint8List().sublist(0, data_.lengthInBytes) +
           List<int>.filled(len, 0);
       data_ = Uint8List.fromList(d).buffer.asByteData();
     }
