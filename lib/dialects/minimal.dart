@@ -1167,17 +1167,17 @@ const MavComponent mavCompIdSystemControl = 250;
 ///
 /// HEARTBEAT
 class Heartbeat implements MavlinkMessage {
-  static const int _mavlinkMessageId = 0;
+  static const int msgId = 0;
 
-  static const int _mavlinkCrcExtra = 50;
+  static const int crcExtra = 50;
 
   static const int mavlinkEncodedLength = 9;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// A bitfield for use for autopilot-specific flags
   ///
@@ -1256,6 +1256,17 @@ class Heartbeat implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'customMode': customMode,
+        'type': type,
+        'autopilot': autopilot,
+        'baseMode': baseMode,
+        'systemStatus': systemStatus,
+        'mavlinkVersion': mavlinkVersion,
+      };
+
   factory Heartbeat.parse(ByteData data_) {
     if (data_.lengthInBytes < Heartbeat.mavlinkEncodedLength) {
       var len = Heartbeat.mavlinkEncodedLength - data_.lengthInBytes;
@@ -1296,17 +1307,17 @@ class Heartbeat implements MavlinkMessage {
 ///
 /// PROTOCOL_VERSION
 class ProtocolVersion implements MavlinkMessage {
-  static const int _mavlinkMessageId = 300;
+  static const int msgId = 300;
 
-  static const int _mavlinkCrcExtra = 217;
+  static const int crcExtra = 217;
 
   static const int mavlinkEncodedLength = 22;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Currently active MAVLink version number * 100: v1.0 is 100, v2.0 is 200, etc.
   ///
@@ -1367,6 +1378,16 @@ class ProtocolVersion implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'version': version,
+        'minVersion': minVersion,
+        'maxVersion': maxVersion,
+        'specVersionHash': specVersionHash,
+        'libraryVersionHash': libraryVersionHash,
+      };
+
   factory ProtocolVersion.parse(ByteData data_) {
     if (data_.lengthInBytes < ProtocolVersion.mavlinkEncodedLength) {
       var len = ProtocolVersion.mavlinkEncodedLength - data_.lengthInBytes;
@@ -1422,9 +1443,9 @@ class MavlinkDialectMinimal implements MavlinkDialect {
   int crcExtra(int messageID) {
     switch (messageID) {
       case 0:
-        return Heartbeat._mavlinkCrcExtra;
+        return Heartbeat.crcExtra;
       case 300:
-        return ProtocolVersion._mavlinkCrcExtra;
+        return ProtocolVersion.crcExtra;
       default:
         return -1;
     }

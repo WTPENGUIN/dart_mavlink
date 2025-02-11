@@ -8184,17 +8184,17 @@ const MavPreflightStorageAction mavPfsCmdDoNothing = 6;
 ///
 /// HEARTBEAT
 class Heartbeat implements MavlinkMessage {
-  static const int _mavlinkMessageId = 0;
+  static const int msgId = 0;
 
-  static const int _mavlinkCrcExtra = 50;
+  static const int crcExtra = 50;
 
   static const int mavlinkEncodedLength = 9;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// A bitfield for use for autopilot-specific flags
   ///
@@ -8273,6 +8273,17 @@ class Heartbeat implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'customMode': customMode,
+        'type': type,
+        'autopilot': autopilot,
+        'baseMode': baseMode,
+        'systemStatus': systemStatus,
+        'mavlinkVersion': mavlinkVersion,
+      };
+
   factory Heartbeat.parse(ByteData data_) {
     if (data_.lengthInBytes < Heartbeat.mavlinkEncodedLength) {
       var len = Heartbeat.mavlinkEncodedLength - data_.lengthInBytes;
@@ -8313,17 +8324,17 @@ class Heartbeat implements MavlinkMessage {
 ///
 /// PROTOCOL_VERSION
 class ProtocolVersion implements MavlinkMessage {
-  static const int _mavlinkMessageId = 300;
+  static const int msgId = 300;
 
-  static const int _mavlinkCrcExtra = 217;
+  static const int crcExtra = 217;
 
   static const int mavlinkEncodedLength = 22;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Currently active MAVLink version number * 100: v1.0 is 100, v2.0 is 200, etc.
   ///
@@ -8384,6 +8395,16 @@ class ProtocolVersion implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'version': version,
+        'minVersion': minVersion,
+        'maxVersion': maxVersion,
+        'specVersionHash': specVersionHash,
+        'libraryVersionHash': libraryVersionHash,
+      };
+
   factory ProtocolVersion.parse(ByteData data_) {
     if (data_.lengthInBytes < ProtocolVersion.mavlinkEncodedLength) {
       var len = ProtocolVersion.mavlinkEncodedLength - data_.lengthInBytes;
@@ -8421,17 +8442,17 @@ class ProtocolVersion implements MavlinkMessage {
 ///
 /// SYS_STATUS
 class SysStatus implements MavlinkMessage {
-  static const int _mavlinkMessageId = 1;
+  static const int msgId = 1;
 
-  static const int _mavlinkCrcExtra = 124;
+  static const int crcExtra = 124;
 
   static const int mavlinkEncodedLength = 43;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Bitmap showing which onboard controllers and sensors are present. Value of 0: not present. Value of 1: present.
   ///
@@ -8639,6 +8660,30 @@ class SysStatus implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'onboardControlSensorsPresent': onboardControlSensorsPresent,
+        'onboardControlSensorsEnabled': onboardControlSensorsEnabled,
+        'onboardControlSensorsHealth': onboardControlSensorsHealth,
+        'load': load,
+        'voltageBattery': voltageBattery,
+        'currentBattery': currentBattery,
+        'dropRateComm': dropRateComm,
+        'errorsComm': errorsComm,
+        'errorsCount1': errorsCount1,
+        'errorsCount2': errorsCount2,
+        'errorsCount3': errorsCount3,
+        'errorsCount4': errorsCount4,
+        'batteryRemaining': batteryRemaining,
+        'onboardControlSensorsPresentExtended':
+            onboardControlSensorsPresentExtended,
+        'onboardControlSensorsEnabledExtended':
+            onboardControlSensorsEnabledExtended,
+        'onboardControlSensorsHealthExtended':
+            onboardControlSensorsHealthExtended,
+      };
+
   factory SysStatus.parse(ByteData data_) {
     if (data_.lengthInBytes < SysStatus.mavlinkEncodedLength) {
       var len = SysStatus.mavlinkEncodedLength - data_.lengthInBytes;
@@ -8715,17 +8760,17 @@ class SysStatus implements MavlinkMessage {
 ///
 /// SYSTEM_TIME
 class SystemTime implements MavlinkMessage {
-  static const int _mavlinkMessageId = 2;
+  static const int msgId = 2;
 
-  static const int _mavlinkCrcExtra = 137;
+  static const int crcExtra = 137;
 
   static const int mavlinkEncodedLength = 12;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (UNIX epoch time).
   ///
@@ -8760,6 +8805,13 @@ class SystemTime implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeUnixUsec': timeUnixUsec,
+        'timeBootMs': timeBootMs,
+      };
+
   factory SystemTime.parse(ByteData data_) {
     if (data_.lengthInBytes < SystemTime.mavlinkEncodedLength) {
       var len = SystemTime.mavlinkEncodedLength - data_.lengthInBytes;
@@ -8786,17 +8838,17 @@ class SystemTime implements MavlinkMessage {
 ///
 /// PING
 class Ping implements MavlinkMessage {
-  static const int _mavlinkMessageId = 4;
+  static const int msgId = 4;
 
-  static const int _mavlinkCrcExtra = 237;
+  static const int crcExtra = 237;
 
   static const int mavlinkEncodedLength = 14;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
   ///
@@ -8849,6 +8901,15 @@ class Ping implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeUsec': timeUsec,
+        'seq': seq,
+        'targetSystem': targetSystem,
+        'targetComponent': targetComponent,
+      };
+
   factory Ping.parse(ByteData data_) {
     if (data_.lengthInBytes < Ping.mavlinkEncodedLength) {
       var len = Ping.mavlinkEncodedLength - data_.lengthInBytes;
@@ -8883,17 +8944,17 @@ class Ping implements MavlinkMessage {
 ///
 /// CHANGE_OPERATOR_CONTROL
 class ChangeOperatorControl implements MavlinkMessage {
-  static const int _mavlinkMessageId = 5;
+  static const int msgId = 5;
 
-  static const int _mavlinkCrcExtra = 217;
+  static const int crcExtra = 217;
 
   static const int mavlinkEncodedLength = 28;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// System the GCS requests control for
   ///
@@ -8946,6 +9007,15 @@ class ChangeOperatorControl implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'targetSystem': targetSystem,
+        'controlRequest': controlRequest,
+        'version': version,
+        'passkey': passkey,
+      };
+
   factory ChangeOperatorControl.parse(ByteData data_) {
     if (data_.lengthInBytes < ChangeOperatorControl.mavlinkEncodedLength) {
       var len =
@@ -8981,17 +9051,17 @@ class ChangeOperatorControl implements MavlinkMessage {
 ///
 /// CHANGE_OPERATOR_CONTROL_ACK
 class ChangeOperatorControlAck implements MavlinkMessage {
-  static const int _mavlinkMessageId = 6;
+  static const int msgId = 6;
 
-  static const int _mavlinkCrcExtra = 104;
+  static const int crcExtra = 104;
 
   static const int mavlinkEncodedLength = 3;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// ID of the GCS this message
   ///
@@ -9032,6 +9102,14 @@ class ChangeOperatorControlAck implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'gcsSystemId': gcsSystemId,
+        'controlRequest': controlRequest,
+        'ack': ack,
+      };
+
   factory ChangeOperatorControlAck.parse(ByteData data_) {
     if (data_.lengthInBytes < ChangeOperatorControlAck.mavlinkEncodedLength) {
       var len =
@@ -9062,17 +9140,17 @@ class ChangeOperatorControlAck implements MavlinkMessage {
 ///
 /// AUTH_KEY
 class AuthKey implements MavlinkMessage {
-  static const int _mavlinkMessageId = 7;
+  static const int msgId = 7;
 
-  static const int _mavlinkCrcExtra = 119;
+  static const int crcExtra = 119;
 
   static const int mavlinkEncodedLength = 32;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// key
   ///
@@ -9092,6 +9170,12 @@ class AuthKey implements MavlinkMessage {
       key: key ?? this.key,
     );
   }
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'key': key,
+      };
 
   factory AuthKey.parse(ByteData data_) {
     if (data_.lengthInBytes < AuthKey.mavlinkEncodedLength) {
@@ -9117,17 +9201,17 @@ class AuthKey implements MavlinkMessage {
 ///
 /// LINK_NODE_STATUS
 class LinkNodeStatus implements MavlinkMessage {
-  static const int _mavlinkMessageId = 8;
+  static const int msgId = 8;
 
-  static const int _mavlinkCrcExtra = 117;
+  static const int crcExtra = 117;
 
   static const int mavlinkEncodedLength = 36;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (time since system boot).
   ///
@@ -9264,6 +9348,22 @@ class LinkNodeStatus implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timestamp': timestamp,
+        'txRate': txRate,
+        'rxRate': rxRate,
+        'messagesSent': messagesSent,
+        'messagesReceived': messagesReceived,
+        'messagesLost': messagesLost,
+        'rxParseErr': rxParseErr,
+        'txOverflows': txOverflows,
+        'rxOverflows': rxOverflows,
+        'txBuf': txBuf,
+        'rxBuf': rxBuf,
+      };
+
   factory LinkNodeStatus.parse(ByteData data_) {
     if (data_.lengthInBytes < LinkNodeStatus.mavlinkEncodedLength) {
       var len = LinkNodeStatus.mavlinkEncodedLength - data_.lengthInBytes;
@@ -9319,17 +9419,17 @@ class LinkNodeStatus implements MavlinkMessage {
 ///
 /// SET_MODE
 class SetMode implements MavlinkMessage {
-  static const int _mavlinkMessageId = 11;
+  static const int msgId = 11;
 
-  static const int _mavlinkCrcExtra = 89;
+  static const int crcExtra = 89;
 
   static const int mavlinkEncodedLength = 6;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// The new autopilot-specific mode. This field can be ignored by an autopilot.
   ///
@@ -9372,6 +9472,14 @@ class SetMode implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'customMode': customMode,
+        'targetSystem': targetSystem,
+        'baseMode': baseMode,
+      };
+
   factory SetMode.parse(ByteData data_) {
     if (data_.lengthInBytes < SetMode.mavlinkEncodedLength) {
       var len = SetMode.mavlinkEncodedLength - data_.lengthInBytes;
@@ -9401,17 +9509,17 @@ class SetMode implements MavlinkMessage {
 ///
 /// PARAM_REQUEST_READ
 class ParamRequestRead implements MavlinkMessage {
-  static const int _mavlinkMessageId = 20;
+  static const int msgId = 20;
 
-  static const int _mavlinkCrcExtra = 214;
+  static const int crcExtra = 214;
 
   static const int mavlinkEncodedLength = 20;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Parameter index. Send -1 to use the param ID field as identifier (else the param id will be ignored)
   ///
@@ -9462,6 +9570,15 @@ class ParamRequestRead implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'paramIndex': paramIndex,
+        'targetSystem': targetSystem,
+        'targetComponent': targetComponent,
+        'paramId': paramId,
+      };
+
   factory ParamRequestRead.parse(ByteData data_) {
     if (data_.lengthInBytes < ParamRequestRead.mavlinkEncodedLength) {
       var len = ParamRequestRead.mavlinkEncodedLength - data_.lengthInBytes;
@@ -9496,17 +9613,17 @@ class ParamRequestRead implements MavlinkMessage {
 ///
 /// PARAM_REQUEST_LIST
 class ParamRequestList implements MavlinkMessage {
-  static const int _mavlinkMessageId = 21;
+  static const int msgId = 21;
 
-  static const int _mavlinkCrcExtra = 159;
+  static const int crcExtra = 159;
 
   static const int mavlinkEncodedLength = 2;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// System ID
   ///
@@ -9537,6 +9654,13 @@ class ParamRequestList implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'targetSystem': targetSystem,
+        'targetComponent': targetComponent,
+      };
+
   factory ParamRequestList.parse(ByteData data_) {
     if (data_.lengthInBytes < ParamRequestList.mavlinkEncodedLength) {
       var len = ParamRequestList.mavlinkEncodedLength - data_.lengthInBytes;
@@ -9564,17 +9688,17 @@ class ParamRequestList implements MavlinkMessage {
 ///
 /// PARAM_VALUE
 class ParamValue implements MavlinkMessage {
-  static const int _mavlinkMessageId = 22;
+  static const int msgId = 22;
 
-  static const int _mavlinkCrcExtra = 220;
+  static const int crcExtra = 220;
 
   static const int mavlinkEncodedLength = 25;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Onboard parameter value
   ///
@@ -9637,6 +9761,16 @@ class ParamValue implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'paramValue': paramValue,
+        'paramCount': paramCount,
+        'paramIndex': paramIndex,
+        'paramId': paramId,
+        'paramType': paramType,
+      };
+
   factory ParamValue.parse(ByteData data_) {
     if (data_.lengthInBytes < ParamValue.mavlinkEncodedLength) {
       var len = ParamValue.mavlinkEncodedLength - data_.lengthInBytes;
@@ -9676,17 +9810,17 @@ class ParamValue implements MavlinkMessage {
 ///
 /// PARAM_SET
 class ParamSet implements MavlinkMessage {
-  static const int _mavlinkMessageId = 23;
+  static const int msgId = 23;
 
-  static const int _mavlinkCrcExtra = 168;
+  static const int crcExtra = 168;
 
   static const int mavlinkEncodedLength = 23;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Onboard parameter value
   ///
@@ -9749,6 +9883,16 @@ class ParamSet implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'paramValue': paramValue,
+        'targetSystem': targetSystem,
+        'targetComponent': targetComponent,
+        'paramId': paramId,
+        'paramType': paramType,
+      };
+
   factory ParamSet.parse(ByteData data_) {
     if (data_.lengthInBytes < ParamSet.mavlinkEncodedLength) {
       var len = ParamSet.mavlinkEncodedLength - data_.lengthInBytes;
@@ -9787,17 +9931,17 @@ class ParamSet implements MavlinkMessage {
 ///
 /// GPS_RAW_INT
 class GpsRawInt implements MavlinkMessage {
-  static const int _mavlinkMessageId = 24;
+  static const int msgId = 24;
 
-  static const int _mavlinkCrcExtra = 24;
+  static const int crcExtra = 24;
 
   static const int mavlinkEncodedLength = 52;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
   ///
@@ -10006,6 +10150,27 @@ class GpsRawInt implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeUsec': timeUsec,
+        'lat': lat,
+        'lon': lon,
+        'alt': alt,
+        'eph': eph,
+        'epv': epv,
+        'vel': vel,
+        'cog': cog,
+        'fixType': fixType,
+        'satellitesVisible': satellitesVisible,
+        'altEllipsoid': altEllipsoid,
+        'hAcc': hAcc,
+        'vAcc': vAcc,
+        'velAcc': velAcc,
+        'hdgAcc': hdgAcc,
+        'yaw': yaw,
+      };
+
   factory GpsRawInt.parse(ByteData data_) {
     if (data_.lengthInBytes < GpsRawInt.mavlinkEncodedLength) {
       var len = GpsRawInt.mavlinkEncodedLength - data_.lengthInBytes;
@@ -10076,17 +10241,17 @@ class GpsRawInt implements MavlinkMessage {
 ///
 /// GPS_STATUS
 class GpsStatus implements MavlinkMessage {
-  static const int _mavlinkMessageId = 25;
+  static const int msgId = 25;
 
-  static const int _mavlinkCrcExtra = 23;
+  static const int crcExtra = 23;
 
   static const int mavlinkEncodedLength = 101;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Number of satellites visible
   ///
@@ -10163,6 +10328,17 @@ class GpsStatus implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'satellitesVisible': satellitesVisible,
+        'satellitePrn': satellitePrn,
+        'satelliteUsed': satelliteUsed,
+        'satelliteElevation': satelliteElevation,
+        'satelliteAzimuth': satelliteAzimuth,
+        'satelliteSnr': satelliteSnr,
+      };
+
   factory GpsStatus.parse(ByteData data_) {
     if (data_.lengthInBytes < GpsStatus.mavlinkEncodedLength) {
       var len = GpsStatus.mavlinkEncodedLength - data_.lengthInBytes;
@@ -10203,17 +10379,17 @@ class GpsStatus implements MavlinkMessage {
 ///
 /// SCALED_IMU
 class ScaledImu implements MavlinkMessage {
-  static const int _mavlinkMessageId = 26;
+  static const int msgId = 26;
 
-  static const int _mavlinkCrcExtra = 170;
+  static const int crcExtra = 170;
 
   static const int mavlinkEncodedLength = 24;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (time since system boot).
   ///
@@ -10358,6 +10534,22 @@ class ScaledImu implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeBootMs': timeBootMs,
+        'xacc': xacc,
+        'yacc': yacc,
+        'zacc': zacc,
+        'xgyro': xgyro,
+        'ygyro': ygyro,
+        'zgyro': zgyro,
+        'xmag': xmag,
+        'ymag': ymag,
+        'zmag': zmag,
+        'temperature': temperature,
+      };
+
   factory ScaledImu.parse(ByteData data_) {
     if (data_.lengthInBytes < ScaledImu.mavlinkEncodedLength) {
       var len = ScaledImu.mavlinkEncodedLength - data_.lengthInBytes;
@@ -10413,17 +10605,17 @@ class ScaledImu implements MavlinkMessage {
 ///
 /// RAW_IMU
 class RawImu implements MavlinkMessage {
-  static const int _mavlinkMessageId = 27;
+  static const int msgId = 27;
 
-  static const int _mavlinkCrcExtra = 144;
+  static const int crcExtra = 144;
 
   static const int mavlinkEncodedLength = 29;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
   ///
@@ -10562,6 +10754,23 @@ class RawImu implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeUsec': timeUsec,
+        'xacc': xacc,
+        'yacc': yacc,
+        'zacc': zacc,
+        'xgyro': xgyro,
+        'ygyro': ygyro,
+        'zgyro': zgyro,
+        'xmag': xmag,
+        'ymag': ymag,
+        'zmag': zmag,
+        'id': id,
+        'temperature': temperature,
+      };
+
   factory RawImu.parse(ByteData data_) {
     if (data_.lengthInBytes < RawImu.mavlinkEncodedLength) {
       var len = RawImu.mavlinkEncodedLength - data_.lengthInBytes;
@@ -10620,17 +10829,17 @@ class RawImu implements MavlinkMessage {
 ///
 /// RAW_PRESSURE
 class RawPressure implements MavlinkMessage {
-  static const int _mavlinkMessageId = 28;
+  static const int msgId = 28;
 
-  static const int _mavlinkCrcExtra = 67;
+  static const int crcExtra = 67;
 
   static const int mavlinkEncodedLength = 16;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
   ///
@@ -10693,6 +10902,16 @@ class RawPressure implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeUsec': timeUsec,
+        'pressAbs': pressAbs,
+        'pressDiff1': pressDiff1,
+        'pressDiff2': pressDiff2,
+        'temperature': temperature,
+      };
+
   factory RawPressure.parse(ByteData data_) {
     if (data_.lengthInBytes < RawPressure.mavlinkEncodedLength) {
       var len = RawPressure.mavlinkEncodedLength - data_.lengthInBytes;
@@ -10730,17 +10949,17 @@ class RawPressure implements MavlinkMessage {
 ///
 /// SCALED_PRESSURE
 class ScaledPressure implements MavlinkMessage {
-  static const int _mavlinkMessageId = 29;
+  static const int msgId = 29;
 
-  static const int _mavlinkCrcExtra = 115;
+  static const int crcExtra = 115;
 
   static const int mavlinkEncodedLength = 16;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (time since system boot).
   ///
@@ -10813,6 +11032,16 @@ class ScaledPressure implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeBootMs': timeBootMs,
+        'pressAbs': pressAbs,
+        'pressDiff': pressDiff,
+        'temperature': temperature,
+        'temperaturePressDiff': temperaturePressDiff,
+      };
+
   factory ScaledPressure.parse(ByteData data_) {
     if (data_.lengthInBytes < ScaledPressure.mavlinkEncodedLength) {
       var len = ScaledPressure.mavlinkEncodedLength - data_.lengthInBytes;
@@ -10850,17 +11079,17 @@ class ScaledPressure implements MavlinkMessage {
 ///
 /// ATTITUDE
 class Attitude implements MavlinkMessage {
-  static const int _mavlinkMessageId = 30;
+  static const int msgId = 30;
 
-  static const int _mavlinkCrcExtra = 39;
+  static const int crcExtra = 39;
 
   static const int mavlinkEncodedLength = 28;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (time since system boot).
   ///
@@ -10955,6 +11184,18 @@ class Attitude implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeBootMs': timeBootMs,
+        'roll': roll,
+        'pitch': pitch,
+        'yaw': yaw,
+        'rollspeed': rollspeed,
+        'pitchspeed': pitchspeed,
+        'yawspeed': yawspeed,
+      };
+
   factory Attitude.parse(ByteData data_) {
     if (data_.lengthInBytes < Attitude.mavlinkEncodedLength) {
       var len = Attitude.mavlinkEncodedLength - data_.lengthInBytes;
@@ -10998,17 +11239,17 @@ class Attitude implements MavlinkMessage {
 ///
 /// ATTITUDE_QUATERNION
 class AttitudeQuaternion implements MavlinkMessage {
-  static const int _mavlinkMessageId = 31;
+  static const int msgId = 31;
 
-  static const int _mavlinkCrcExtra = 246;
+  static const int crcExtra = 246;
 
   static const int mavlinkEncodedLength = 48;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (time since system boot).
   ///
@@ -11119,6 +11360,20 @@ class AttitudeQuaternion implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeBootMs': timeBootMs,
+        'q1': q1,
+        'q2': q2,
+        'q3': q3,
+        'q4': q4,
+        'rollspeed': rollspeed,
+        'pitchspeed': pitchspeed,
+        'yawspeed': yawspeed,
+        'reprOffsetQ': reprOffsetQ,
+      };
+
   factory AttitudeQuaternion.parse(ByteData data_) {
     if (data_.lengthInBytes < AttitudeQuaternion.mavlinkEncodedLength) {
       var len = AttitudeQuaternion.mavlinkEncodedLength - data_.lengthInBytes;
@@ -11168,17 +11423,17 @@ class AttitudeQuaternion implements MavlinkMessage {
 ///
 /// LOCAL_POSITION_NED
 class LocalPositionNed implements MavlinkMessage {
-  static const int _mavlinkMessageId = 32;
+  static const int msgId = 32;
 
-  static const int _mavlinkCrcExtra = 185;
+  static const int crcExtra = 185;
 
   static const int mavlinkEncodedLength = 28;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (time since system boot).
   ///
@@ -11273,6 +11528,18 @@ class LocalPositionNed implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeBootMs': timeBootMs,
+        'x': x,
+        'y': y,
+        'z': z,
+        'vx': vx,
+        'vy': vy,
+        'vz': vz,
+      };
+
   factory LocalPositionNed.parse(ByteData data_) {
     if (data_.lengthInBytes < LocalPositionNed.mavlinkEncodedLength) {
       var len = LocalPositionNed.mavlinkEncodedLength - data_.lengthInBytes;
@@ -11311,17 +11578,17 @@ class LocalPositionNed implements MavlinkMessage {
 ///
 /// GLOBAL_POSITION_INT
 class GlobalPositionInt implements MavlinkMessage {
-  static const int _mavlinkMessageId = 33;
+  static const int msgId = 33;
 
-  static const int _mavlinkCrcExtra = 104;
+  static const int crcExtra = 104;
 
   static const int mavlinkEncodedLength = 28;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (time since system boot).
   ///
@@ -11440,6 +11707,20 @@ class GlobalPositionInt implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeBootMs': timeBootMs,
+        'lat': lat,
+        'lon': lon,
+        'alt': alt,
+        'relativeAlt': relativeAlt,
+        'vx': vx,
+        'vy': vy,
+        'vz': vz,
+        'hdg': hdg,
+      };
+
   factory GlobalPositionInt.parse(ByteData data_) {
     if (data_.lengthInBytes < GlobalPositionInt.mavlinkEncodedLength) {
       var len = GlobalPositionInt.mavlinkEncodedLength - data_.lengthInBytes;
@@ -11489,17 +11770,17 @@ class GlobalPositionInt implements MavlinkMessage {
 ///
 /// RC_CHANNELS_SCALED
 class RcChannelsScaled implements MavlinkMessage {
-  static const int _mavlinkMessageId = 34;
+  static const int msgId = 34;
 
-  static const int _mavlinkCrcExtra = 237;
+  static const int crcExtra = 237;
 
   static const int mavlinkEncodedLength = 22;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (time since system boot).
   ///
@@ -11622,6 +11903,22 @@ class RcChannelsScaled implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeBootMs': timeBootMs,
+        'chan1Scaled': chan1Scaled,
+        'chan2Scaled': chan2Scaled,
+        'chan3Scaled': chan3Scaled,
+        'chan4Scaled': chan4Scaled,
+        'chan5Scaled': chan5Scaled,
+        'chan6Scaled': chan6Scaled,
+        'chan7Scaled': chan7Scaled,
+        'chan8Scaled': chan8Scaled,
+        'port': port,
+        'rssi': rssi,
+      };
+
   factory RcChannelsScaled.parse(ByteData data_) {
     if (data_.lengthInBytes < RcChannelsScaled.mavlinkEncodedLength) {
       var len = RcChannelsScaled.mavlinkEncodedLength - data_.lengthInBytes;
@@ -11677,17 +11974,17 @@ class RcChannelsScaled implements MavlinkMessage {
 ///
 /// RC_CHANNELS_RAW
 class RcChannelsRaw implements MavlinkMessage {
-  static const int _mavlinkMessageId = 35;
+  static const int msgId = 35;
 
-  static const int _mavlinkCrcExtra = 244;
+  static const int crcExtra = 244;
 
   static const int mavlinkEncodedLength = 22;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (time since system boot).
   ///
@@ -11826,6 +12123,22 @@ class RcChannelsRaw implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeBootMs': timeBootMs,
+        'chan1Raw': chan1Raw,
+        'chan2Raw': chan2Raw,
+        'chan3Raw': chan3Raw,
+        'chan4Raw': chan4Raw,
+        'chan5Raw': chan5Raw,
+        'chan6Raw': chan6Raw,
+        'chan7Raw': chan7Raw,
+        'chan8Raw': chan8Raw,
+        'port': port,
+        'rssi': rssi,
+      };
+
   factory RcChannelsRaw.parse(ByteData data_) {
     if (data_.lengthInBytes < RcChannelsRaw.mavlinkEncodedLength) {
       var len = RcChannelsRaw.mavlinkEncodedLength - data_.lengthInBytes;
@@ -11881,17 +12194,17 @@ class RcChannelsRaw implements MavlinkMessage {
 ///
 /// SERVO_OUTPUT_RAW
 class ServoOutputRaw implements MavlinkMessage {
-  static const int _mavlinkMessageId = 36;
+  static const int msgId = 36;
 
-  static const int _mavlinkCrcExtra = 222;
+  static const int crcExtra = 222;
 
   static const int mavlinkEncodedLength = 37;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
   ///
@@ -12132,6 +12445,29 @@ class ServoOutputRaw implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeUsec': timeUsec,
+        'servo1Raw': servo1Raw,
+        'servo2Raw': servo2Raw,
+        'servo3Raw': servo3Raw,
+        'servo4Raw': servo4Raw,
+        'servo5Raw': servo5Raw,
+        'servo6Raw': servo6Raw,
+        'servo7Raw': servo7Raw,
+        'servo8Raw': servo8Raw,
+        'port': port,
+        'servo9Raw': servo9Raw,
+        'servo10Raw': servo10Raw,
+        'servo11Raw': servo11Raw,
+        'servo12Raw': servo12Raw,
+        'servo13Raw': servo13Raw,
+        'servo14Raw': servo14Raw,
+        'servo15Raw': servo15Raw,
+        'servo16Raw': servo16Raw,
+      };
+
   factory ServoOutputRaw.parse(ByteData data_) {
     if (data_.lengthInBytes < ServoOutputRaw.mavlinkEncodedLength) {
       var len = ServoOutputRaw.mavlinkEncodedLength - data_.lengthInBytes;
@@ -12208,17 +12544,17 @@ class ServoOutputRaw implements MavlinkMessage {
 ///
 /// MISSION_REQUEST_PARTIAL_LIST
 class MissionRequestPartialList implements MavlinkMessage {
-  static const int _mavlinkMessageId = 37;
+  static const int msgId = 37;
 
-  static const int _mavlinkCrcExtra = 212;
+  static const int crcExtra = 212;
 
   static const int mavlinkEncodedLength = 7;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Start index
   ///
@@ -12283,6 +12619,16 @@ class MissionRequestPartialList implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'startIndex': startIndex,
+        'endIndex': endIndex,
+        'targetSystem': targetSystem,
+        'targetComponent': targetComponent,
+        'missionType': missionType,
+      };
+
   factory MissionRequestPartialList.parse(ByteData data_) {
     if (data_.lengthInBytes < MissionRequestPartialList.mavlinkEncodedLength) {
       var len =
@@ -12321,17 +12667,17 @@ class MissionRequestPartialList implements MavlinkMessage {
 ///
 /// MISSION_WRITE_PARTIAL_LIST
 class MissionWritePartialList implements MavlinkMessage {
-  static const int _mavlinkMessageId = 38;
+  static const int msgId = 38;
 
-  static const int _mavlinkCrcExtra = 9;
+  static const int crcExtra = 9;
 
   static const int mavlinkEncodedLength = 7;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Start index. Must be smaller / equal to the largest index of the current onboard list.
   ///
@@ -12396,6 +12742,16 @@ class MissionWritePartialList implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'startIndex': startIndex,
+        'endIndex': endIndex,
+        'targetSystem': targetSystem,
+        'targetComponent': targetComponent,
+        'missionType': missionType,
+      };
+
   factory MissionWritePartialList.parse(ByteData data_) {
     if (data_.lengthInBytes < MissionWritePartialList.mavlinkEncodedLength) {
       var len =
@@ -12435,17 +12791,17 @@ class MissionWritePartialList implements MavlinkMessage {
 ///
 /// MISSION_ITEM
 class MissionItem implements MavlinkMessage {
-  static const int _mavlinkMessageId = 39;
+  static const int msgId = 39;
 
-  static const int _mavlinkCrcExtra = 254;
+  static const int crcExtra = 254;
 
   static const int mavlinkEncodedLength = 38;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// PARAM1, see MAV_CMD enum
   ///
@@ -12614,6 +12970,26 @@ class MissionItem implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'param1': param1,
+        'param2': param2,
+        'param3': param3,
+        'param4': param4,
+        'x': x,
+        'y': y,
+        'z': z,
+        'seq': seq,
+        'command': command,
+        'targetSystem': targetSystem,
+        'targetComponent': targetComponent,
+        'frame': frame,
+        'current': current,
+        'autocontinue': autocontinue,
+        'missionType': missionType,
+      };
+
   factory MissionItem.parse(ByteData data_) {
     if (data_.lengthInBytes < MissionItem.mavlinkEncodedLength) {
       var len = MissionItem.mavlinkEncodedLength - data_.lengthInBytes;
@@ -12681,17 +13057,17 @@ class MissionItem implements MavlinkMessage {
 ///
 /// MISSION_REQUEST
 class MissionRequest implements MavlinkMessage {
-  static const int _mavlinkMessageId = 40;
+  static const int msgId = 40;
 
-  static const int _mavlinkCrcExtra = 230;
+  static const int crcExtra = 230;
 
   static const int mavlinkEncodedLength = 5;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Sequence
   ///
@@ -12746,6 +13122,15 @@ class MissionRequest implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'seq': seq,
+        'targetSystem': targetSystem,
+        'targetComponent': targetComponent,
+        'missionType': missionType,
+      };
+
   factory MissionRequest.parse(ByteData data_) {
     if (data_.lengthInBytes < MissionRequest.mavlinkEncodedLength) {
       var len = MissionRequest.mavlinkEncodedLength - data_.lengthInBytes;
@@ -12788,17 +13173,17 @@ class MissionRequest implements MavlinkMessage {
 ///
 /// MISSION_SET_CURRENT
 class MissionSetCurrent implements MavlinkMessage {
-  static const int _mavlinkMessageId = 41;
+  static const int msgId = 41;
 
-  static const int _mavlinkCrcExtra = 28;
+  static const int crcExtra = 28;
 
   static const int mavlinkEncodedLength = 4;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Sequence
   ///
@@ -12839,6 +13224,14 @@ class MissionSetCurrent implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'seq': seq,
+        'targetSystem': targetSystem,
+        'targetComponent': targetComponent,
+      };
+
   factory MissionSetCurrent.parse(ByteData data_) {
     if (data_.lengthInBytes < MissionSetCurrent.mavlinkEncodedLength) {
       var len = MissionSetCurrent.mavlinkEncodedLength - data_.lengthInBytes;
@@ -12872,17 +13265,17 @@ class MissionSetCurrent implements MavlinkMessage {
 ///
 /// MISSION_CURRENT
 class MissionCurrent implements MavlinkMessage {
-  static const int _mavlinkMessageId = 42;
+  static const int msgId = 42;
 
-  static const int _mavlinkCrcExtra = 28;
+  static const int crcExtra = 28;
 
   static const int mavlinkEncodedLength = 18;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Sequence
   ///
@@ -12977,6 +13370,18 @@ class MissionCurrent implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'seq': seq,
+        'total': total,
+        'missionState': missionState,
+        'missionMode': missionMode,
+        'missionId': missionId,
+        'fenceId': fenceId,
+        'rallyPointsId': rallyPointsId,
+      };
+
   factory MissionCurrent.parse(ByteData data_) {
     if (data_.lengthInBytes < MissionCurrent.mavlinkEncodedLength) {
       var len = MissionCurrent.mavlinkEncodedLength - data_.lengthInBytes;
@@ -13020,17 +13425,17 @@ class MissionCurrent implements MavlinkMessage {
 ///
 /// MISSION_REQUEST_LIST
 class MissionRequestList implements MavlinkMessage {
-  static const int _mavlinkMessageId = 43;
+  static const int msgId = 43;
 
-  static const int _mavlinkCrcExtra = 132;
+  static const int crcExtra = 132;
 
   static const int mavlinkEncodedLength = 3;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// System ID
   ///
@@ -13075,6 +13480,14 @@ class MissionRequestList implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'targetSystem': targetSystem,
+        'targetComponent': targetComponent,
+        'missionType': missionType,
+      };
+
   factory MissionRequestList.parse(ByteData data_) {
     if (data_.lengthInBytes < MissionRequestList.mavlinkEncodedLength) {
       var len = MissionRequestList.mavlinkEncodedLength - data_.lengthInBytes;
@@ -13106,17 +13519,17 @@ class MissionRequestList implements MavlinkMessage {
 ///
 /// MISSION_COUNT
 class MissionCount implements MavlinkMessage {
-  static const int _mavlinkMessageId = 44;
+  static const int msgId = 44;
 
-  static const int _mavlinkCrcExtra = 221;
+  static const int crcExtra = 221;
 
   static const int mavlinkEncodedLength = 9;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Number of mission items in the sequence
   ///
@@ -13189,6 +13602,16 @@ class MissionCount implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'count': count,
+        'targetSystem': targetSystem,
+        'targetComponent': targetComponent,
+        'missionType': missionType,
+        'opaqueId': opaqueId,
+      };
+
   factory MissionCount.parse(ByteData data_) {
     if (data_.lengthInBytes < MissionCount.mavlinkEncodedLength) {
       var len = MissionCount.mavlinkEncodedLength - data_.lengthInBytes;
@@ -13226,17 +13649,17 @@ class MissionCount implements MavlinkMessage {
 ///
 /// MISSION_CLEAR_ALL
 class MissionClearAll implements MavlinkMessage {
-  static const int _mavlinkMessageId = 45;
+  static const int msgId = 45;
 
-  static const int _mavlinkCrcExtra = 232;
+  static const int crcExtra = 232;
 
   static const int mavlinkEncodedLength = 3;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// System ID
   ///
@@ -13281,6 +13704,14 @@ class MissionClearAll implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'targetSystem': targetSystem,
+        'targetComponent': targetComponent,
+        'missionType': missionType,
+      };
+
   factory MissionClearAll.parse(ByteData data_) {
     if (data_.lengthInBytes < MissionClearAll.mavlinkEncodedLength) {
       var len = MissionClearAll.mavlinkEncodedLength - data_.lengthInBytes;
@@ -13312,17 +13743,17 @@ class MissionClearAll implements MavlinkMessage {
 ///
 /// MISSION_ITEM_REACHED
 class MissionItemReached implements MavlinkMessage {
-  static const int _mavlinkMessageId = 46;
+  static const int msgId = 46;
 
-  static const int _mavlinkCrcExtra = 11;
+  static const int crcExtra = 11;
 
   static const int mavlinkEncodedLength = 2;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Sequence
   ///
@@ -13342,6 +13773,12 @@ class MissionItemReached implements MavlinkMessage {
       seq: seq ?? this.seq,
     );
   }
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'seq': seq,
+      };
 
   factory MissionItemReached.parse(ByteData data_) {
     if (data_.lengthInBytes < MissionItemReached.mavlinkEncodedLength) {
@@ -13367,17 +13804,17 @@ class MissionItemReached implements MavlinkMessage {
 ///
 /// MISSION_ACK
 class MissionAck implements MavlinkMessage {
-  static const int _mavlinkMessageId = 47;
+  static const int msgId = 47;
 
-  static const int _mavlinkCrcExtra = 153;
+  static const int crcExtra = 153;
 
   static const int mavlinkEncodedLength = 8;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// System ID
   ///
@@ -13452,6 +13889,16 @@ class MissionAck implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'targetSystem': targetSystem,
+        'targetComponent': targetComponent,
+        'type': type,
+        'missionType': missionType,
+        'opaqueId': opaqueId,
+      };
+
   factory MissionAck.parse(ByteData data_) {
     if (data_.lengthInBytes < MissionAck.mavlinkEncodedLength) {
       var len = MissionAck.mavlinkEncodedLength - data_.lengthInBytes;
@@ -13489,17 +13936,17 @@ class MissionAck implements MavlinkMessage {
 ///
 /// SET_GPS_GLOBAL_ORIGIN
 class SetGpsGlobalOrigin implements MavlinkMessage {
-  static const int _mavlinkMessageId = 48;
+  static const int msgId = 48;
 
-  static const int _mavlinkCrcExtra = 41;
+  static const int crcExtra = 41;
 
   static const int mavlinkEncodedLength = 21;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Latitude (WGS84)
   ///
@@ -13570,6 +14017,16 @@ class SetGpsGlobalOrigin implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'latitude': latitude,
+        'longitude': longitude,
+        'altitude': altitude,
+        'targetSystem': targetSystem,
+        'timeUsec': timeUsec,
+      };
+
   factory SetGpsGlobalOrigin.parse(ByteData data_) {
     if (data_.lengthInBytes < SetGpsGlobalOrigin.mavlinkEncodedLength) {
       var len = SetGpsGlobalOrigin.mavlinkEncodedLength - data_.lengthInBytes;
@@ -13607,17 +14064,17 @@ class SetGpsGlobalOrigin implements MavlinkMessage {
 ///
 /// GPS_GLOBAL_ORIGIN
 class GpsGlobalOrigin implements MavlinkMessage {
-  static const int _mavlinkMessageId = 49;
+  static const int msgId = 49;
 
-  static const int _mavlinkCrcExtra = 39;
+  static const int crcExtra = 39;
 
   static const int mavlinkEncodedLength = 20;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Latitude (WGS84)
   ///
@@ -13678,6 +14135,15 @@ class GpsGlobalOrigin implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'latitude': latitude,
+        'longitude': longitude,
+        'altitude': altitude,
+        'timeUsec': timeUsec,
+      };
+
   factory GpsGlobalOrigin.parse(ByteData data_) {
     if (data_.lengthInBytes < GpsGlobalOrigin.mavlinkEncodedLength) {
       var len = GpsGlobalOrigin.mavlinkEncodedLength - data_.lengthInBytes;
@@ -13712,17 +14178,17 @@ class GpsGlobalOrigin implements MavlinkMessage {
 ///
 /// PARAM_MAP_RC
 class ParamMapRc implements MavlinkMessage {
-  static const int _mavlinkMessageId = 50;
+  static const int msgId = 50;
 
-  static const int _mavlinkCrcExtra = 78;
+  static const int crcExtra = 78;
 
   static const int mavlinkEncodedLength = 37;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Initial parameter value
   ///
@@ -13824,6 +14290,20 @@ class ParamMapRc implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'paramValue0': paramValue0,
+        'scale': scale,
+        'paramValueMin': paramValueMin,
+        'paramValueMax': paramValueMax,
+        'paramIndex': paramIndex,
+        'targetSystem': targetSystem,
+        'targetComponent': targetComponent,
+        'paramId': paramId,
+        'parameterRcChannelIndex': parameterRcChannelIndex,
+      };
+
   factory ParamMapRc.parse(ByteData data_) {
     if (data_.lengthInBytes < ParamMapRc.mavlinkEncodedLength) {
       var len = ParamMapRc.mavlinkEncodedLength - data_.lengthInBytes;
@@ -13873,17 +14353,17 @@ class ParamMapRc implements MavlinkMessage {
 ///
 /// MISSION_REQUEST_INT
 class MissionRequestInt implements MavlinkMessage {
-  static const int _mavlinkMessageId = 51;
+  static const int msgId = 51;
 
-  static const int _mavlinkCrcExtra = 196;
+  static const int crcExtra = 196;
 
   static const int mavlinkEncodedLength = 5;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Sequence
   ///
@@ -13938,6 +14418,15 @@ class MissionRequestInt implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'seq': seq,
+        'targetSystem': targetSystem,
+        'targetComponent': targetComponent,
+        'missionType': missionType,
+      };
+
   factory MissionRequestInt.parse(ByteData data_) {
     if (data_.lengthInBytes < MissionRequestInt.mavlinkEncodedLength) {
       var len = MissionRequestInt.mavlinkEncodedLength - data_.lengthInBytes;
@@ -13972,17 +14461,17 @@ class MissionRequestInt implements MavlinkMessage {
 ///
 /// SAFETY_SET_ALLOWED_AREA
 class SafetySetAllowedArea implements MavlinkMessage {
-  static const int _mavlinkMessageId = 54;
+  static const int msgId = 54;
 
-  static const int _mavlinkCrcExtra = 15;
+  static const int crcExtra = 15;
 
   static const int mavlinkEncodedLength = 27;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// x position 1 / Latitude 1
   ///
@@ -14097,6 +14586,20 @@ class SafetySetAllowedArea implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'p1x': p1x,
+        'p1y': p1y,
+        'p1z': p1z,
+        'p2x': p2x,
+        'p2y': p2y,
+        'p2z': p2z,
+        'targetSystem': targetSystem,
+        'targetComponent': targetComponent,
+        'frame': frame,
+      };
+
   factory SafetySetAllowedArea.parse(ByteData data_) {
     if (data_.lengthInBytes < SafetySetAllowedArea.mavlinkEncodedLength) {
       var len = SafetySetAllowedArea.mavlinkEncodedLength - data_.lengthInBytes;
@@ -14146,17 +14649,17 @@ class SafetySetAllowedArea implements MavlinkMessage {
 ///
 /// SAFETY_ALLOWED_AREA
 class SafetyAllowedArea implements MavlinkMessage {
-  static const int _mavlinkMessageId = 55;
+  static const int msgId = 55;
 
-  static const int _mavlinkCrcExtra = 3;
+  static const int crcExtra = 3;
 
   static const int mavlinkEncodedLength = 25;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// x position 1 / Latitude 1
   ///
@@ -14251,6 +14754,18 @@ class SafetyAllowedArea implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'p1x': p1x,
+        'p1y': p1y,
+        'p1z': p1z,
+        'p2x': p2x,
+        'p2y': p2y,
+        'p2z': p2z,
+        'frame': frame,
+      };
+
   factory SafetyAllowedArea.parse(ByteData data_) {
     if (data_.lengthInBytes < SafetyAllowedArea.mavlinkEncodedLength) {
       var len = SafetyAllowedArea.mavlinkEncodedLength - data_.lengthInBytes;
@@ -14294,17 +14809,17 @@ class SafetyAllowedArea implements MavlinkMessage {
 ///
 /// ATTITUDE_QUATERNION_COV
 class AttitudeQuaternionCov implements MavlinkMessage {
-  static const int _mavlinkMessageId = 61;
+  static const int msgId = 61;
 
-  static const int _mavlinkCrcExtra = 167;
+  static const int crcExtra = 167;
 
   static const int mavlinkEncodedLength = 72;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
   ///
@@ -14383,6 +14898,17 @@ class AttitudeQuaternionCov implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeUsec': timeUsec,
+        'q': q,
+        'rollspeed': rollspeed,
+        'pitchspeed': pitchspeed,
+        'yawspeed': yawspeed,
+        'covariance': covariance,
+      };
+
   factory AttitudeQuaternionCov.parse(ByteData data_) {
     if (data_.lengthInBytes < AttitudeQuaternionCov.mavlinkEncodedLength) {
       var len =
@@ -14424,17 +14950,17 @@ class AttitudeQuaternionCov implements MavlinkMessage {
 ///
 /// NAV_CONTROLLER_OUTPUT
 class NavControllerOutput implements MavlinkMessage {
-  static const int _mavlinkMessageId = 62;
+  static const int msgId = 62;
 
-  static const int _mavlinkCrcExtra = 183;
+  static const int crcExtra = 183;
 
   static const int mavlinkEncodedLength = 26;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Current desired roll
   ///
@@ -14541,6 +15067,19 @@ class NavControllerOutput implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'navRoll': navRoll,
+        'navPitch': navPitch,
+        'altError': altError,
+        'aspdError': aspdError,
+        'xtrackError': xtrackError,
+        'navBearing': navBearing,
+        'targetBearing': targetBearing,
+        'wpDist': wpDist,
+      };
+
   factory NavControllerOutput.parse(ByteData data_) {
     if (data_.lengthInBytes < NavControllerOutput.mavlinkEncodedLength) {
       var len = NavControllerOutput.mavlinkEncodedLength - data_.lengthInBytes;
@@ -14587,17 +15126,17 @@ class NavControllerOutput implements MavlinkMessage {
 ///
 /// GLOBAL_POSITION_INT_COV
 class GlobalPositionIntCov implements MavlinkMessage {
-  static const int _mavlinkMessageId = 63;
+  static const int msgId = 63;
 
-  static const int _mavlinkCrcExtra = 119;
+  static const int crcExtra = 119;
 
   static const int mavlinkEncodedLength = 181;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
   ///
@@ -14726,6 +15265,21 @@ class GlobalPositionIntCov implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeUsec': timeUsec,
+        'lat': lat,
+        'lon': lon,
+        'alt': alt,
+        'relativeAlt': relativeAlt,
+        'vx': vx,
+        'vy': vy,
+        'vz': vz,
+        'covariance': covariance,
+        'estimatorType': estimatorType,
+      };
+
   factory GlobalPositionIntCov.parse(ByteData data_) {
     if (data_.lengthInBytes < GlobalPositionIntCov.mavlinkEncodedLength) {
       var len = GlobalPositionIntCov.mavlinkEncodedLength - data_.lengthInBytes;
@@ -14778,17 +15332,17 @@ class GlobalPositionIntCov implements MavlinkMessage {
 ///
 /// LOCAL_POSITION_NED_COV
 class LocalPositionNedCov implements MavlinkMessage {
-  static const int _mavlinkMessageId = 64;
+  static const int msgId = 64;
 
-  static const int _mavlinkCrcExtra = 191;
+  static const int crcExtra = 191;
 
   static const int mavlinkEncodedLength = 225;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
   ///
@@ -14941,6 +15495,23 @@ class LocalPositionNedCov implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeUsec': timeUsec,
+        'x': x,
+        'y': y,
+        'z': z,
+        'vx': vx,
+        'vy': vy,
+        'vz': vz,
+        'ax': ax,
+        'ay': ay,
+        'az': az,
+        'covariance': covariance,
+        'estimatorType': estimatorType,
+      };
+
   factory LocalPositionNedCov.parse(ByteData data_) {
     if (data_.lengthInBytes < LocalPositionNedCov.mavlinkEncodedLength) {
       var len = LocalPositionNedCov.mavlinkEncodedLength - data_.lengthInBytes;
@@ -14999,17 +15570,17 @@ class LocalPositionNedCov implements MavlinkMessage {
 ///
 /// RC_CHANNELS
 class RcChannels implements MavlinkMessage {
-  static const int _mavlinkMessageId = 65;
+  static const int msgId = 65;
 
-  static const int _mavlinkCrcExtra = 118;
+  static const int crcExtra = 118;
 
   static const int mavlinkEncodedLength = 42;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (time since system boot).
   ///
@@ -15268,6 +15839,32 @@ class RcChannels implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeBootMs': timeBootMs,
+        'chan1Raw': chan1Raw,
+        'chan2Raw': chan2Raw,
+        'chan3Raw': chan3Raw,
+        'chan4Raw': chan4Raw,
+        'chan5Raw': chan5Raw,
+        'chan6Raw': chan6Raw,
+        'chan7Raw': chan7Raw,
+        'chan8Raw': chan8Raw,
+        'chan9Raw': chan9Raw,
+        'chan10Raw': chan10Raw,
+        'chan11Raw': chan11Raw,
+        'chan12Raw': chan12Raw,
+        'chan13Raw': chan13Raw,
+        'chan14Raw': chan14Raw,
+        'chan15Raw': chan15Raw,
+        'chan16Raw': chan16Raw,
+        'chan17Raw': chan17Raw,
+        'chan18Raw': chan18Raw,
+        'chancount': chancount,
+        'rssi': rssi,
+      };
+
   factory RcChannels.parse(ByteData data_) {
     if (data_.lengthInBytes < RcChannels.mavlinkEncodedLength) {
       var len = RcChannels.mavlinkEncodedLength - data_.lengthInBytes;
@@ -15353,17 +15950,17 @@ class RcChannels implements MavlinkMessage {
 ///
 /// REQUEST_DATA_STREAM
 class RequestDataStream implements MavlinkMessage {
-  static const int _mavlinkMessageId = 66;
+  static const int msgId = 66;
 
-  static const int _mavlinkCrcExtra = 148;
+  static const int crcExtra = 148;
 
   static const int mavlinkEncodedLength = 6;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// The requested message rate
   ///
@@ -15426,6 +16023,16 @@ class RequestDataStream implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'reqMessageRate': reqMessageRate,
+        'targetSystem': targetSystem,
+        'targetComponent': targetComponent,
+        'reqStreamId': reqStreamId,
+        'startStop': startStop,
+      };
+
   factory RequestDataStream.parse(ByteData data_) {
     if (data_.lengthInBytes < RequestDataStream.mavlinkEncodedLength) {
       var len = RequestDataStream.mavlinkEncodedLength - data_.lengthInBytes;
@@ -15463,17 +16070,17 @@ class RequestDataStream implements MavlinkMessage {
 ///
 /// DATA_STREAM
 class DataStream implements MavlinkMessage {
-  static const int _mavlinkMessageId = 67;
+  static const int msgId = 67;
 
-  static const int _mavlinkCrcExtra = 21;
+  static const int crcExtra = 21;
 
   static const int mavlinkEncodedLength = 4;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// The message rate
   ///
@@ -15516,6 +16123,14 @@ class DataStream implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'messageRate': messageRate,
+        'streamId': streamId,
+        'onOff': onOff,
+      };
+
   factory DataStream.parse(ByteData data_) {
     if (data_.lengthInBytes < DataStream.mavlinkEncodedLength) {
       var len = DataStream.mavlinkEncodedLength - data_.lengthInBytes;
@@ -15545,17 +16160,17 @@ class DataStream implements MavlinkMessage {
 ///
 /// MANUAL_CONTROL
 class ManualControl implements MavlinkMessage {
-  static const int _mavlinkMessageId = 69;
+  static const int msgId = 69;
 
-  static const int _mavlinkCrcExtra = 243;
+  static const int crcExtra = 243;
 
   static const int mavlinkEncodedLength = 30;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// X-axis, normalized to the range [-1000,1000]. A value of INT16_MAX indicates that this axis is invalid. Generally corresponds to forward(1000)-backward(-1000) movement on a joystick and the pitch of a vehicle.
   ///
@@ -15746,6 +16361,27 @@ class ManualControl implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'x': x,
+        'y': y,
+        'z': z,
+        'r': r,
+        'buttons': buttons,
+        'target': target,
+        'buttons2': buttons2,
+        'enabledExtensions': enabledExtensions,
+        's': s,
+        't': t,
+        'aux1': aux1,
+        'aux2': aux2,
+        'aux3': aux3,
+        'aux4': aux4,
+        'aux5': aux5,
+        'aux6': aux6,
+      };
+
   factory ManualControl.parse(ByteData data_) {
     if (data_.lengthInBytes < ManualControl.mavlinkEncodedLength) {
       var len = ManualControl.mavlinkEncodedLength - data_.lengthInBytes;
@@ -15816,17 +16452,17 @@ class ManualControl implements MavlinkMessage {
 ///
 /// RC_CHANNELS_OVERRIDE
 class RcChannelsOverride implements MavlinkMessage {
-  static const int _mavlinkMessageId = 70;
+  static const int msgId = 70;
 
-  static const int _mavlinkCrcExtra = 124;
+  static const int crcExtra = 124;
 
   static const int mavlinkEncodedLength = 38;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// RC channel 1 value. A value of UINT16_MAX means to ignore this field. A value of 0 means to release this channel back to the RC radio.
   ///
@@ -16093,6 +16729,31 @@ class RcChannelsOverride implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'chan1Raw': chan1Raw,
+        'chan2Raw': chan2Raw,
+        'chan3Raw': chan3Raw,
+        'chan4Raw': chan4Raw,
+        'chan5Raw': chan5Raw,
+        'chan6Raw': chan6Raw,
+        'chan7Raw': chan7Raw,
+        'chan8Raw': chan8Raw,
+        'targetSystem': targetSystem,
+        'targetComponent': targetComponent,
+        'chan9Raw': chan9Raw,
+        'chan10Raw': chan10Raw,
+        'chan11Raw': chan11Raw,
+        'chan12Raw': chan12Raw,
+        'chan13Raw': chan13Raw,
+        'chan14Raw': chan14Raw,
+        'chan15Raw': chan15Raw,
+        'chan16Raw': chan16Raw,
+        'chan17Raw': chan17Raw,
+        'chan18Raw': chan18Raw,
+      };
+
   factory RcChannelsOverride.parse(ByteData data_) {
     if (data_.lengthInBytes < RcChannelsOverride.mavlinkEncodedLength) {
       var len = RcChannelsOverride.mavlinkEncodedLength - data_.lengthInBytes;
@@ -16176,17 +16837,17 @@ class RcChannelsOverride implements MavlinkMessage {
 ///
 /// MISSION_ITEM_INT
 class MissionItemInt implements MavlinkMessage {
-  static const int _mavlinkMessageId = 73;
+  static const int msgId = 73;
 
-  static const int _mavlinkCrcExtra = 38;
+  static const int crcExtra = 38;
 
   static const int mavlinkEncodedLength = 38;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// PARAM1, see MAV_CMD enum
   ///
@@ -16355,6 +17016,26 @@ class MissionItemInt implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'param1': param1,
+        'param2': param2,
+        'param3': param3,
+        'param4': param4,
+        'x': x,
+        'y': y,
+        'z': z,
+        'seq': seq,
+        'command': command,
+        'targetSystem': targetSystem,
+        'targetComponent': targetComponent,
+        'frame': frame,
+        'current': current,
+        'autocontinue': autocontinue,
+        'missionType': missionType,
+      };
+
   factory MissionItemInt.parse(ByteData data_) {
     if (data_.lengthInBytes < MissionItemInt.mavlinkEncodedLength) {
       var len = MissionItemInt.mavlinkEncodedLength - data_.lengthInBytes;
@@ -16422,17 +17103,17 @@ class MissionItemInt implements MavlinkMessage {
 ///
 /// VFR_HUD
 class VfrHud implements MavlinkMessage {
-  static const int _mavlinkMessageId = 74;
+  static const int msgId = 74;
 
-  static const int _mavlinkCrcExtra = 20;
+  static const int crcExtra = 20;
 
   static const int mavlinkEncodedLength = 20;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Vehicle speed in form appropriate for vehicle type. For standard aircraft this is typically calibrated airspeed (CAS) or indicated airspeed (IAS) - either of which can be used by a pilot to estimate stall speed.
   ///
@@ -16515,6 +17196,17 @@ class VfrHud implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'airspeed': airspeed,
+        'groundspeed': groundspeed,
+        'alt': alt,
+        'climb': climb,
+        'heading': heading,
+        'throttle': throttle,
+      };
+
   factory VfrHud.parse(ByteData data_) {
     if (data_.lengthInBytes < VfrHud.mavlinkEncodedLength) {
       var len = VfrHud.mavlinkEncodedLength - data_.lengthInBytes;
@@ -16555,17 +17247,17 @@ class VfrHud implements MavlinkMessage {
 ///
 /// COMMAND_INT
 class CommandInt implements MavlinkMessage {
-  static const int _mavlinkMessageId = 75;
+  static const int msgId = 75;
 
-  static const int _mavlinkCrcExtra = 158;
+  static const int crcExtra = 158;
 
   static const int mavlinkEncodedLength = 35;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// PARAM1, see MAV_CMD enum
   ///
@@ -16710,6 +17402,24 @@ class CommandInt implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'param1': param1,
+        'param2': param2,
+        'param3': param3,
+        'param4': param4,
+        'x': x,
+        'y': y,
+        'z': z,
+        'command': command,
+        'targetSystem': targetSystem,
+        'targetComponent': targetComponent,
+        'frame': frame,
+        'current': current,
+        'autocontinue': autocontinue,
+      };
+
   factory CommandInt.parse(ByteData data_) {
     if (data_.lengthInBytes < CommandInt.mavlinkEncodedLength) {
       var len = CommandInt.mavlinkEncodedLength - data_.lengthInBytes;
@@ -16771,17 +17481,17 @@ class CommandInt implements MavlinkMessage {
 ///
 /// COMMAND_LONG
 class CommandLong implements MavlinkMessage {
-  static const int _mavlinkMessageId = 76;
+  static const int msgId = 76;
 
-  static const int _mavlinkCrcExtra = 152;
+  static const int crcExtra = 152;
 
   static const int mavlinkEncodedLength = 33;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Parameter 1 (for the specific command).
   ///
@@ -16904,6 +17614,22 @@ class CommandLong implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'param1': param1,
+        'param2': param2,
+        'param3': param3,
+        'param4': param4,
+        'param5': param5,
+        'param6': param6,
+        'param7': param7,
+        'command': command,
+        'targetSystem': targetSystem,
+        'targetComponent': targetComponent,
+        'confirmation': confirmation,
+      };
+
   factory CommandLong.parse(ByteData data_) {
     if (data_.lengthInBytes < CommandLong.mavlinkEncodedLength) {
       var len = CommandLong.mavlinkEncodedLength - data_.lengthInBytes;
@@ -16959,17 +17685,17 @@ class CommandLong implements MavlinkMessage {
 ///
 /// COMMAND_ACK
 class CommandAck implements MavlinkMessage {
-  static const int _mavlinkMessageId = 77;
+  static const int msgId = 77;
 
-  static const int _mavlinkCrcExtra = 143;
+  static const int crcExtra = 143;
 
   static const int mavlinkEncodedLength = 10;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Command ID (of acknowledged command).
   ///
@@ -17054,6 +17780,17 @@ class CommandAck implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'command': command,
+        'result': result,
+        'progress': progress,
+        'resultParam2': resultParam2,
+        'targetSystem': targetSystem,
+        'targetComponent': targetComponent,
+      };
+
   factory CommandAck.parse(ByteData data_) {
     if (data_.lengthInBytes < CommandAck.mavlinkEncodedLength) {
       var len = CommandAck.mavlinkEncodedLength - data_.lengthInBytes;
@@ -17094,17 +17831,17 @@ class CommandAck implements MavlinkMessage {
 ///
 /// COMMAND_CANCEL
 class CommandCancel implements MavlinkMessage {
-  static const int _mavlinkMessageId = 80;
+  static const int msgId = 80;
 
-  static const int _mavlinkCrcExtra = 14;
+  static const int crcExtra = 14;
 
   static const int mavlinkEncodedLength = 4;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Command ID (of command to cancel).
   ///
@@ -17147,6 +17884,14 @@ class CommandCancel implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'command': command,
+        'targetSystem': targetSystem,
+        'targetComponent': targetComponent,
+      };
+
   factory CommandCancel.parse(ByteData data_) {
     if (data_.lengthInBytes < CommandCancel.mavlinkEncodedLength) {
       var len = CommandCancel.mavlinkEncodedLength - data_.lengthInBytes;
@@ -17178,17 +17923,17 @@ class CommandCancel implements MavlinkMessage {
 ///
 /// MANUAL_SETPOINT
 class ManualSetpoint implements MavlinkMessage {
-  static const int _mavlinkMessageId = 81;
+  static const int msgId = 81;
 
-  static const int _mavlinkCrcExtra = 106;
+  static const int crcExtra = 106;
 
   static const int mavlinkEncodedLength = 22;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (time since system boot).
   ///
@@ -17277,6 +18022,18 @@ class ManualSetpoint implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeBootMs': timeBootMs,
+        'roll': roll,
+        'pitch': pitch,
+        'yaw': yaw,
+        'thrust': thrust,
+        'modeSwitch': modeSwitch,
+        'manualOverrideSwitch': manualOverrideSwitch,
+      };
+
   factory ManualSetpoint.parse(ByteData data_) {
     if (data_.lengthInBytes < ManualSetpoint.mavlinkEncodedLength) {
       var len = ManualSetpoint.mavlinkEncodedLength - data_.lengthInBytes;
@@ -17320,17 +18077,17 @@ class ManualSetpoint implements MavlinkMessage {
 ///
 /// SET_ATTITUDE_TARGET
 class SetAttitudeTarget implements MavlinkMessage {
-  static const int _mavlinkMessageId = 82;
+  static const int msgId = 82;
 
-  static const int _mavlinkCrcExtra = 49;
+  static const int crcExtra = 49;
 
   static const int mavlinkEncodedLength = 51;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (time since system boot).
   ///
@@ -17453,6 +18210,21 @@ class SetAttitudeTarget implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeBootMs': timeBootMs,
+        'q': q,
+        'bodyRollRate': bodyRollRate,
+        'bodyPitchRate': bodyPitchRate,
+        'bodyYawRate': bodyYawRate,
+        'thrust': thrust,
+        'targetSystem': targetSystem,
+        'targetComponent': targetComponent,
+        'typeMask': typeMask,
+        'thrustBody': thrustBody,
+      };
+
   factory SetAttitudeTarget.parse(ByteData data_) {
     if (data_.lengthInBytes < SetAttitudeTarget.mavlinkEncodedLength) {
       var len = SetAttitudeTarget.mavlinkEncodedLength - data_.lengthInBytes;
@@ -17505,17 +18277,17 @@ class SetAttitudeTarget implements MavlinkMessage {
 ///
 /// ATTITUDE_TARGET
 class AttitudeTarget implements MavlinkMessage {
-  static const int _mavlinkMessageId = 83;
+  static const int msgId = 83;
 
-  static const int _mavlinkCrcExtra = 22;
+  static const int crcExtra = 22;
 
   static const int mavlinkEncodedLength = 37;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (time since system boot).
   ///
@@ -17606,6 +18378,18 @@ class AttitudeTarget implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeBootMs': timeBootMs,
+        'q': q,
+        'bodyRollRate': bodyRollRate,
+        'bodyPitchRate': bodyPitchRate,
+        'bodyYawRate': bodyYawRate,
+        'thrust': thrust,
+        'typeMask': typeMask,
+      };
+
   factory AttitudeTarget.parse(ByteData data_) {
     if (data_.lengthInBytes < AttitudeTarget.mavlinkEncodedLength) {
       var len = AttitudeTarget.mavlinkEncodedLength - data_.lengthInBytes;
@@ -17649,17 +18433,17 @@ class AttitudeTarget implements MavlinkMessage {
 ///
 /// SET_POSITION_TARGET_LOCAL_NED
 class SetPositionTargetLocalNed implements MavlinkMessage {
-  static const int _mavlinkMessageId = 84;
+  static const int msgId = 84;
 
-  static const int _mavlinkCrcExtra = 143;
+  static const int crcExtra = 143;
 
   static const int mavlinkEncodedLength = 53;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (time since system boot).
   ///
@@ -17858,6 +18642,27 @@ class SetPositionTargetLocalNed implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeBootMs': timeBootMs,
+        'x': x,
+        'y': y,
+        'z': z,
+        'vx': vx,
+        'vy': vy,
+        'vz': vz,
+        'afx': afx,
+        'afy': afy,
+        'afz': afz,
+        'yaw': yaw,
+        'yawRate': yawRate,
+        'typeMask': typeMask,
+        'targetSystem': targetSystem,
+        'targetComponent': targetComponent,
+        'coordinateFrame': coordinateFrame,
+      };
+
   factory SetPositionTargetLocalNed.parse(ByteData data_) {
     if (data_.lengthInBytes < SetPositionTargetLocalNed.mavlinkEncodedLength) {
       var len =
@@ -17929,17 +18734,17 @@ class SetPositionTargetLocalNed implements MavlinkMessage {
 ///
 /// POSITION_TARGET_LOCAL_NED
 class PositionTargetLocalNed implements MavlinkMessage {
-  static const int _mavlinkMessageId = 85;
+  static const int msgId = 85;
 
-  static const int _mavlinkCrcExtra = 140;
+  static const int crcExtra = 140;
 
   static const int mavlinkEncodedLength = 51;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (time since system boot).
   ///
@@ -18118,6 +18923,25 @@ class PositionTargetLocalNed implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeBootMs': timeBootMs,
+        'x': x,
+        'y': y,
+        'z': z,
+        'vx': vx,
+        'vy': vy,
+        'vz': vz,
+        'afx': afx,
+        'afy': afy,
+        'afz': afz,
+        'yaw': yaw,
+        'yawRate': yawRate,
+        'typeMask': typeMask,
+        'coordinateFrame': coordinateFrame,
+      };
+
   factory PositionTargetLocalNed.parse(ByteData data_) {
     if (data_.lengthInBytes < PositionTargetLocalNed.mavlinkEncodedLength) {
       var len =
@@ -18183,17 +19007,17 @@ class PositionTargetLocalNed implements MavlinkMessage {
 ///
 /// SET_POSITION_TARGET_GLOBAL_INT
 class SetPositionTargetGlobalInt implements MavlinkMessage {
-  static const int _mavlinkMessageId = 86;
+  static const int msgId = 86;
 
-  static const int _mavlinkCrcExtra = 5;
+  static const int crcExtra = 5;
 
   static const int mavlinkEncodedLength = 53;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (time since system boot). The rationale for the timestamp in the setpoint is to allow the system to compensate for the transport delay of the setpoint. This allows the system to compensate processing latency.
   ///
@@ -18392,6 +19216,27 @@ class SetPositionTargetGlobalInt implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeBootMs': timeBootMs,
+        'latInt': latInt,
+        'lonInt': lonInt,
+        'alt': alt,
+        'vx': vx,
+        'vy': vy,
+        'vz': vz,
+        'afx': afx,
+        'afy': afy,
+        'afz': afz,
+        'yaw': yaw,
+        'yawRate': yawRate,
+        'typeMask': typeMask,
+        'targetSystem': targetSystem,
+        'targetComponent': targetComponent,
+        'coordinateFrame': coordinateFrame,
+      };
+
   factory SetPositionTargetGlobalInt.parse(ByteData data_) {
     if (data_.lengthInBytes < SetPositionTargetGlobalInt.mavlinkEncodedLength) {
       var len =
@@ -18463,17 +19308,17 @@ class SetPositionTargetGlobalInt implements MavlinkMessage {
 ///
 /// POSITION_TARGET_GLOBAL_INT
 class PositionTargetGlobalInt implements MavlinkMessage {
-  static const int _mavlinkMessageId = 87;
+  static const int msgId = 87;
 
-  static const int _mavlinkCrcExtra = 150;
+  static const int crcExtra = 150;
 
   static const int mavlinkEncodedLength = 51;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (time since system boot). The rationale for the timestamp in the setpoint is to allow the system to compensate for the transport delay of the setpoint. This allows the system to compensate processing latency.
   ///
@@ -18652,6 +19497,25 @@ class PositionTargetGlobalInt implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeBootMs': timeBootMs,
+        'latInt': latInt,
+        'lonInt': lonInt,
+        'alt': alt,
+        'vx': vx,
+        'vy': vy,
+        'vz': vz,
+        'afx': afx,
+        'afy': afy,
+        'afz': afz,
+        'yaw': yaw,
+        'yawRate': yawRate,
+        'typeMask': typeMask,
+        'coordinateFrame': coordinateFrame,
+      };
+
   factory PositionTargetGlobalInt.parse(ByteData data_) {
     if (data_.lengthInBytes < PositionTargetGlobalInt.mavlinkEncodedLength) {
       var len =
@@ -18717,17 +19581,17 @@ class PositionTargetGlobalInt implements MavlinkMessage {
 ///
 /// LOCAL_POSITION_NED_SYSTEM_GLOBAL_OFFSET
 class LocalPositionNedSystemGlobalOffset implements MavlinkMessage {
-  static const int _mavlinkMessageId = 89;
+  static const int msgId = 89;
 
-  static const int _mavlinkCrcExtra = 231;
+  static const int crcExtra = 231;
 
   static const int mavlinkEncodedLength = 28;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (time since system boot).
   ///
@@ -18822,6 +19686,18 @@ class LocalPositionNedSystemGlobalOffset implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeBootMs': timeBootMs,
+        'x': x,
+        'y': y,
+        'z': z,
+        'roll': roll,
+        'pitch': pitch,
+        'yaw': yaw,
+      };
+
   factory LocalPositionNedSystemGlobalOffset.parse(ByteData data_) {
     if (data_.lengthInBytes <
         LocalPositionNedSystemGlobalOffset.mavlinkEncodedLength) {
@@ -18867,17 +19743,17 @@ class LocalPositionNedSystemGlobalOffset implements MavlinkMessage {
 ///
 /// HIL_STATE
 class HilState implements MavlinkMessage {
-  static const int _mavlinkMessageId = 90;
+  static const int msgId = 90;
 
-  static const int _mavlinkCrcExtra = 183;
+  static const int crcExtra = 183;
 
   static const int mavlinkEncodedLength = 56;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
   ///
@@ -19080,6 +19956,27 @@ class HilState implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeUsec': timeUsec,
+        'roll': roll,
+        'pitch': pitch,
+        'yaw': yaw,
+        'rollspeed': rollspeed,
+        'pitchspeed': pitchspeed,
+        'yawspeed': yawspeed,
+        'lat': lat,
+        'lon': lon,
+        'alt': alt,
+        'vx': vx,
+        'vy': vy,
+        'vz': vz,
+        'xacc': xacc,
+        'yacc': yacc,
+        'zacc': zacc,
+      };
+
   factory HilState.parse(ByteData data_) {
     if (data_.lengthInBytes < HilState.mavlinkEncodedLength) {
       var len = HilState.mavlinkEncodedLength - data_.lengthInBytes;
@@ -19150,17 +20047,17 @@ class HilState implements MavlinkMessage {
 ///
 /// HIL_CONTROLS
 class HilControls implements MavlinkMessage {
-  static const int _mavlinkMessageId = 91;
+  static const int msgId = 91;
 
-  static const int _mavlinkCrcExtra = 63;
+  static const int crcExtra = 63;
 
   static const int mavlinkEncodedLength = 42;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
   ///
@@ -19285,6 +20182,22 @@ class HilControls implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeUsec': timeUsec,
+        'rollAilerons': rollAilerons,
+        'pitchElevator': pitchElevator,
+        'yawRudder': yawRudder,
+        'throttle': throttle,
+        'aux1': aux1,
+        'aux2': aux2,
+        'aux3': aux3,
+        'aux4': aux4,
+        'mode': mode,
+        'navMode': navMode,
+      };
+
   factory HilControls.parse(ByteData data_) {
     if (data_.lengthInBytes < HilControls.mavlinkEncodedLength) {
       var len = HilControls.mavlinkEncodedLength - data_.lengthInBytes;
@@ -19340,17 +20253,17 @@ class HilControls implements MavlinkMessage {
 ///
 /// HIL_RC_INPUTS_RAW
 class HilRcInputsRaw implements MavlinkMessage {
-  static const int _mavlinkMessageId = 92;
+  static const int msgId = 92;
 
-  static const int _mavlinkCrcExtra = 54;
+  static const int crcExtra = 54;
 
   static const int mavlinkEncodedLength = 33;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
   ///
@@ -19527,6 +20440,25 @@ class HilRcInputsRaw implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeUsec': timeUsec,
+        'chan1Raw': chan1Raw,
+        'chan2Raw': chan2Raw,
+        'chan3Raw': chan3Raw,
+        'chan4Raw': chan4Raw,
+        'chan5Raw': chan5Raw,
+        'chan6Raw': chan6Raw,
+        'chan7Raw': chan7Raw,
+        'chan8Raw': chan8Raw,
+        'chan9Raw': chan9Raw,
+        'chan10Raw': chan10Raw,
+        'chan11Raw': chan11Raw,
+        'chan12Raw': chan12Raw,
+        'rssi': rssi,
+      };
+
   factory HilRcInputsRaw.parse(ByteData data_) {
     if (data_.lengthInBytes < HilRcInputsRaw.mavlinkEncodedLength) {
       var len = HilRcInputsRaw.mavlinkEncodedLength - data_.lengthInBytes;
@@ -19591,17 +20523,17 @@ class HilRcInputsRaw implements MavlinkMessage {
 ///
 /// HIL_ACTUATOR_CONTROLS
 class HilActuatorControls implements MavlinkMessage {
-  static const int _mavlinkMessageId = 93;
+  static const int msgId = 93;
 
-  static const int _mavlinkCrcExtra = 47;
+  static const int crcExtra = 47;
 
   static const int mavlinkEncodedLength = 81;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
   ///
@@ -19656,6 +20588,15 @@ class HilActuatorControls implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeUsec': timeUsec,
+        'flags': flags,
+        'controls': controls,
+        'mode': mode,
+      };
+
   factory HilActuatorControls.parse(ByteData data_) {
     if (data_.lengthInBytes < HilActuatorControls.mavlinkEncodedLength) {
       var len = HilActuatorControls.mavlinkEncodedLength - data_.lengthInBytes;
@@ -19687,17 +20628,17 @@ class HilActuatorControls implements MavlinkMessage {
 ///
 /// OPTICAL_FLOW
 class OpticalFlow implements MavlinkMessage {
-  static const int _mavlinkMessageId = 100;
+  static const int msgId = 100;
 
-  static const int _mavlinkCrcExtra = 175;
+  static const int crcExtra = 175;
 
   static const int mavlinkEncodedLength = 34;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
   ///
@@ -19828,6 +20769,21 @@ class OpticalFlow implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeUsec': timeUsec,
+        'flowCompMX': flowCompMX,
+        'flowCompMY': flowCompMY,
+        'groundDistance': groundDistance,
+        'flowX': flowX,
+        'flowY': flowY,
+        'sensorId': sensorId,
+        'quality': quality,
+        'flowRateX': flowRateX,
+        'flowRateY': flowRateY,
+      };
+
   factory OpticalFlow.parse(ByteData data_) {
     if (data_.lengthInBytes < OpticalFlow.mavlinkEncodedLength) {
       var len = OpticalFlow.mavlinkEncodedLength - data_.lengthInBytes;
@@ -19880,17 +20836,17 @@ class OpticalFlow implements MavlinkMessage {
 ///
 /// GLOBAL_VISION_POSITION_ESTIMATE
 class GlobalVisionPositionEstimate implements MavlinkMessage {
-  static const int _mavlinkMessageId = 101;
+  static const int msgId = 101;
 
-  static const int _mavlinkCrcExtra = 102;
+  static const int crcExtra = 102;
 
   static const int mavlinkEncodedLength = 117;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (UNIX time or since system boot)
   ///
@@ -20009,6 +20965,20 @@ class GlobalVisionPositionEstimate implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'usec': usec,
+        'x': x,
+        'y': y,
+        'z': z,
+        'roll': roll,
+        'pitch': pitch,
+        'yaw': yaw,
+        'covariance': covariance,
+        'resetCounter': resetCounter,
+      };
+
   factory GlobalVisionPositionEstimate.parse(ByteData data_) {
     if (data_.lengthInBytes <
         GlobalVisionPositionEstimate.mavlinkEncodedLength) {
@@ -20060,17 +21030,17 @@ class GlobalVisionPositionEstimate implements MavlinkMessage {
 ///
 /// VISION_POSITION_ESTIMATE
 class VisionPositionEstimate implements MavlinkMessage {
-  static const int _mavlinkMessageId = 102;
+  static const int msgId = 102;
 
-  static const int _mavlinkCrcExtra = 158;
+  static const int crcExtra = 158;
 
   static const int mavlinkEncodedLength = 117;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (UNIX time or time since system boot)
   ///
@@ -20189,6 +21159,20 @@ class VisionPositionEstimate implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'usec': usec,
+        'x': x,
+        'y': y,
+        'z': z,
+        'roll': roll,
+        'pitch': pitch,
+        'yaw': yaw,
+        'covariance': covariance,
+        'resetCounter': resetCounter,
+      };
+
   factory VisionPositionEstimate.parse(ByteData data_) {
     if (data_.lengthInBytes < VisionPositionEstimate.mavlinkEncodedLength) {
       var len =
@@ -20239,17 +21223,17 @@ class VisionPositionEstimate implements MavlinkMessage {
 ///
 /// VISION_SPEED_ESTIMATE
 class VisionSpeedEstimate implements MavlinkMessage {
-  static const int _mavlinkMessageId = 103;
+  static const int msgId = 103;
 
-  static const int _mavlinkCrcExtra = 208;
+  static const int crcExtra = 208;
 
   static const int mavlinkEncodedLength = 57;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (UNIX time or time since system boot)
   ///
@@ -20332,6 +21316,17 @@ class VisionSpeedEstimate implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'usec': usec,
+        'x': x,
+        'y': y,
+        'z': z,
+        'covariance': covariance,
+        'resetCounter': resetCounter,
+      };
+
   factory VisionSpeedEstimate.parse(ByteData data_) {
     if (data_.lengthInBytes < VisionSpeedEstimate.mavlinkEncodedLength) {
       var len = VisionSpeedEstimate.mavlinkEncodedLength - data_.lengthInBytes;
@@ -20372,17 +21367,17 @@ class VisionSpeedEstimate implements MavlinkMessage {
 ///
 /// VICON_POSITION_ESTIMATE
 class ViconPositionEstimate implements MavlinkMessage {
-  static const int _mavlinkMessageId = 104;
+  static const int msgId = 104;
 
-  static const int _mavlinkCrcExtra = 56;
+  static const int crcExtra = 56;
 
   static const int mavlinkEncodedLength = 116;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (UNIX time or time since system boot)
   ///
@@ -20489,6 +21484,19 @@ class ViconPositionEstimate implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'usec': usec,
+        'x': x,
+        'y': y,
+        'z': z,
+        'roll': roll,
+        'pitch': pitch,
+        'yaw': yaw,
+        'covariance': covariance,
+      };
+
   factory ViconPositionEstimate.parse(ByteData data_) {
     if (data_.lengthInBytes < ViconPositionEstimate.mavlinkEncodedLength) {
       var len =
@@ -20536,17 +21544,17 @@ class ViconPositionEstimate implements MavlinkMessage {
 ///
 /// HIGHRES_IMU
 class HighresImu implements MavlinkMessage {
-  static const int _mavlinkMessageId = 105;
+  static const int msgId = 105;
 
-  static const int _mavlinkCrcExtra = 93;
+  static const int crcExtra = 93;
 
   static const int mavlinkEncodedLength = 63;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
   ///
@@ -20747,6 +21755,27 @@ class HighresImu implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeUsec': timeUsec,
+        'xacc': xacc,
+        'yacc': yacc,
+        'zacc': zacc,
+        'xgyro': xgyro,
+        'ygyro': ygyro,
+        'zgyro': zgyro,
+        'xmag': xmag,
+        'ymag': ymag,
+        'zmag': zmag,
+        'absPressure': absPressure,
+        'diffPressure': diffPressure,
+        'pressureAlt': pressureAlt,
+        'temperature': temperature,
+        'fieldsUpdated': fieldsUpdated,
+        'id': id,
+      };
+
   factory HighresImu.parse(ByteData data_) {
     if (data_.lengthInBytes < HighresImu.mavlinkEncodedLength) {
       var len = HighresImu.mavlinkEncodedLength - data_.lengthInBytes;
@@ -20817,17 +21846,17 @@ class HighresImu implements MavlinkMessage {
 ///
 /// OPTICAL_FLOW_RAD
 class OpticalFlowRad implements MavlinkMessage {
-  static const int _mavlinkMessageId = 106;
+  static const int msgId = 106;
 
-  static const int _mavlinkCrcExtra = 138;
+  static const int crcExtra = 138;
 
   static const int mavlinkEncodedLength = 44;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
   ///
@@ -20978,6 +22007,23 @@ class OpticalFlowRad implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeUsec': timeUsec,
+        'integrationTimeUs': integrationTimeUs,
+        'integratedX': integratedX,
+        'integratedY': integratedY,
+        'integratedXgyro': integratedXgyro,
+        'integratedYgyro': integratedYgyro,
+        'integratedZgyro': integratedZgyro,
+        'timeDeltaDistanceUs': timeDeltaDistanceUs,
+        'distance': distance,
+        'temperature': temperature,
+        'sensorId': sensorId,
+        'quality': quality,
+      };
+
   factory OpticalFlowRad.parse(ByteData data_) {
     if (data_.lengthInBytes < OpticalFlowRad.mavlinkEncodedLength) {
       var len = OpticalFlowRad.mavlinkEncodedLength - data_.lengthInBytes;
@@ -21036,17 +22082,17 @@ class OpticalFlowRad implements MavlinkMessage {
 ///
 /// HIL_SENSOR
 class HilSensor implements MavlinkMessage {
-  static const int _mavlinkMessageId = 107;
+  static const int msgId = 107;
 
-  static const int _mavlinkCrcExtra = 108;
+  static const int crcExtra = 108;
 
   static const int mavlinkEncodedLength = 65;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
   ///
@@ -21247,6 +22293,27 @@ class HilSensor implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeUsec': timeUsec,
+        'xacc': xacc,
+        'yacc': yacc,
+        'zacc': zacc,
+        'xgyro': xgyro,
+        'ygyro': ygyro,
+        'zgyro': zgyro,
+        'xmag': xmag,
+        'ymag': ymag,
+        'zmag': zmag,
+        'absPressure': absPressure,
+        'diffPressure': diffPressure,
+        'pressureAlt': pressureAlt,
+        'temperature': temperature,
+        'fieldsUpdated': fieldsUpdated,
+        'id': id,
+      };
+
   factory HilSensor.parse(ByteData data_) {
     if (data_.lengthInBytes < HilSensor.mavlinkEncodedLength) {
       var len = HilSensor.mavlinkEncodedLength - data_.lengthInBytes;
@@ -21317,17 +22384,17 @@ class HilSensor implements MavlinkMessage {
 ///
 /// SIM_STATE
 class SimState implements MavlinkMessage {
-  static const int _mavlinkMessageId = 108;
+  static const int msgId = 108;
 
-  static const int _mavlinkCrcExtra = 32;
+  static const int crcExtra = 32;
 
   static const int mavlinkEncodedLength = 92;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// True attitude quaternion component 1, w (1 in null-rotation)
   ///
@@ -21600,6 +22667,34 @@ class SimState implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'q1': q1,
+        'q2': q2,
+        'q3': q3,
+        'q4': q4,
+        'roll': roll,
+        'pitch': pitch,
+        'yaw': yaw,
+        'xacc': xacc,
+        'yacc': yacc,
+        'zacc': zacc,
+        'xgyro': xgyro,
+        'ygyro': ygyro,
+        'zgyro': zgyro,
+        'lat': lat,
+        'lon': lon,
+        'alt': alt,
+        'stdDevHorz': stdDevHorz,
+        'stdDevVert': stdDevVert,
+        'vn': vn,
+        've': ve,
+        'vd': vd,
+        'latInt': latInt,
+        'lonInt': lonInt,
+      };
+
   factory SimState.parse(ByteData data_) {
     if (data_.lengthInBytes < SimState.mavlinkEncodedLength) {
       var len = SimState.mavlinkEncodedLength - data_.lengthInBytes;
@@ -21691,17 +22786,17 @@ class SimState implements MavlinkMessage {
 ///
 /// RADIO_STATUS
 class RadioStatus implements MavlinkMessage {
-  static const int _mavlinkMessageId = 109;
+  static const int msgId = 109;
 
-  static const int _mavlinkCrcExtra = 185;
+  static const int crcExtra = 185;
 
   static const int mavlinkEncodedLength = 9;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Count of radio packet receive errors (since boot).
   ///
@@ -21784,6 +22879,18 @@ class RadioStatus implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'rxerrors': rxerrors,
+        'fixed': fixed,
+        'rssi': rssi,
+        'remrssi': remrssi,
+        'txbuf': txbuf,
+        'noise': noise,
+        'remnoise': remnoise,
+      };
+
   factory RadioStatus.parse(ByteData data_) {
     if (data_.lengthInBytes < RadioStatus.mavlinkEncodedLength) {
       var len = RadioStatus.mavlinkEncodedLength - data_.lengthInBytes;
@@ -21827,17 +22934,17 @@ class RadioStatus implements MavlinkMessage {
 ///
 /// FILE_TRANSFER_PROTOCOL
 class FileTransferProtocol implements MavlinkMessage {
-  static const int _mavlinkMessageId = 110;
+  static const int msgId = 110;
 
-  static const int _mavlinkCrcExtra = 84;
+  static const int crcExtra = 84;
 
   static const int mavlinkEncodedLength = 254;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Network ID (0 for broadcast)
   ///
@@ -21888,6 +22995,15 @@ class FileTransferProtocol implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'targetNetwork': targetNetwork,
+        'targetSystem': targetSystem,
+        'targetComponent': targetComponent,
+        'payload': payload,
+      };
+
   factory FileTransferProtocol.parse(ByteData data_) {
     if (data_.lengthInBytes < FileTransferProtocol.mavlinkEncodedLength) {
       var len = FileTransferProtocol.mavlinkEncodedLength - data_.lengthInBytes;
@@ -21931,17 +23047,17 @@ class FileTransferProtocol implements MavlinkMessage {
 ///
 /// TIMESYNC
 class Timesync implements MavlinkMessage {
-  static const int _mavlinkMessageId = 111;
+  static const int msgId = 111;
 
-  static const int _mavlinkCrcExtra = 34;
+  static const int crcExtra = 34;
 
   static const int mavlinkEncodedLength = 18;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Time sync timestamp 1. Syncing: 0. Responding: Timestamp of responding component.
   ///
@@ -22000,6 +23116,15 @@ class Timesync implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'tc1': tc1,
+        'ts1': ts1,
+        'targetSystem': targetSystem,
+        'targetComponent': targetComponent,
+      };
+
   factory Timesync.parse(ByteData data_) {
     if (data_.lengthInBytes < Timesync.mavlinkEncodedLength) {
       var len = Timesync.mavlinkEncodedLength - data_.lengthInBytes;
@@ -22034,17 +23159,17 @@ class Timesync implements MavlinkMessage {
 ///
 /// CAMERA_TRIGGER
 class CameraTrigger implements MavlinkMessage {
-  static const int _mavlinkMessageId = 112;
+  static const int msgId = 112;
 
-  static const int _mavlinkCrcExtra = 174;
+  static const int crcExtra = 174;
 
   static const int mavlinkEncodedLength = 12;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp for image frame (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
   ///
@@ -22077,6 +23202,13 @@ class CameraTrigger implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeUsec': timeUsec,
+        'seq': seq,
+      };
+
   factory CameraTrigger.parse(ByteData data_) {
     if (data_.lengthInBytes < CameraTrigger.mavlinkEncodedLength) {
       var len = CameraTrigger.mavlinkEncodedLength - data_.lengthInBytes;
@@ -22104,17 +23236,17 @@ class CameraTrigger implements MavlinkMessage {
 ///
 /// HIL_GPS
 class HilGps implements MavlinkMessage {
-  static const int _mavlinkMessageId = 113;
+  static const int msgId = 113;
 
-  static const int _mavlinkCrcExtra = 124;
+  static const int crcExtra = 124;
 
   static const int mavlinkEncodedLength = 39;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
   ///
@@ -22299,6 +23431,26 @@ class HilGps implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeUsec': timeUsec,
+        'lat': lat,
+        'lon': lon,
+        'alt': alt,
+        'eph': eph,
+        'epv': epv,
+        'vel': vel,
+        'vn': vn,
+        've': ve,
+        'vd': vd,
+        'cog': cog,
+        'fixType': fixType,
+        'satellitesVisible': satellitesVisible,
+        'id': id,
+        'yaw': yaw,
+      };
+
   factory HilGps.parse(ByteData data_) {
     if (data_.lengthInBytes < HilGps.mavlinkEncodedLength) {
       var len = HilGps.mavlinkEncodedLength - data_.lengthInBytes;
@@ -22366,17 +23518,17 @@ class HilGps implements MavlinkMessage {
 ///
 /// HIL_OPTICAL_FLOW
 class HilOpticalFlow implements MavlinkMessage {
-  static const int _mavlinkMessageId = 114;
+  static const int msgId = 114;
 
-  static const int _mavlinkCrcExtra = 237;
+  static const int crcExtra = 237;
 
   static const int mavlinkEncodedLength = 44;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
   ///
@@ -22527,6 +23679,23 @@ class HilOpticalFlow implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeUsec': timeUsec,
+        'integrationTimeUs': integrationTimeUs,
+        'integratedX': integratedX,
+        'integratedY': integratedY,
+        'integratedXgyro': integratedXgyro,
+        'integratedYgyro': integratedYgyro,
+        'integratedZgyro': integratedZgyro,
+        'timeDeltaDistanceUs': timeDeltaDistanceUs,
+        'distance': distance,
+        'temperature': temperature,
+        'sensorId': sensorId,
+        'quality': quality,
+      };
+
   factory HilOpticalFlow.parse(ByteData data_) {
     if (data_.lengthInBytes < HilOpticalFlow.mavlinkEncodedLength) {
       var len = HilOpticalFlow.mavlinkEncodedLength - data_.lengthInBytes;
@@ -22585,17 +23754,17 @@ class HilOpticalFlow implements MavlinkMessage {
 ///
 /// HIL_STATE_QUATERNION
 class HilStateQuaternion implements MavlinkMessage {
-  static const int _mavlinkMessageId = 115;
+  static const int msgId = 115;
 
-  static const int _mavlinkCrcExtra = 4;
+  static const int crcExtra = 4;
 
   static const int mavlinkEncodedLength = 64;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
   ///
@@ -22796,6 +23965,27 @@ class HilStateQuaternion implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeUsec': timeUsec,
+        'attitudeQuaternion': attitudeQuaternion,
+        'rollspeed': rollspeed,
+        'pitchspeed': pitchspeed,
+        'yawspeed': yawspeed,
+        'lat': lat,
+        'lon': lon,
+        'alt': alt,
+        'vx': vx,
+        'vy': vy,
+        'vz': vz,
+        'indAirspeed': indAirspeed,
+        'trueAirspeed': trueAirspeed,
+        'xacc': xacc,
+        'yacc': yacc,
+        'zacc': zacc,
+      };
+
   factory HilStateQuaternion.parse(ByteData data_) {
     if (data_.lengthInBytes < HilStateQuaternion.mavlinkEncodedLength) {
       var len = HilStateQuaternion.mavlinkEncodedLength - data_.lengthInBytes;
@@ -22866,17 +24056,17 @@ class HilStateQuaternion implements MavlinkMessage {
 ///
 /// SCALED_IMU2
 class ScaledImu2 implements MavlinkMessage {
-  static const int _mavlinkMessageId = 116;
+  static const int msgId = 116;
 
-  static const int _mavlinkCrcExtra = 76;
+  static const int crcExtra = 76;
 
   static const int mavlinkEncodedLength = 24;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (time since system boot).
   ///
@@ -23021,6 +24211,22 @@ class ScaledImu2 implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeBootMs': timeBootMs,
+        'xacc': xacc,
+        'yacc': yacc,
+        'zacc': zacc,
+        'xgyro': xgyro,
+        'ygyro': ygyro,
+        'zgyro': zgyro,
+        'xmag': xmag,
+        'ymag': ymag,
+        'zmag': zmag,
+        'temperature': temperature,
+      };
+
   factory ScaledImu2.parse(ByteData data_) {
     if (data_.lengthInBytes < ScaledImu2.mavlinkEncodedLength) {
       var len = ScaledImu2.mavlinkEncodedLength - data_.lengthInBytes;
@@ -23076,17 +24282,17 @@ class ScaledImu2 implements MavlinkMessage {
 ///
 /// LOG_REQUEST_LIST
 class LogRequestList implements MavlinkMessage {
-  static const int _mavlinkMessageId = 117;
+  static const int msgId = 117;
 
-  static const int _mavlinkCrcExtra = 128;
+  static const int crcExtra = 128;
 
   static const int mavlinkEncodedLength = 6;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// First log id (0 for first available)
   ///
@@ -23137,6 +24343,15 @@ class LogRequestList implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'start': start,
+        'end': end,
+        'targetSystem': targetSystem,
+        'targetComponent': targetComponent,
+      };
+
   factory LogRequestList.parse(ByteData data_) {
     if (data_.lengthInBytes < LogRequestList.mavlinkEncodedLength) {
       var len = LogRequestList.mavlinkEncodedLength - data_.lengthInBytes;
@@ -23171,17 +24386,17 @@ class LogRequestList implements MavlinkMessage {
 ///
 /// LOG_ENTRY
 class LogEntry implements MavlinkMessage {
-  static const int _mavlinkMessageId = 118;
+  static const int msgId = 118;
 
-  static const int _mavlinkCrcExtra = 56;
+  static const int crcExtra = 56;
 
   static const int mavlinkEncodedLength = 14;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// UTC timestamp of log since 1970, or 0 if not available
   ///
@@ -23246,6 +24461,16 @@ class LogEntry implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeUtc': timeUtc,
+        'size': size,
+        'id': id,
+        'numLogs': numLogs,
+        'lastLogNum': lastLogNum,
+      };
+
   factory LogEntry.parse(ByteData data_) {
     if (data_.lengthInBytes < LogEntry.mavlinkEncodedLength) {
       var len = LogEntry.mavlinkEncodedLength - data_.lengthInBytes;
@@ -23283,17 +24508,17 @@ class LogEntry implements MavlinkMessage {
 ///
 /// LOG_REQUEST_DATA
 class LogRequestData implements MavlinkMessage {
-  static const int _mavlinkMessageId = 119;
+  static const int msgId = 119;
 
-  static const int _mavlinkCrcExtra = 116;
+  static const int crcExtra = 116;
 
   static const int mavlinkEncodedLength = 12;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Offset into the log
   ///
@@ -23356,6 +24581,16 @@ class LogRequestData implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'ofs': ofs,
+        'count': count,
+        'id': id,
+        'targetSystem': targetSystem,
+        'targetComponent': targetComponent,
+      };
+
   factory LogRequestData.parse(ByteData data_) {
     if (data_.lengthInBytes < LogRequestData.mavlinkEncodedLength) {
       var len = LogRequestData.mavlinkEncodedLength - data_.lengthInBytes;
@@ -23393,17 +24628,17 @@ class LogRequestData implements MavlinkMessage {
 ///
 /// LOG_DATA
 class LogData implements MavlinkMessage {
-  static const int _mavlinkMessageId = 120;
+  static const int msgId = 120;
 
-  static const int _mavlinkCrcExtra = 134;
+  static const int crcExtra = 134;
 
   static const int mavlinkEncodedLength = 97;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Offset into the log
   ///
@@ -23456,6 +24691,15 @@ class LogData implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'ofs': ofs,
+        'id': id,
+        'count': count,
+        'data': data,
+      };
+
   factory LogData.parse(ByteData data_) {
     if (data_.lengthInBytes < LogData.mavlinkEncodedLength) {
       var len = LogData.mavlinkEncodedLength - data_.lengthInBytes;
@@ -23486,17 +24730,17 @@ class LogData implements MavlinkMessage {
 ///
 /// LOG_ERASE
 class LogErase implements MavlinkMessage {
-  static const int _mavlinkMessageId = 121;
+  static const int msgId = 121;
 
-  static const int _mavlinkCrcExtra = 237;
+  static const int crcExtra = 237;
 
   static const int mavlinkEncodedLength = 2;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// System ID
   ///
@@ -23527,6 +24771,13 @@ class LogErase implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'targetSystem': targetSystem,
+        'targetComponent': targetComponent,
+      };
+
   factory LogErase.parse(ByteData data_) {
     if (data_.lengthInBytes < LogErase.mavlinkEncodedLength) {
       var len = LogErase.mavlinkEncodedLength - data_.lengthInBytes;
@@ -23554,17 +24805,17 @@ class LogErase implements MavlinkMessage {
 ///
 /// LOG_REQUEST_END
 class LogRequestEnd implements MavlinkMessage {
-  static const int _mavlinkMessageId = 122;
+  static const int msgId = 122;
 
-  static const int _mavlinkCrcExtra = 203;
+  static const int crcExtra = 203;
 
   static const int mavlinkEncodedLength = 2;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// System ID
   ///
@@ -23595,6 +24846,13 @@ class LogRequestEnd implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'targetSystem': targetSystem,
+        'targetComponent': targetComponent,
+      };
+
   factory LogRequestEnd.parse(ByteData data_) {
     if (data_.lengthInBytes < LogRequestEnd.mavlinkEncodedLength) {
       var len = LogRequestEnd.mavlinkEncodedLength - data_.lengthInBytes;
@@ -23622,17 +24880,17 @@ class LogRequestEnd implements MavlinkMessage {
 ///
 /// GPS_INJECT_DATA
 class GpsInjectData implements MavlinkMessage {
-  static const int _mavlinkMessageId = 123;
+  static const int msgId = 123;
 
-  static const int _mavlinkCrcExtra = 250;
+  static const int crcExtra = 250;
 
   static const int mavlinkEncodedLength = 113;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// System ID
   ///
@@ -23685,6 +24943,15 @@ class GpsInjectData implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'targetSystem': targetSystem,
+        'targetComponent': targetComponent,
+        'len': len,
+        'data': data,
+      };
+
   factory GpsInjectData.parse(ByteData data_) {
     if (data_.lengthInBytes < GpsInjectData.mavlinkEncodedLength) {
       var len = GpsInjectData.mavlinkEncodedLength - data_.lengthInBytes;
@@ -23719,17 +24986,17 @@ class GpsInjectData implements MavlinkMessage {
 ///
 /// GPS2_RAW
 class Gps2Raw implements MavlinkMessage {
-  static const int _mavlinkMessageId = 124;
+  static const int msgId = 124;
 
-  static const int _mavlinkCrcExtra = 87;
+  static const int crcExtra = 87;
 
   static const int mavlinkEncodedLength = 57;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
   ///
@@ -23960,6 +25227,29 @@ class Gps2Raw implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeUsec': timeUsec,
+        'lat': lat,
+        'lon': lon,
+        'alt': alt,
+        'dgpsAge': dgpsAge,
+        'eph': eph,
+        'epv': epv,
+        'vel': vel,
+        'cog': cog,
+        'fixType': fixType,
+        'satellitesVisible': satellitesVisible,
+        'dgpsNumch': dgpsNumch,
+        'yaw': yaw,
+        'altEllipsoid': altEllipsoid,
+        'hAcc': hAcc,
+        'vAcc': vAcc,
+        'velAcc': velAcc,
+        'hdgAcc': hdgAcc,
+      };
+
   factory Gps2Raw.parse(ByteData data_) {
     if (data_.lengthInBytes < Gps2Raw.mavlinkEncodedLength) {
       var len = Gps2Raw.mavlinkEncodedLength - data_.lengthInBytes;
@@ -24036,17 +25326,17 @@ class Gps2Raw implements MavlinkMessage {
 ///
 /// POWER_STATUS
 class PowerStatus implements MavlinkMessage {
-  static const int _mavlinkMessageId = 125;
+  static const int msgId = 125;
 
-  static const int _mavlinkCrcExtra = 203;
+  static const int crcExtra = 203;
 
   static const int mavlinkEncodedLength = 6;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// 5V rail voltage.
   ///
@@ -24093,6 +25383,14 @@ class PowerStatus implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'vcc': vcc,
+        'vservo': vservo,
+        'flags': flags,
+      };
+
   factory PowerStatus.parse(ByteData data_) {
     if (data_.lengthInBytes < PowerStatus.mavlinkEncodedLength) {
       var len = PowerStatus.mavlinkEncodedLength - data_.lengthInBytes;
@@ -24121,17 +25419,17 @@ class PowerStatus implements MavlinkMessage {
 ///
 /// SERIAL_CONTROL
 class SerialControl implements MavlinkMessage {
-  static const int _mavlinkMessageId = 126;
+  static const int msgId = 126;
 
-  static const int _mavlinkCrcExtra = 220;
+  static const int crcExtra = 220;
 
   static const int mavlinkEncodedLength = 81;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Baudrate of transfer. Zero means no change.
   ///
@@ -24236,6 +25534,19 @@ class SerialControl implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'baudrate': baudrate,
+        'timeout': timeout,
+        'device': device,
+        'flags': flags,
+        'count': count,
+        'data': data,
+        'targetSystem': targetSystem,
+        'targetComponent': targetComponent,
+      };
+
   factory SerialControl.parse(ByteData data_) {
     if (data_.lengthInBytes < SerialControl.mavlinkEncodedLength) {
       var len = SerialControl.mavlinkEncodedLength - data_.lengthInBytes;
@@ -24282,17 +25593,17 @@ class SerialControl implements MavlinkMessage {
 ///
 /// GPS_RTK
 class GpsRtk implements MavlinkMessage {
-  static const int _mavlinkMessageId = 127;
+  static const int msgId = 127;
 
-  static const int _mavlinkCrcExtra = 25;
+  static const int crcExtra = 25;
 
   static const int mavlinkEncodedLength = 35;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Time since boot of last baseline message received.
   ///
@@ -24447,6 +25758,24 @@ class GpsRtk implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeLastBaselineMs': timeLastBaselineMs,
+        'tow': tow,
+        'baselineAMm': baselineAMm,
+        'baselineBMm': baselineBMm,
+        'baselineCMm': baselineCMm,
+        'accuracy': accuracy,
+        'iarNumHypotheses': iarNumHypotheses,
+        'wn': wn,
+        'rtkReceiverId': rtkReceiverId,
+        'rtkHealth': rtkHealth,
+        'rtkRate': rtkRate,
+        'nsats': nsats,
+        'baselineCoordsType': baselineCoordsType,
+      };
+
   factory GpsRtk.parse(ByteData data_) {
     if (data_.lengthInBytes < GpsRtk.mavlinkEncodedLength) {
       var len = GpsRtk.mavlinkEncodedLength - data_.lengthInBytes;
@@ -24508,17 +25837,17 @@ class GpsRtk implements MavlinkMessage {
 ///
 /// GPS2_RTK
 class Gps2Rtk implements MavlinkMessage {
-  static const int _mavlinkMessageId = 128;
+  static const int msgId = 128;
 
-  static const int _mavlinkCrcExtra = 226;
+  static const int crcExtra = 226;
 
   static const int mavlinkEncodedLength = 35;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Time since boot of last baseline message received.
   ///
@@ -24673,6 +26002,24 @@ class Gps2Rtk implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeLastBaselineMs': timeLastBaselineMs,
+        'tow': tow,
+        'baselineAMm': baselineAMm,
+        'baselineBMm': baselineBMm,
+        'baselineCMm': baselineCMm,
+        'accuracy': accuracy,
+        'iarNumHypotheses': iarNumHypotheses,
+        'wn': wn,
+        'rtkReceiverId': rtkReceiverId,
+        'rtkHealth': rtkHealth,
+        'rtkRate': rtkRate,
+        'nsats': nsats,
+        'baselineCoordsType': baselineCoordsType,
+      };
+
   factory Gps2Rtk.parse(ByteData data_) {
     if (data_.lengthInBytes < Gps2Rtk.mavlinkEncodedLength) {
       var len = Gps2Rtk.mavlinkEncodedLength - data_.lengthInBytes;
@@ -24734,17 +26081,17 @@ class Gps2Rtk implements MavlinkMessage {
 ///
 /// SCALED_IMU3
 class ScaledImu3 implements MavlinkMessage {
-  static const int _mavlinkMessageId = 129;
+  static const int msgId = 129;
 
-  static const int _mavlinkCrcExtra = 46;
+  static const int crcExtra = 46;
 
   static const int mavlinkEncodedLength = 24;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (time since system boot).
   ///
@@ -24889,6 +26236,22 @@ class ScaledImu3 implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeBootMs': timeBootMs,
+        'xacc': xacc,
+        'yacc': yacc,
+        'zacc': zacc,
+        'xgyro': xgyro,
+        'ygyro': ygyro,
+        'zgyro': zgyro,
+        'xmag': xmag,
+        'ymag': ymag,
+        'zmag': zmag,
+        'temperature': temperature,
+      };
+
   factory ScaledImu3.parse(ByteData data_) {
     if (data_.lengthInBytes < ScaledImu3.mavlinkEncodedLength) {
       var len = ScaledImu3.mavlinkEncodedLength - data_.lengthInBytes;
@@ -24944,17 +26307,17 @@ class ScaledImu3 implements MavlinkMessage {
 ///
 /// DATA_TRANSMISSION_HANDSHAKE
 class DataTransmissionHandshake implements MavlinkMessage {
-  static const int _mavlinkMessageId = 130;
+  static const int msgId = 130;
 
-  static const int _mavlinkCrcExtra = 29;
+  static const int crcExtra = 29;
 
   static const int mavlinkEncodedLength = 13;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// total data size (set on ACK only).
   ///
@@ -25043,6 +26406,18 @@ class DataTransmissionHandshake implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'size': size,
+        'width': width,
+        'height': height,
+        'packets': packets,
+        'type': type,
+        'payload': payload,
+        'jpgQuality': jpgQuality,
+      };
+
   factory DataTransmissionHandshake.parse(ByteData data_) {
     if (data_.lengthInBytes < DataTransmissionHandshake.mavlinkEncodedLength) {
       var len =
@@ -25087,17 +26462,17 @@ class DataTransmissionHandshake implements MavlinkMessage {
 ///
 /// ENCAPSULATED_DATA
 class EncapsulatedData implements MavlinkMessage {
-  static const int _mavlinkMessageId = 131;
+  static const int msgId = 131;
 
-  static const int _mavlinkCrcExtra = 223;
+  static const int crcExtra = 223;
 
   static const int mavlinkEncodedLength = 255;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// sequence number (starting with 0 on every transmission)
   ///
@@ -25128,6 +26503,13 @@ class EncapsulatedData implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'seqnr': seqnr,
+        'data': data,
+      };
+
   factory EncapsulatedData.parse(ByteData data_) {
     if (data_.lengthInBytes < EncapsulatedData.mavlinkEncodedLength) {
       var len = EncapsulatedData.mavlinkEncodedLength - data_.lengthInBytes;
@@ -25154,17 +26536,17 @@ class EncapsulatedData implements MavlinkMessage {
 ///
 /// DISTANCE_SENSOR
 class DistanceSensor implements MavlinkMessage {
-  static const int _mavlinkMessageId = 132;
+  static const int msgId = 132;
 
-  static const int _mavlinkCrcExtra = 85;
+  static const int crcExtra = 85;
 
   static const int mavlinkEncodedLength = 39;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (time since system boot).
   ///
@@ -25323,6 +26705,23 @@ class DistanceSensor implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeBootMs': timeBootMs,
+        'minDistance': minDistance,
+        'maxDistance': maxDistance,
+        'currentDistance': currentDistance,
+        'type': type,
+        'id': id,
+        'orientation': orientation,
+        'covariance': covariance,
+        'horizontalFov': horizontalFov,
+        'verticalFov': verticalFov,
+        'quaternion': quaternion,
+        'signalQuality': signalQuality,
+      };
+
   factory DistanceSensor.parse(ByteData data_) {
     if (data_.lengthInBytes < DistanceSensor.mavlinkEncodedLength) {
       var len = DistanceSensor.mavlinkEncodedLength - data_.lengthInBytes;
@@ -25381,17 +26780,17 @@ class DistanceSensor implements MavlinkMessage {
 ///
 /// TERRAIN_REQUEST
 class TerrainRequest implements MavlinkMessage {
-  static const int _mavlinkMessageId = 133;
+  static const int msgId = 133;
 
-  static const int _mavlinkCrcExtra = 6;
+  static const int crcExtra = 6;
 
   static const int mavlinkEncodedLength = 18;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Bitmask of requested 4x4 grids (row major 8x7 array of grids, 56 bits)
   ///
@@ -25448,6 +26847,15 @@ class TerrainRequest implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'mask': mask,
+        'lat': lat,
+        'lon': lon,
+        'gridSpacing': gridSpacing,
+      };
+
   factory TerrainRequest.parse(ByteData data_) {
     if (data_.lengthInBytes < TerrainRequest.mavlinkEncodedLength) {
       var len = TerrainRequest.mavlinkEncodedLength - data_.lengthInBytes;
@@ -25479,17 +26887,17 @@ class TerrainRequest implements MavlinkMessage {
 ///
 /// TERRAIN_DATA
 class TerrainData implements MavlinkMessage {
-  static const int _mavlinkMessageId = 134;
+  static const int msgId = 134;
 
-  static const int _mavlinkCrcExtra = 229;
+  static const int crcExtra = 229;
 
   static const int mavlinkEncodedLength = 43;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Latitude of SW corner of first grid
   ///
@@ -25558,6 +26966,16 @@ class TerrainData implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'lat': lat,
+        'lon': lon,
+        'gridSpacing': gridSpacing,
+        'data': data,
+        'gridbit': gridbit,
+      };
+
   factory TerrainData.parse(ByteData data_) {
     if (data_.lengthInBytes < TerrainData.mavlinkEncodedLength) {
       var len = TerrainData.mavlinkEncodedLength - data_.lengthInBytes;
@@ -25595,17 +27013,17 @@ class TerrainData implements MavlinkMessage {
 ///
 /// TERRAIN_CHECK
 class TerrainCheck implements MavlinkMessage {
-  static const int _mavlinkMessageId = 135;
+  static const int msgId = 135;
 
-  static const int _mavlinkCrcExtra = 203;
+  static const int crcExtra = 203;
 
   static const int mavlinkEncodedLength = 8;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Latitude
   ///
@@ -25640,6 +27058,13 @@ class TerrainCheck implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'lat': lat,
+        'lon': lon,
+      };
+
   factory TerrainCheck.parse(ByteData data_) {
     if (data_.lengthInBytes < TerrainCheck.mavlinkEncodedLength) {
       var len = TerrainCheck.mavlinkEncodedLength - data_.lengthInBytes;
@@ -25666,17 +27091,17 @@ class TerrainCheck implements MavlinkMessage {
 ///
 /// TERRAIN_REPORT
 class TerrainReport implements MavlinkMessage {
-  static const int _mavlinkMessageId = 136;
+  static const int msgId = 136;
 
-  static const int _mavlinkCrcExtra = 1;
+  static const int crcExtra = 1;
 
   static const int mavlinkEncodedLength = 22;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Latitude
   ///
@@ -25765,6 +27190,18 @@ class TerrainReport implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'lat': lat,
+        'lon': lon,
+        'terrainHeight': terrainHeight,
+        'currentHeight': currentHeight,
+        'spacing': spacing,
+        'pending': pending,
+        'loaded': loaded,
+      };
+
   factory TerrainReport.parse(ByteData data_) {
     if (data_.lengthInBytes < TerrainReport.mavlinkEncodedLength) {
       var len = TerrainReport.mavlinkEncodedLength - data_.lengthInBytes;
@@ -25808,17 +27245,17 @@ class TerrainReport implements MavlinkMessage {
 ///
 /// SCALED_PRESSURE2
 class ScaledPressure2 implements MavlinkMessage {
-  static const int _mavlinkMessageId = 137;
+  static const int msgId = 137;
 
-  static const int _mavlinkCrcExtra = 195;
+  static const int crcExtra = 195;
 
   static const int mavlinkEncodedLength = 16;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (time since system boot).
   ///
@@ -25891,6 +27328,16 @@ class ScaledPressure2 implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeBootMs': timeBootMs,
+        'pressAbs': pressAbs,
+        'pressDiff': pressDiff,
+        'temperature': temperature,
+        'temperaturePressDiff': temperaturePressDiff,
+      };
+
   factory ScaledPressure2.parse(ByteData data_) {
     if (data_.lengthInBytes < ScaledPressure2.mavlinkEncodedLength) {
       var len = ScaledPressure2.mavlinkEncodedLength - data_.lengthInBytes;
@@ -25928,17 +27375,17 @@ class ScaledPressure2 implements MavlinkMessage {
 ///
 /// ATT_POS_MOCAP
 class AttPosMocap implements MavlinkMessage {
-  static const int _mavlinkMessageId = 138;
+  static const int msgId = 138;
 
-  static const int _mavlinkCrcExtra = 109;
+  static const int crcExtra = 109;
 
   static const int mavlinkEncodedLength = 120;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
   ///
@@ -26019,6 +27466,17 @@ class AttPosMocap implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeUsec': timeUsec,
+        'q': q,
+        'x': x,
+        'y': y,
+        'z': z,
+        'covariance': covariance,
+      };
+
   factory AttPosMocap.parse(ByteData data_) {
     if (data_.lengthInBytes < AttPosMocap.mavlinkEncodedLength) {
       var len = AttPosMocap.mavlinkEncodedLength - data_.lengthInBytes;
@@ -26054,17 +27512,17 @@ class AttPosMocap implements MavlinkMessage {
 ///
 /// SET_ACTUATOR_CONTROL_TARGET
 class SetActuatorControlTarget implements MavlinkMessage {
-  static const int _mavlinkMessageId = 139;
+  static const int msgId = 139;
 
-  static const int _mavlinkCrcExtra = 168;
+  static const int crcExtra = 168;
 
   static const int mavlinkEncodedLength = 43;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
   ///
@@ -26127,6 +27585,16 @@ class SetActuatorControlTarget implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeUsec': timeUsec,
+        'controls': controls,
+        'groupMlx': groupMlx,
+        'targetSystem': targetSystem,
+        'targetComponent': targetComponent,
+      };
+
   factory SetActuatorControlTarget.parse(ByteData data_) {
     if (data_.lengthInBytes < SetActuatorControlTarget.mavlinkEncodedLength) {
       var len =
@@ -26165,17 +27633,17 @@ class SetActuatorControlTarget implements MavlinkMessage {
 ///
 /// ACTUATOR_CONTROL_TARGET
 class ActuatorControlTarget implements MavlinkMessage {
-  static const int _mavlinkMessageId = 140;
+  static const int msgId = 140;
 
-  static const int _mavlinkCrcExtra = 181;
+  static const int crcExtra = 181;
 
   static const int mavlinkEncodedLength = 41;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
   ///
@@ -26218,6 +27686,14 @@ class ActuatorControlTarget implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeUsec': timeUsec,
+        'controls': controls,
+        'groupMlx': groupMlx,
+      };
+
   factory ActuatorControlTarget.parse(ByteData data_) {
     if (data_.lengthInBytes < ActuatorControlTarget.mavlinkEncodedLength) {
       var len =
@@ -26248,17 +27724,17 @@ class ActuatorControlTarget implements MavlinkMessage {
 ///
 /// ALTITUDE
 class Altitude implements MavlinkMessage {
-  static const int _mavlinkMessageId = 141;
+  static const int msgId = 141;
 
-  static const int _mavlinkCrcExtra = 47;
+  static const int crcExtra = 47;
 
   static const int mavlinkEncodedLength = 32;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
   ///
@@ -26353,6 +27829,18 @@ class Altitude implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeUsec': timeUsec,
+        'altitudeMonotonic': altitudeMonotonic,
+        'altitudeAmsl': altitudeAmsl,
+        'altitudeLocal': altitudeLocal,
+        'altitudeRelative': altitudeRelative,
+        'altitudeTerrain': altitudeTerrain,
+        'bottomClearance': bottomClearance,
+      };
+
   factory Altitude.parse(ByteData data_) {
     if (data_.lengthInBytes < Altitude.mavlinkEncodedLength) {
       var len = Altitude.mavlinkEncodedLength - data_.lengthInBytes;
@@ -26396,17 +27884,17 @@ class Altitude implements MavlinkMessage {
 ///
 /// RESOURCE_REQUEST
 class ResourceRequest implements MavlinkMessage {
-  static const int _mavlinkMessageId = 142;
+  static const int msgId = 142;
 
-  static const int _mavlinkCrcExtra = 72;
+  static const int crcExtra = 72;
 
   static const int mavlinkEncodedLength = 243;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Request ID. This ID should be re-used when sending back URI contents
   ///
@@ -26467,6 +27955,16 @@ class ResourceRequest implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'requestId': requestId,
+        'uriType': uriType,
+        'uri': uri,
+        'transferType': transferType,
+        'storage': storage,
+      };
+
   factory ResourceRequest.parse(ByteData data_) {
     if (data_.lengthInBytes < ResourceRequest.mavlinkEncodedLength) {
       var len = ResourceRequest.mavlinkEncodedLength - data_.lengthInBytes;
@@ -26504,17 +28002,17 @@ class ResourceRequest implements MavlinkMessage {
 ///
 /// SCALED_PRESSURE3
 class ScaledPressure3 implements MavlinkMessage {
-  static const int _mavlinkMessageId = 143;
+  static const int msgId = 143;
 
-  static const int _mavlinkCrcExtra = 131;
+  static const int crcExtra = 131;
 
   static const int mavlinkEncodedLength = 16;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (time since system boot).
   ///
@@ -26587,6 +28085,16 @@ class ScaledPressure3 implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeBootMs': timeBootMs,
+        'pressAbs': pressAbs,
+        'pressDiff': pressDiff,
+        'temperature': temperature,
+        'temperaturePressDiff': temperaturePressDiff,
+      };
+
   factory ScaledPressure3.parse(ByteData data_) {
     if (data_.lengthInBytes < ScaledPressure3.mavlinkEncodedLength) {
       var len = ScaledPressure3.mavlinkEncodedLength - data_.lengthInBytes;
@@ -26624,17 +28132,17 @@ class ScaledPressure3 implements MavlinkMessage {
 ///
 /// FOLLOW_TARGET
 class FollowTarget implements MavlinkMessage {
-  static const int _mavlinkMessageId = 144;
+  static const int msgId = 144;
 
-  static const int _mavlinkCrcExtra = 127;
+  static const int crcExtra = 127;
 
   static const int mavlinkEncodedLength = 93;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (time since system boot).
   ///
@@ -26767,6 +28275,22 @@ class FollowTarget implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timestamp': timestamp,
+        'customState': customState,
+        'lat': lat,
+        'lon': lon,
+        'alt': alt,
+        'vel': vel,
+        'acc': acc,
+        'attitudeQ': attitudeQ,
+        'rates': rates,
+        'positionCov': positionCov,
+        'estCapabilities': estCapabilities,
+      };
+
   factory FollowTarget.parse(ByteData data_) {
     if (data_.lengthInBytes < FollowTarget.mavlinkEncodedLength) {
       var len = FollowTarget.mavlinkEncodedLength - data_.lengthInBytes;
@@ -26822,17 +28346,17 @@ class FollowTarget implements MavlinkMessage {
 ///
 /// CONTROL_SYSTEM_STATE
 class ControlSystemState implements MavlinkMessage {
-  static const int _mavlinkMessageId = 146;
+  static const int msgId = 146;
 
-  static const int _mavlinkCrcExtra = 103;
+  static const int crcExtra = 103;
 
   static const int mavlinkEncodedLength = 100;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
   ///
@@ -27041,6 +28565,28 @@ class ControlSystemState implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeUsec': timeUsec,
+        'xAcc': xAcc,
+        'yAcc': yAcc,
+        'zAcc': zAcc,
+        'xVel': xVel,
+        'yVel': yVel,
+        'zVel': zVel,
+        'xPos': xPos,
+        'yPos': yPos,
+        'zPos': zPos,
+        'airspeed': airspeed,
+        'velVariance': velVariance,
+        'posVariance': posVariance,
+        'q': q,
+        'rollRate': rollRate,
+        'pitchRate': pitchRate,
+        'yawRate': yawRate,
+      };
+
   factory ControlSystemState.parse(ByteData data_) {
     if (data_.lengthInBytes < ControlSystemState.mavlinkEncodedLength) {
       var len = ControlSystemState.mavlinkEncodedLength - data_.lengthInBytes;
@@ -27114,17 +28660,17 @@ class ControlSystemState implements MavlinkMessage {
 ///
 /// BATTERY_STATUS
 class BatteryStatus implements MavlinkMessage {
-  static const int _mavlinkMessageId = 147;
+  static const int msgId = 147;
 
-  static const int _mavlinkCrcExtra = 154;
+  static const int crcExtra = 154;
 
   static const int mavlinkEncodedLength = 54;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Consumed charge, -1: autopilot does not provide consumption estimate
   ///
@@ -27311,6 +28857,25 @@ class BatteryStatus implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'currentConsumed': currentConsumed,
+        'energyConsumed': energyConsumed,
+        'temperature': temperature,
+        'voltages': voltages,
+        'currentBattery': currentBattery,
+        'id': id,
+        'batteryFunction': batteryFunction,
+        'type': type,
+        'batteryRemaining': batteryRemaining,
+        'timeRemaining': timeRemaining,
+        'chargeState': chargeState,
+        'voltagesExt': voltagesExt,
+        'mode': mode,
+        'faultBitmask': faultBitmask,
+      };
+
   factory BatteryStatus.parse(ByteData data_) {
     if (data_.lengthInBytes < BatteryStatus.mavlinkEncodedLength) {
       var len = BatteryStatus.mavlinkEncodedLength - data_.lengthInBytes;
@@ -27375,17 +28940,17 @@ class BatteryStatus implements MavlinkMessage {
 ///
 /// AUTOPILOT_VERSION
 class AutopilotVersion implements MavlinkMessage {
-  static const int _mavlinkMessageId = 148;
+  static const int msgId = 148;
 
-  static const int _mavlinkCrcExtra = 178;
+  static const int crcExtra = 178;
 
   static const int mavlinkEncodedLength = 78;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Bitmap of capabilities
   ///
@@ -27521,6 +29086,23 @@ class AutopilotVersion implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'capabilities': capabilities,
+        'uid': uid,
+        'flightSwVersion': flightSwVersion,
+        'middlewareSwVersion': middlewareSwVersion,
+        'osSwVersion': osSwVersion,
+        'boardVersion': boardVersion,
+        'vendorId': vendorId,
+        'productId': productId,
+        'flightCustomVersion': flightCustomVersion,
+        'middlewareCustomVersion': middlewareCustomVersion,
+        'osCustomVersion': osCustomVersion,
+        'uid2': uid2,
+      };
+
   factory AutopilotVersion.parse(ByteData data_) {
     if (data_.lengthInBytes < AutopilotVersion.mavlinkEncodedLength) {
       var len = AutopilotVersion.mavlinkEncodedLength - data_.lengthInBytes;
@@ -27579,17 +29161,17 @@ class AutopilotVersion implements MavlinkMessage {
 ///
 /// LANDING_TARGET
 class LandingTarget implements MavlinkMessage {
-  static const int _mavlinkMessageId = 149;
+  static const int msgId = 149;
 
-  static const int _mavlinkCrcExtra = 200;
+  static const int crcExtra = 200;
 
   static const int mavlinkEncodedLength = 60;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
   ///
@@ -27774,6 +29356,25 @@ class LandingTarget implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeUsec': timeUsec,
+        'angleX': angleX,
+        'angleY': angleY,
+        'distance': distance,
+        'sizeX': sizeX,
+        'sizeY': sizeY,
+        'targetNum': targetNum,
+        'frame': frame,
+        'x': x,
+        'y': y,
+        'z': z,
+        'q': q,
+        'type': type,
+        'positionValid': positionValid,
+      };
+
   factory LandingTarget.parse(ByteData data_) {
     if (data_.lengthInBytes < LandingTarget.mavlinkEncodedLength) {
       var len = LandingTarget.mavlinkEncodedLength - data_.lengthInBytes;
@@ -27838,17 +29439,17 @@ class LandingTarget implements MavlinkMessage {
 ///
 /// FENCE_STATUS
 class FenceStatus implements MavlinkMessage {
-  static const int _mavlinkMessageId = 162;
+  static const int msgId = 162;
 
-  static const int _mavlinkCrcExtra = 189;
+  static const int crcExtra = 189;
 
   static const int mavlinkEncodedLength = 9;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Time (since boot) of last breach.
   ///
@@ -27917,6 +29518,16 @@ class FenceStatus implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'breachTime': breachTime,
+        'breachCount': breachCount,
+        'breachStatus': breachStatus,
+        'breachType': breachType,
+        'breachMitigation': breachMitigation,
+      };
+
   factory FenceStatus.parse(ByteData data_) {
     if (data_.lengthInBytes < FenceStatus.mavlinkEncodedLength) {
       var len = FenceStatus.mavlinkEncodedLength - data_.lengthInBytes;
@@ -27954,17 +29565,17 @@ class FenceStatus implements MavlinkMessage {
 ///
 /// MAG_CAL_REPORT
 class MagCalReport implements MavlinkMessage {
-  static const int _mavlinkMessageId = 192;
+  static const int msgId = 192;
 
-  static const int _mavlinkCrcExtra = 36;
+  static const int crcExtra = 36;
 
   static const int mavlinkEncodedLength = 54;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// RMS milligauss residuals.
   ///
@@ -28172,6 +29783,29 @@ class MagCalReport implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'fitness': fitness,
+        'ofsX': ofsX,
+        'ofsY': ofsY,
+        'ofsZ': ofsZ,
+        'diagX': diagX,
+        'diagY': diagY,
+        'diagZ': diagZ,
+        'offdiagX': offdiagX,
+        'offdiagY': offdiagY,
+        'offdiagZ': offdiagZ,
+        'compassId': compassId,
+        'calMask': calMask,
+        'calStatus': calStatus,
+        'autosaved': autosaved,
+        'orientationConfidence': orientationConfidence,
+        'oldOrientation': oldOrientation,
+        'newOrientation': newOrientation,
+        'scaleFactor': scaleFactor,
+      };
+
   factory MagCalReport.parse(ByteData data_) {
     if (data_.lengthInBytes < MagCalReport.mavlinkEncodedLength) {
       var len = MagCalReport.mavlinkEncodedLength - data_.lengthInBytes;
@@ -28248,17 +29882,17 @@ class MagCalReport implements MavlinkMessage {
 ///
 /// EFI_STATUS
 class EfiStatus implements MavlinkMessage {
-  static const int _mavlinkMessageId = 225;
+  static const int msgId = 225;
 
-  static const int _mavlinkCrcExtra = 208;
+  static const int crcExtra = 208;
 
   static const int mavlinkEncodedLength = 73;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// ECU index
   ///
@@ -28497,6 +30131,30 @@ class EfiStatus implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'ecuIndex': ecuIndex,
+        'rpm': rpm,
+        'fuelConsumed': fuelConsumed,
+        'fuelFlow': fuelFlow,
+        'engineLoad': engineLoad,
+        'throttlePosition': throttlePosition,
+        'sparkDwellTime': sparkDwellTime,
+        'barometricPressure': barometricPressure,
+        'intakeManifoldPressure': intakeManifoldPressure,
+        'intakeManifoldTemperature': intakeManifoldTemperature,
+        'cylinderHeadTemperature': cylinderHeadTemperature,
+        'ignitionTiming': ignitionTiming,
+        'injectionTime': injectionTime,
+        'exhaustGasTemperature': exhaustGasTemperature,
+        'throttleOut': throttleOut,
+        'ptCompensation': ptCompensation,
+        'health': health,
+        'ignitionVoltage': ignitionVoltage,
+        'fuelPressure': fuelPressure,
+      };
+
   factory EfiStatus.parse(ByteData data_) {
     if (data_.lengthInBytes < EfiStatus.mavlinkEncodedLength) {
       var len = EfiStatus.mavlinkEncodedLength - data_.lengthInBytes;
@@ -28576,17 +30234,17 @@ class EfiStatus implements MavlinkMessage {
 ///
 /// ESTIMATOR_STATUS
 class EstimatorStatus implements MavlinkMessage {
-  static const int _mavlinkMessageId = 230;
+  static const int msgId = 230;
 
-  static const int _mavlinkCrcExtra = 163;
+  static const int crcExtra = 163;
 
   static const int mavlinkEncodedLength = 42;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
   ///
@@ -28705,6 +30363,21 @@ class EstimatorStatus implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeUsec': timeUsec,
+        'velRatio': velRatio,
+        'posHorizRatio': posHorizRatio,
+        'posVertRatio': posVertRatio,
+        'magRatio': magRatio,
+        'haglRatio': haglRatio,
+        'tasRatio': tasRatio,
+        'posHorizAccuracy': posHorizAccuracy,
+        'posVertAccuracy': posVertAccuracy,
+        'flags': flags,
+      };
+
   factory EstimatorStatus.parse(ByteData data_) {
     if (data_.lengthInBytes < EstimatorStatus.mavlinkEncodedLength) {
       var len = EstimatorStatus.mavlinkEncodedLength - data_.lengthInBytes;
@@ -28757,17 +30430,17 @@ class EstimatorStatus implements MavlinkMessage {
 ///
 /// WIND_COV
 class WindCov implements MavlinkMessage {
-  static const int _mavlinkMessageId = 231;
+  static const int msgId = 231;
 
-  static const int _mavlinkCrcExtra = 105;
+  static const int crcExtra = 105;
 
   static const int mavlinkEncodedLength = 40;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
   ///
@@ -28886,6 +30559,20 @@ class WindCov implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeUsec': timeUsec,
+        'windX': windX,
+        'windY': windY,
+        'windZ': windZ,
+        'varHoriz': varHoriz,
+        'varVert': varVert,
+        'windAlt': windAlt,
+        'horizAccuracy': horizAccuracy,
+        'vertAccuracy': vertAccuracy,
+      };
+
   factory WindCov.parse(ByteData data_) {
     if (data_.lengthInBytes < WindCov.mavlinkEncodedLength) {
       var len = WindCov.mavlinkEncodedLength - data_.lengthInBytes;
@@ -28935,17 +30622,17 @@ class WindCov implements MavlinkMessage {
 ///
 /// GPS_INPUT
 class GpsInput implements MavlinkMessage {
-  static const int _mavlinkMessageId = 232;
+  static const int msgId = 232;
 
-  static const int _mavlinkCrcExtra = 151;
+  static const int crcExtra = 151;
 
   static const int mavlinkEncodedLength = 65;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
   ///
@@ -29174,6 +30861,30 @@ class GpsInput implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeUsec': timeUsec,
+        'timeWeekMs': timeWeekMs,
+        'lat': lat,
+        'lon': lon,
+        'alt': alt,
+        'hdop': hdop,
+        'vdop': vdop,
+        'vn': vn,
+        've': ve,
+        'vd': vd,
+        'speedAccuracy': speedAccuracy,
+        'horizAccuracy': horizAccuracy,
+        'vertAccuracy': vertAccuracy,
+        'ignoreFlags': ignoreFlags,
+        'timeWeek': timeWeek,
+        'gpsId': gpsId,
+        'fixType': fixType,
+        'satellitesVisible': satellitesVisible,
+        'yaw': yaw,
+      };
+
   factory GpsInput.parse(ByteData data_) {
     if (data_.lengthInBytes < GpsInput.mavlinkEncodedLength) {
       var len = GpsInput.mavlinkEncodedLength - data_.lengthInBytes;
@@ -29253,17 +30964,17 @@ class GpsInput implements MavlinkMessage {
 ///
 /// GPS_RTCM_DATA
 class GpsRtcmData implements MavlinkMessage {
-  static const int _mavlinkMessageId = 233;
+  static const int msgId = 233;
 
-  static const int _mavlinkCrcExtra = 35;
+  static const int crcExtra = 35;
 
   static const int mavlinkEncodedLength = 182;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// LSB: 1 means message is fragmented, next 2 bits are the fragment ID, the remaining 5 bits are used for the sequence ID. Messages are only to be flushed to the GPS when the entire message has been reconstructed on the autopilot. The fragment ID specifies which order the fragments should be assembled into a buffer, while the sequence ID is used to detect a mismatch between different buffers. The buffer is considered fully reconstructed when either all 4 fragments are present, or all the fragments before the first fragment with a non full payload is received. This management is used to ensure that normal GPS operation doesn't corrupt RTCM data, and to recover from a unreliable transport delivery order.
   ///
@@ -29306,6 +31017,14 @@ class GpsRtcmData implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'flags': flags,
+        'len': len,
+        'data': data,
+      };
+
   factory GpsRtcmData.parse(ByteData data_) {
     if (data_.lengthInBytes < GpsRtcmData.mavlinkEncodedLength) {
       var len = GpsRtcmData.mavlinkEncodedLength - data_.lengthInBytes;
@@ -29334,17 +31053,17 @@ class GpsRtcmData implements MavlinkMessage {
 ///
 /// HIGH_LATENCY
 class HighLatency implements MavlinkMessage {
-  static const int _mavlinkMessageId = 234;
+  static const int msgId = 234;
 
-  static const int _mavlinkCrcExtra = 150;
+  static const int crcExtra = 150;
 
   static const int mavlinkEncodedLength = 40;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// A bitfield for use for autopilot-specific flags.
   ///
@@ -29635,6 +31354,35 @@ class HighLatency implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'customMode': customMode,
+        'latitude': latitude,
+        'longitude': longitude,
+        'roll': roll,
+        'pitch': pitch,
+        'heading': heading,
+        'headingSp': headingSp,
+        'altitudeAmsl': altitudeAmsl,
+        'altitudeSp': altitudeSp,
+        'wpDistance': wpDistance,
+        'baseMode': baseMode,
+        'landedState': landedState,
+        'throttle': throttle,
+        'airspeed': airspeed,
+        'airspeedSp': airspeedSp,
+        'groundspeed': groundspeed,
+        'climbRate': climbRate,
+        'gpsNsat': gpsNsat,
+        'gpsFixType': gpsFixType,
+        'batteryRemaining': batteryRemaining,
+        'temperature': temperature,
+        'temperatureAir': temperatureAir,
+        'failsafe': failsafe,
+        'wpNum': wpNum,
+      };
+
   factory HighLatency.parse(ByteData data_) {
     if (data_.lengthInBytes < HighLatency.mavlinkEncodedLength) {
       var len = HighLatency.mavlinkEncodedLength - data_.lengthInBytes;
@@ -29729,17 +31477,17 @@ class HighLatency implements MavlinkMessage {
 ///
 /// HIGH_LATENCY2
 class HighLatency2 implements MavlinkMessage {
-  static const int _mavlinkMessageId = 235;
+  static const int msgId = 235;
 
-  static const int _mavlinkCrcExtra = 179;
+  static const int crcExtra = 179;
 
   static const int mavlinkEncodedLength = 42;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (milliseconds since boot or Unix epoch)
   ///
@@ -30064,6 +31812,38 @@ class HighLatency2 implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timestamp': timestamp,
+        'latitude': latitude,
+        'longitude': longitude,
+        'customMode': customMode,
+        'altitude': altitude,
+        'targetAltitude': targetAltitude,
+        'targetDistance': targetDistance,
+        'wpNum': wpNum,
+        'failureFlags': failureFlags,
+        'type': type,
+        'autopilot': autopilot,
+        'heading': heading,
+        'targetHeading': targetHeading,
+        'throttle': throttle,
+        'airspeed': airspeed,
+        'airspeedSp': airspeedSp,
+        'groundspeed': groundspeed,
+        'windspeed': windspeed,
+        'windHeading': windHeading,
+        'eph': eph,
+        'epv': epv,
+        'temperatureAir': temperatureAir,
+        'climbRate': climbRate,
+        'battery': battery,
+        'custom0': custom0,
+        'custom1': custom1,
+        'custom2': custom2,
+      };
+
   factory HighLatency2.parse(ByteData data_) {
     if (data_.lengthInBytes < HighLatency2.mavlinkEncodedLength) {
       var len = HighLatency2.mavlinkEncodedLength - data_.lengthInBytes;
@@ -30167,17 +31947,17 @@ class HighLatency2 implements MavlinkMessage {
 ///
 /// VIBRATION
 class Vibration implements MavlinkMessage {
-  static const int _mavlinkMessageId = 241;
+  static const int msgId = 241;
 
-  static const int _mavlinkCrcExtra = 90;
+  static const int crcExtra = 90;
 
   static const int mavlinkEncodedLength = 32;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
   ///
@@ -30260,6 +32040,18 @@ class Vibration implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeUsec': timeUsec,
+        'vibrationX': vibrationX,
+        'vibrationY': vibrationY,
+        'vibrationZ': vibrationZ,
+        'clipping0': clipping0,
+        'clipping1': clipping1,
+        'clipping2': clipping2,
+      };
+
   factory Vibration.parse(ByteData data_) {
     if (data_.lengthInBytes < Vibration.mavlinkEncodedLength) {
       var len = Vibration.mavlinkEncodedLength - data_.lengthInBytes;
@@ -30311,17 +32103,17 @@ class Vibration implements MavlinkMessage {
 ///
 /// HOME_POSITION
 class HomePosition implements MavlinkMessage {
-  static const int _mavlinkMessageId = 242;
+  static const int msgId = 242;
 
-  static const int _mavlinkCrcExtra = 104;
+  static const int crcExtra = 104;
 
   static const int mavlinkEncodedLength = 60;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Latitude (WGS84)
   ///
@@ -30468,6 +32260,22 @@ class HomePosition implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'latitude': latitude,
+        'longitude': longitude,
+        'altitude': altitude,
+        'x': x,
+        'y': y,
+        'z': z,
+        'q': q,
+        'approachX': approachX,
+        'approachY': approachY,
+        'approachZ': approachZ,
+        'timeUsec': timeUsec,
+      };
+
   factory HomePosition.parse(ByteData data_) {
     if (data_.lengthInBytes < HomePosition.mavlinkEncodedLength) {
       var len = HomePosition.mavlinkEncodedLength - data_.lengthInBytes;
@@ -30531,17 +32339,17 @@ class HomePosition implements MavlinkMessage {
 ///
 /// SET_HOME_POSITION
 class SetHomePosition implements MavlinkMessage {
-  static const int _mavlinkMessageId = 243;
+  static const int msgId = 243;
 
-  static const int _mavlinkCrcExtra = 85;
+  static const int crcExtra = 85;
 
   static const int mavlinkEncodedLength = 61;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Latitude (WGS84)
   ///
@@ -30694,6 +32502,23 @@ class SetHomePosition implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'latitude': latitude,
+        'longitude': longitude,
+        'altitude': altitude,
+        'x': x,
+        'y': y,
+        'z': z,
+        'q': q,
+        'approachX': approachX,
+        'approachY': approachY,
+        'approachZ': approachZ,
+        'targetSystem': targetSystem,
+        'timeUsec': timeUsec,
+      };
+
   factory SetHomePosition.parse(ByteData data_) {
     if (data_.lengthInBytes < SetHomePosition.mavlinkEncodedLength) {
       var len = SetHomePosition.mavlinkEncodedLength - data_.lengthInBytes;
@@ -30756,17 +32581,17 @@ class SetHomePosition implements MavlinkMessage {
 ///
 /// MESSAGE_INTERVAL
 class MessageInterval implements MavlinkMessage {
-  static const int _mavlinkMessageId = 244;
+  static const int msgId = 244;
 
-  static const int _mavlinkCrcExtra = 95;
+  static const int crcExtra = 95;
 
   static const int mavlinkEncodedLength = 6;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// The interval between two messages. A value of -1 indicates this stream is disabled, 0 indicates it is not available, > 0 indicates the interval at which it is sent.
   ///
@@ -30799,6 +32624,13 @@ class MessageInterval implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'intervalUs': intervalUs,
+        'messageId': messageId,
+      };
+
   factory MessageInterval.parse(ByteData data_) {
     if (data_.lengthInBytes < MessageInterval.mavlinkEncodedLength) {
       var len = MessageInterval.mavlinkEncodedLength - data_.lengthInBytes;
@@ -30825,17 +32657,17 @@ class MessageInterval implements MavlinkMessage {
 ///
 /// EXTENDED_SYS_STATE
 class ExtendedSysState implements MavlinkMessage {
-  static const int _mavlinkMessageId = 245;
+  static const int msgId = 245;
 
-  static const int _mavlinkCrcExtra = 130;
+  static const int crcExtra = 130;
 
   static const int mavlinkEncodedLength = 2;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// The VTOL state if applicable. Is set to MAV_VTOL_STATE_UNDEFINED if UAV is not in VTOL configuration.
   ///
@@ -30870,6 +32702,13 @@ class ExtendedSysState implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'vtolState': vtolState,
+        'landedState': landedState,
+      };
+
   factory ExtendedSysState.parse(ByteData data_) {
     if (data_.lengthInBytes < ExtendedSysState.mavlinkEncodedLength) {
       var len = ExtendedSysState.mavlinkEncodedLength - data_.lengthInBytes;
@@ -30896,17 +32735,17 @@ class ExtendedSysState implements MavlinkMessage {
 ///
 /// ADSB_VEHICLE
 class AdsbVehicle implements MavlinkMessage {
-  static const int _mavlinkMessageId = 246;
+  static const int msgId = 246;
 
-  static const int _mavlinkCrcExtra = 184;
+  static const int crcExtra = 184;
 
   static const int mavlinkEncodedLength = 38;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// ICAO address
   ///
@@ -31067,6 +32906,24 @@ class AdsbVehicle implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'icaoAddress': icaoAddress,
+        'lat': lat,
+        'lon': lon,
+        'altitude': altitude,
+        'heading': heading,
+        'horVelocity': horVelocity,
+        'verVelocity': verVelocity,
+        'flags': flags,
+        'squawk': squawk,
+        'altitudeType': altitudeType,
+        'callsign': callsign,
+        'emitterType': emitterType,
+        'tslc': tslc,
+      };
+
   factory AdsbVehicle.parse(ByteData data_) {
     if (data_.lengthInBytes < AdsbVehicle.mavlinkEncodedLength) {
       var len = AdsbVehicle.mavlinkEncodedLength - data_.lengthInBytes;
@@ -31128,17 +32985,17 @@ class AdsbVehicle implements MavlinkMessage {
 ///
 /// COLLISION
 class Collision implements MavlinkMessage {
-  static const int _mavlinkMessageId = 247;
+  static const int msgId = 247;
 
-  static const int _mavlinkCrcExtra = 81;
+  static const int crcExtra = 81;
 
   static const int mavlinkEncodedLength = 19;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Unique identifier, domain based on src field
   ///
@@ -31232,6 +33089,18 @@ class Collision implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'id': id,
+        'timeToMinimumDelta': timeToMinimumDelta,
+        'altitudeMinimumDelta': altitudeMinimumDelta,
+        'horizontalMinimumDelta': horizontalMinimumDelta,
+        'src': src,
+        'action': action,
+        'threatLevel': threatLevel,
+      };
+
   factory Collision.parse(ByteData data_) {
     if (data_.lengthInBytes < Collision.mavlinkEncodedLength) {
       var len = Collision.mavlinkEncodedLength - data_.lengthInBytes;
@@ -31275,17 +33144,17 @@ class Collision implements MavlinkMessage {
 ///
 /// V2_EXTENSION
 class V2Extension implements MavlinkMessage {
-  static const int _mavlinkMessageId = 248;
+  static const int msgId = 248;
 
-  static const int _mavlinkCrcExtra = 8;
+  static const int crcExtra = 8;
 
   static const int mavlinkEncodedLength = 254;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// A code that identifies the software component that understands this message (analogous to USB device classes or mime type strings). If this code is less than 32768, it is considered a 'registered' protocol extension and the corresponding entry should be added to https://github.com/mavlink/mavlink/definition_files/extension_message_ids.xml. Software creators can register blocks of message IDs as needed (useful for GCS specific metadata, etc...). Message_types greater than 32767 are considered local experiments and should not be checked in to any widely distributed codebase.
   ///
@@ -31346,6 +33215,16 @@ class V2Extension implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'messageType': messageType,
+        'targetNetwork': targetNetwork,
+        'targetSystem': targetSystem,
+        'targetComponent': targetComponent,
+        'payload': payload,
+      };
+
   factory V2Extension.parse(ByteData data_) {
     if (data_.lengthInBytes < V2Extension.mavlinkEncodedLength) {
       var len = V2Extension.mavlinkEncodedLength - data_.lengthInBytes;
@@ -31383,17 +33262,17 @@ class V2Extension implements MavlinkMessage {
 ///
 /// MEMORY_VECT
 class MemoryVect implements MavlinkMessage {
-  static const int _mavlinkMessageId = 249;
+  static const int msgId = 249;
 
-  static const int _mavlinkCrcExtra = 204;
+  static const int crcExtra = 204;
 
   static const int mavlinkEncodedLength = 36;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Starting address of the debug variables
   ///
@@ -31444,6 +33323,15 @@ class MemoryVect implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'address': address,
+        'ver': ver,
+        'type': type,
+        'value': value,
+      };
+
   factory MemoryVect.parse(ByteData data_) {
     if (data_.lengthInBytes < MemoryVect.mavlinkEncodedLength) {
       var len = MemoryVect.mavlinkEncodedLength - data_.lengthInBytes;
@@ -31474,17 +33362,17 @@ class MemoryVect implements MavlinkMessage {
 ///
 /// DEBUG_VECT
 class DebugVect implements MavlinkMessage {
-  static const int _mavlinkMessageId = 250;
+  static const int msgId = 250;
 
-  static const int _mavlinkCrcExtra = 49;
+  static const int crcExtra = 49;
 
   static const int mavlinkEncodedLength = 30;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
   ///
@@ -31547,6 +33435,16 @@ class DebugVect implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeUsec': timeUsec,
+        'x': x,
+        'y': y,
+        'z': z,
+        'name': name,
+      };
+
   factory DebugVect.parse(ByteData data_) {
     if (data_.lengthInBytes < DebugVect.mavlinkEncodedLength) {
       var len = DebugVect.mavlinkEncodedLength - data_.lengthInBytes;
@@ -31579,17 +33477,17 @@ class DebugVect implements MavlinkMessage {
 ///
 /// NAMED_VALUE_FLOAT
 class NamedValueFloat implements MavlinkMessage {
-  static const int _mavlinkMessageId = 251;
+  static const int msgId = 251;
 
-  static const int _mavlinkCrcExtra = 170;
+  static const int crcExtra = 170;
 
   static const int mavlinkEncodedLength = 18;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (time since system boot).
   ///
@@ -31632,6 +33530,14 @@ class NamedValueFloat implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeBootMs': timeBootMs,
+        'value': value,
+        'name': name,
+      };
+
   factory NamedValueFloat.parse(ByteData data_) {
     if (data_.lengthInBytes < NamedValueFloat.mavlinkEncodedLength) {
       var len = NamedValueFloat.mavlinkEncodedLength - data_.lengthInBytes;
@@ -31660,17 +33566,17 @@ class NamedValueFloat implements MavlinkMessage {
 ///
 /// NAMED_VALUE_INT
 class NamedValueInt implements MavlinkMessage {
-  static const int _mavlinkMessageId = 252;
+  static const int msgId = 252;
 
-  static const int _mavlinkCrcExtra = 44;
+  static const int crcExtra = 44;
 
   static const int mavlinkEncodedLength = 18;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (time since system boot).
   ///
@@ -31713,6 +33619,14 @@ class NamedValueInt implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeBootMs': timeBootMs,
+        'value': value,
+        'name': name,
+      };
+
   factory NamedValueInt.parse(ByteData data_) {
     if (data_.lengthInBytes < NamedValueInt.mavlinkEncodedLength) {
       var len = NamedValueInt.mavlinkEncodedLength - data_.lengthInBytes;
@@ -31741,17 +33655,17 @@ class NamedValueInt implements MavlinkMessage {
 ///
 /// STATUSTEXT
 class Statustext implements MavlinkMessage {
-  static const int _mavlinkMessageId = 253;
+  static const int msgId = 253;
 
-  static const int _mavlinkCrcExtra = 83;
+  static const int crcExtra = 83;
 
   static const int mavlinkEncodedLength = 54;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Severity of status. Relies on the definitions within RFC-5424.
   ///
@@ -31808,6 +33722,15 @@ class Statustext implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'severity': severity,
+        'text': text,
+        'id': id,
+        'chunkSeq': chunkSeq,
+      };
+
   factory Statustext.parse(ByteData data_) {
     if (data_.lengthInBytes < Statustext.mavlinkEncodedLength) {
       var len = Statustext.mavlinkEncodedLength - data_.lengthInBytes;
@@ -31839,17 +33762,17 @@ class Statustext implements MavlinkMessage {
 ///
 /// DEBUG
 class Debug implements MavlinkMessage {
-  static const int _mavlinkMessageId = 254;
+  static const int msgId = 254;
 
-  static const int _mavlinkCrcExtra = 46;
+  static const int crcExtra = 46;
 
   static const int mavlinkEncodedLength = 9;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (time since system boot).
   ///
@@ -31892,6 +33815,14 @@ class Debug implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeBootMs': timeBootMs,
+        'value': value,
+        'ind': ind,
+      };
+
   factory Debug.parse(ByteData data_) {
     if (data_.lengthInBytes < Debug.mavlinkEncodedLength) {
       var len = Debug.mavlinkEncodedLength - data_.lengthInBytes;
@@ -31920,17 +33851,17 @@ class Debug implements MavlinkMessage {
 ///
 /// SETUP_SIGNING
 class SetupSigning implements MavlinkMessage {
-  static const int _mavlinkMessageId = 256;
+  static const int msgId = 256;
 
-  static const int _mavlinkCrcExtra = 71;
+  static const int crcExtra = 71;
 
   static const int mavlinkEncodedLength = 42;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// initial timestamp
   ///
@@ -31981,6 +33912,15 @@ class SetupSigning implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'initialTimestamp': initialTimestamp,
+        'targetSystem': targetSystem,
+        'targetComponent': targetComponent,
+        'secretKey': secretKey,
+      };
+
   factory SetupSigning.parse(ByteData data_) {
     if (data_.lengthInBytes < SetupSigning.mavlinkEncodedLength) {
       var len = SetupSigning.mavlinkEncodedLength - data_.lengthInBytes;
@@ -32015,17 +33955,17 @@ class SetupSigning implements MavlinkMessage {
 ///
 /// BUTTON_CHANGE
 class ButtonChange implements MavlinkMessage {
-  static const int _mavlinkMessageId = 257;
+  static const int msgId = 257;
 
-  static const int _mavlinkCrcExtra = 131;
+  static const int crcExtra = 131;
 
   static const int mavlinkEncodedLength = 9;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (time since system boot).
   ///
@@ -32070,6 +34010,14 @@ class ButtonChange implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeBootMs': timeBootMs,
+        'lastChangeMs': lastChangeMs,
+        'state': state,
+      };
+
   factory ButtonChange.parse(ByteData data_) {
     if (data_.lengthInBytes < ButtonChange.mavlinkEncodedLength) {
       var len = ButtonChange.mavlinkEncodedLength - data_.lengthInBytes;
@@ -32099,17 +34047,17 @@ class ButtonChange implements MavlinkMessage {
 ///
 /// PLAY_TUNE
 class PlayTune implements MavlinkMessage {
-  static const int _mavlinkMessageId = 258;
+  static const int msgId = 258;
 
-  static const int _mavlinkCrcExtra = 187;
+  static const int crcExtra = 187;
 
   static const int mavlinkEncodedLength = 232;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// System ID
   ///
@@ -32162,6 +34110,15 @@ class PlayTune implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'targetSystem': targetSystem,
+        'targetComponent': targetComponent,
+        'tune': tune,
+        'tune2': tune2,
+      };
+
   factory PlayTune.parse(ByteData data_) {
     if (data_.lengthInBytes < PlayTune.mavlinkEncodedLength) {
       var len = PlayTune.mavlinkEncodedLength - data_.lengthInBytes;
@@ -32196,17 +34153,17 @@ class PlayTune implements MavlinkMessage {
 ///
 /// CAMERA_INFORMATION
 class CameraInformation implements MavlinkMessage {
-  static const int _mavlinkMessageId = 259;
+  static const int msgId = 259;
 
-  static const int _mavlinkCrcExtra = 92;
+  static const int crcExtra = 92;
 
   static const int mavlinkEncodedLength = 236;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (time since system boot).
   ///
@@ -32373,6 +34330,25 @@ class CameraInformation implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeBootMs': timeBootMs,
+        'firmwareVersion': firmwareVersion,
+        'focalLength': focalLength,
+        'sensorSizeH': sensorSizeH,
+        'sensorSizeV': sensorSizeV,
+        'flags': flags,
+        'resolutionH': resolutionH,
+        'resolutionV': resolutionV,
+        'camDefinitionVersion': camDefinitionVersion,
+        'vendorName': vendorName,
+        'modelName': modelName,
+        'lensId': lensId,
+        'camDefinitionUri': camDefinitionUri,
+        'gimbalDeviceId': gimbalDeviceId,
+      };
+
   factory CameraInformation.parse(ByteData data_) {
     if (data_.lengthInBytes < CameraInformation.mavlinkEncodedLength) {
       var len = CameraInformation.mavlinkEncodedLength - data_.lengthInBytes;
@@ -32437,17 +34413,17 @@ class CameraInformation implements MavlinkMessage {
 ///
 /// CAMERA_SETTINGS
 class CameraSettings implements MavlinkMessage {
-  static const int _mavlinkMessageId = 260;
+  static const int msgId = 260;
 
-  static const int _mavlinkCrcExtra = 146;
+  static const int crcExtra = 146;
 
   static const int mavlinkEncodedLength = 13;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (time since system boot).
   ///
@@ -32506,6 +34482,15 @@ class CameraSettings implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeBootMs': timeBootMs,
+        'modeId': modeId,
+        'zoomlevel': zoomlevel,
+        'focuslevel': focuslevel,
+      };
+
   factory CameraSettings.parse(ByteData data_) {
     if (data_.lengthInBytes < CameraSettings.mavlinkEncodedLength) {
       var len = CameraSettings.mavlinkEncodedLength - data_.lengthInBytes;
@@ -32540,17 +34525,17 @@ class CameraSettings implements MavlinkMessage {
 ///
 /// STORAGE_INFORMATION
 class StorageInformation implements MavlinkMessage {
-  static const int _mavlinkMessageId = 261;
+  static const int msgId = 261;
 
-  static const int _mavlinkCrcExtra = 179;
+  static const int crcExtra = 179;
 
   static const int mavlinkEncodedLength = 61;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (time since system boot).
   ///
@@ -32708,6 +34693,23 @@ class StorageInformation implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeBootMs': timeBootMs,
+        'totalCapacity': totalCapacity,
+        'usedCapacity': usedCapacity,
+        'availableCapacity': availableCapacity,
+        'readSpeed': readSpeed,
+        'writeSpeed': writeSpeed,
+        'storageId': storageId,
+        'storageCount': storageCount,
+        'status': status,
+        'type': type,
+        'name': name,
+        'storageUsage': storageUsage,
+      };
+
   factory StorageInformation.parse(ByteData data_) {
     if (data_.lengthInBytes < StorageInformation.mavlinkEncodedLength) {
       var len = StorageInformation.mavlinkEncodedLength - data_.lengthInBytes;
@@ -32766,17 +34768,17 @@ class StorageInformation implements MavlinkMessage {
 ///
 /// CAMERA_CAPTURE_STATUS
 class CameraCaptureStatus implements MavlinkMessage {
-  static const int _mavlinkMessageId = 262;
+  static const int msgId = 262;
 
-  static const int _mavlinkCrcExtra = 12;
+  static const int crcExtra = 12;
 
   static const int mavlinkEncodedLength = 22;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (time since system boot).
   ///
@@ -32867,6 +34869,18 @@ class CameraCaptureStatus implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeBootMs': timeBootMs,
+        'imageInterval': imageInterval,
+        'recordingTimeMs': recordingTimeMs,
+        'availableCapacity': availableCapacity,
+        'imageStatus': imageStatus,
+        'videoStatus': videoStatus,
+        'imageCount': imageCount,
+      };
+
   factory CameraCaptureStatus.parse(ByteData data_) {
     if (data_.lengthInBytes < CameraCaptureStatus.mavlinkEncodedLength) {
       var len = CameraCaptureStatus.mavlinkEncodedLength - data_.lengthInBytes;
@@ -32916,17 +34930,17 @@ class CameraCaptureStatus implements MavlinkMessage {
 ///
 /// CAMERA_IMAGE_CAPTURED
 class CameraImageCaptured implements MavlinkMessage {
-  static const int _mavlinkMessageId = 263;
+  static const int msgId = 263;
 
-  static const int _mavlinkCrcExtra = 133;
+  static const int crcExtra = 133;
 
   static const int mavlinkEncodedLength = 255;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (time since UNIX epoch) in UTC. 0 for unknown.
   ///
@@ -33059,6 +35073,22 @@ class CameraImageCaptured implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeUtc': timeUtc,
+        'timeBootMs': timeBootMs,
+        'lat': lat,
+        'lon': lon,
+        'alt': alt,
+        'relativeAlt': relativeAlt,
+        'q': q,
+        'imageIndex': imageIndex,
+        'cameraId': cameraId,
+        'captureResult': captureResult,
+        'fileUrl': fileUrl,
+      };
+
   factory CameraImageCaptured.parse(ByteData data_) {
     if (data_.lengthInBytes < CameraImageCaptured.mavlinkEncodedLength) {
       var len = CameraImageCaptured.mavlinkEncodedLength - data_.lengthInBytes;
@@ -33116,17 +35146,17 @@ class CameraImageCaptured implements MavlinkMessage {
 ///
 /// FLIGHT_INFORMATION
 class FlightInformation implements MavlinkMessage {
-  static const int _mavlinkMessageId = 264;
+  static const int msgId = 264;
 
-  static const int _mavlinkCrcExtra = 49;
+  static const int crcExtra = 49;
 
   static const int mavlinkEncodedLength = 28;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp at arming (time since UNIX epoch) in UTC, 0 for unknown
   ///
@@ -33183,6 +35213,15 @@ class FlightInformation implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'armingTimeUtc': armingTimeUtc,
+        'takeoffTimeUtc': takeoffTimeUtc,
+        'flightUuid': flightUuid,
+        'timeBootMs': timeBootMs,
+      };
+
   factory FlightInformation.parse(ByteData data_) {
     if (data_.lengthInBytes < FlightInformation.mavlinkEncodedLength) {
       var len = FlightInformation.mavlinkEncodedLength - data_.lengthInBytes;
@@ -33217,17 +35256,17 @@ class FlightInformation implements MavlinkMessage {
 ///
 /// MOUNT_ORIENTATION
 class MountOrientation implements MavlinkMessage {
-  static const int _mavlinkMessageId = 265;
+  static const int msgId = 265;
 
-  static const int _mavlinkCrcExtra = 26;
+  static const int crcExtra = 26;
 
   static const int mavlinkEncodedLength = 20;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (time since system boot).
   ///
@@ -33300,6 +35339,16 @@ class MountOrientation implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeBootMs': timeBootMs,
+        'roll': roll,
+        'pitch': pitch,
+        'yaw': yaw,
+        'yawAbsolute': yawAbsolute,
+      };
+
   factory MountOrientation.parse(ByteData data_) {
     if (data_.lengthInBytes < MountOrientation.mavlinkEncodedLength) {
       var len = MountOrientation.mavlinkEncodedLength - data_.lengthInBytes;
@@ -33337,17 +35386,17 @@ class MountOrientation implements MavlinkMessage {
 ///
 /// LOGGING_DATA
 class LoggingData implements MavlinkMessage {
-  static const int _mavlinkMessageId = 266;
+  static const int msgId = 266;
 
-  static const int _mavlinkCrcExtra = 193;
+  static const int crcExtra = 193;
 
   static const int mavlinkEncodedLength = 255;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// sequence number (can wrap)
   ///
@@ -33422,6 +35471,17 @@ class LoggingData implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'sequence': sequence,
+        'targetSystem': targetSystem,
+        'targetComponent': targetComponent,
+        'length': length,
+        'firstMessageOffset': firstMessageOffset,
+        'data': data,
+      };
+
   factory LoggingData.parse(ByteData data_) {
     if (data_.lengthInBytes < LoggingData.mavlinkEncodedLength) {
       var len = LoggingData.mavlinkEncodedLength - data_.lengthInBytes;
@@ -33462,17 +35522,17 @@ class LoggingData implements MavlinkMessage {
 ///
 /// LOGGING_DATA_ACKED
 class LoggingDataAcked implements MavlinkMessage {
-  static const int _mavlinkMessageId = 267;
+  static const int msgId = 267;
 
-  static const int _mavlinkCrcExtra = 35;
+  static const int crcExtra = 35;
 
   static const int mavlinkEncodedLength = 255;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// sequence number (can wrap)
   ///
@@ -33547,6 +35607,17 @@ class LoggingDataAcked implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'sequence': sequence,
+        'targetSystem': targetSystem,
+        'targetComponent': targetComponent,
+        'length': length,
+        'firstMessageOffset': firstMessageOffset,
+        'data': data,
+      };
+
   factory LoggingDataAcked.parse(ByteData data_) {
     if (data_.lengthInBytes < LoggingDataAcked.mavlinkEncodedLength) {
       var len = LoggingDataAcked.mavlinkEncodedLength - data_.lengthInBytes;
@@ -33587,17 +35658,17 @@ class LoggingDataAcked implements MavlinkMessage {
 ///
 /// LOGGING_ACK
 class LoggingAck implements MavlinkMessage {
-  static const int _mavlinkMessageId = 268;
+  static const int msgId = 268;
 
-  static const int _mavlinkCrcExtra = 14;
+  static const int crcExtra = 14;
 
   static const int mavlinkEncodedLength = 4;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// sequence number (must match the one in LOGGING_DATA_ACKED)
   ///
@@ -33638,6 +35709,14 @@ class LoggingAck implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'sequence': sequence,
+        'targetSystem': targetSystem,
+        'targetComponent': targetComponent,
+      };
+
   factory LoggingAck.parse(ByteData data_) {
     if (data_.lengthInBytes < LoggingAck.mavlinkEncodedLength) {
       var len = LoggingAck.mavlinkEncodedLength - data_.lengthInBytes;
@@ -33669,17 +35748,17 @@ class LoggingAck implements MavlinkMessage {
 ///
 /// VIDEO_STREAM_INFORMATION
 class VideoStreamInformation implements MavlinkMessage {
-  static const int _mavlinkMessageId = 269;
+  static const int msgId = 269;
 
-  static const int _mavlinkCrcExtra = 109;
+  static const int crcExtra = 109;
 
   static const int mavlinkEncodedLength = 213;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Frame rate.
   ///
@@ -33826,6 +35905,23 @@ class VideoStreamInformation implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'framerate': framerate,
+        'bitrate': bitrate,
+        'flags': flags,
+        'resolutionH': resolutionH,
+        'resolutionV': resolutionV,
+        'rotation': rotation,
+        'hfov': hfov,
+        'streamId': streamId,
+        'count': count,
+        'type': type,
+        'name': name,
+        'uri': uri,
+      };
+
   factory VideoStreamInformation.parse(ByteData data_) {
     if (data_.lengthInBytes < VideoStreamInformation.mavlinkEncodedLength) {
       var len =
@@ -33885,17 +35981,17 @@ class VideoStreamInformation implements MavlinkMessage {
 ///
 /// VIDEO_STREAM_STATUS
 class VideoStreamStatus implements MavlinkMessage {
-  static const int _mavlinkMessageId = 270;
+  static const int msgId = 270;
 
-  static const int _mavlinkCrcExtra = 59;
+  static const int crcExtra = 59;
 
   static const int mavlinkEncodedLength = 19;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Frame rate
   ///
@@ -34000,6 +36096,19 @@ class VideoStreamStatus implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'framerate': framerate,
+        'bitrate': bitrate,
+        'flags': flags,
+        'resolutionH': resolutionH,
+        'resolutionV': resolutionV,
+        'rotation': rotation,
+        'hfov': hfov,
+        'streamId': streamId,
+      };
+
   factory VideoStreamStatus.parse(ByteData data_) {
     if (data_.lengthInBytes < VideoStreamStatus.mavlinkEncodedLength) {
       var len = VideoStreamStatus.mavlinkEncodedLength - data_.lengthInBytes;
@@ -34046,17 +36155,17 @@ class VideoStreamStatus implements MavlinkMessage {
 ///
 /// CAMERA_FOV_STATUS
 class CameraFovStatus implements MavlinkMessage {
-  static const int _mavlinkMessageId = 271;
+  static const int msgId = 271;
 
-  static const int _mavlinkCrcExtra = 22;
+  static const int crcExtra = 22;
 
   static const int mavlinkEncodedLength = 52;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (time since system boot).
   ///
@@ -34185,6 +36294,21 @@ class CameraFovStatus implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeBootMs': timeBootMs,
+        'latCamera': latCamera,
+        'lonCamera': lonCamera,
+        'altCamera': altCamera,
+        'latImage': latImage,
+        'lonImage': lonImage,
+        'altImage': altImage,
+        'q': q,
+        'hfov': hfov,
+        'vfov': vfov,
+      };
+
   factory CameraFovStatus.parse(ByteData data_) {
     if (data_.lengthInBytes < CameraFovStatus.mavlinkEncodedLength) {
       var len = CameraFovStatus.mavlinkEncodedLength - data_.lengthInBytes;
@@ -34237,17 +36361,17 @@ class CameraFovStatus implements MavlinkMessage {
 ///
 /// CAMERA_TRACKING_IMAGE_STATUS
 class CameraTrackingImageStatus implements MavlinkMessage {
-  static const int _mavlinkMessageId = 275;
+  static const int msgId = 275;
 
-  static const int _mavlinkCrcExtra = 126;
+  static const int crcExtra = 126;
 
   static const int mavlinkEncodedLength = 31;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Current tracked point x value if CAMERA_TRACKING_MODE_POINT (normalized 0..1, 0 is left, 1 is right), NAN if unknown
   ///
@@ -34364,6 +36488,21 @@ class CameraTrackingImageStatus implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'pointX': pointX,
+        'pointY': pointY,
+        'radius': radius,
+        'recTopX': recTopX,
+        'recTopY': recTopY,
+        'recBottomX': recBottomX,
+        'recBottomY': recBottomY,
+        'trackingStatus': trackingStatus,
+        'trackingMode': trackingMode,
+        'targetData': targetData,
+      };
+
   factory CameraTrackingImageStatus.parse(ByteData data_) {
     if (data_.lengthInBytes < CameraTrackingImageStatus.mavlinkEncodedLength) {
       var len =
@@ -34417,17 +36556,17 @@ class CameraTrackingImageStatus implements MavlinkMessage {
 ///
 /// CAMERA_TRACKING_GEO_STATUS
 class CameraTrackingGeoStatus implements MavlinkMessage {
-  static const int _mavlinkMessageId = 276;
+  static const int msgId = 276;
 
-  static const int _mavlinkCrcExtra = 18;
+  static const int crcExtra = 18;
 
   static const int mavlinkEncodedLength = 49;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Latitude of tracked object
   ///
@@ -34594,6 +36733,24 @@ class CameraTrackingGeoStatus implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'lat': lat,
+        'lon': lon,
+        'alt': alt,
+        'hAcc': hAcc,
+        'vAcc': vAcc,
+        'velN': velN,
+        'velE': velE,
+        'velD': velD,
+        'velAcc': velAcc,
+        'dist': dist,
+        'hdg': hdg,
+        'hdgAcc': hdgAcc,
+        'trackingStatus': trackingStatus,
+      };
+
   factory CameraTrackingGeoStatus.parse(ByteData data_) {
     if (data_.lengthInBytes < CameraTrackingGeoStatus.mavlinkEncodedLength) {
       var len =
@@ -34656,17 +36813,17 @@ class CameraTrackingGeoStatus implements MavlinkMessage {
 ///
 /// GIMBAL_MANAGER_INFORMATION
 class GimbalManagerInformation implements MavlinkMessage {
-  static const int _mavlinkMessageId = 280;
+  static const int msgId = 280;
 
-  static const int _mavlinkCrcExtra = 70;
+  static const int crcExtra = 70;
 
   static const int mavlinkEncodedLength = 33;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (time since system boot).
   ///
@@ -34783,6 +36940,20 @@ class GimbalManagerInformation implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeBootMs': timeBootMs,
+        'capFlags': capFlags,
+        'rollMin': rollMin,
+        'rollMax': rollMax,
+        'pitchMin': pitchMin,
+        'pitchMax': pitchMax,
+        'yawMin': yawMin,
+        'yawMax': yawMax,
+        'gimbalDeviceId': gimbalDeviceId,
+      };
+
   factory GimbalManagerInformation.parse(ByteData data_) {
     if (data_.lengthInBytes < GimbalManagerInformation.mavlinkEncodedLength) {
       var len =
@@ -34833,17 +37004,17 @@ class GimbalManagerInformation implements MavlinkMessage {
 ///
 /// GIMBAL_MANAGER_STATUS
 class GimbalManagerStatus implements MavlinkMessage {
-  static const int _mavlinkMessageId = 281;
+  static const int msgId = 281;
 
-  static const int _mavlinkCrcExtra = 48;
+  static const int crcExtra = 48;
 
   static const int mavlinkEncodedLength = 13;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (time since system boot).
   ///
@@ -34930,6 +37101,18 @@ class GimbalManagerStatus implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeBootMs': timeBootMs,
+        'flags': flags,
+        'gimbalDeviceId': gimbalDeviceId,
+        'primaryControlSysid': primaryControlSysid,
+        'primaryControlCompid': primaryControlCompid,
+        'secondaryControlSysid': secondaryControlSysid,
+        'secondaryControlCompid': secondaryControlCompid,
+      };
+
   factory GimbalManagerStatus.parse(ByteData data_) {
     if (data_.lengthInBytes < GimbalManagerStatus.mavlinkEncodedLength) {
       var len = GimbalManagerStatus.mavlinkEncodedLength - data_.lengthInBytes;
@@ -34973,17 +37156,17 @@ class GimbalManagerStatus implements MavlinkMessage {
 ///
 /// GIMBAL_MANAGER_SET_ATTITUDE
 class GimbalManagerSetAttitude implements MavlinkMessage {
-  static const int _mavlinkMessageId = 282;
+  static const int msgId = 282;
 
-  static const int _mavlinkCrcExtra = 123;
+  static const int crcExtra = 123;
 
   static const int mavlinkEncodedLength = 35;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// High level gimbal manager flags to use.
   ///
@@ -35082,6 +37265,19 @@ class GimbalManagerSetAttitude implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'flags': flags,
+        'q': q,
+        'angularVelocityX': angularVelocityX,
+        'angularVelocityY': angularVelocityY,
+        'angularVelocityZ': angularVelocityZ,
+        'targetSystem': targetSystem,
+        'targetComponent': targetComponent,
+        'gimbalDeviceId': gimbalDeviceId,
+      };
+
   factory GimbalManagerSetAttitude.parse(ByteData data_) {
     if (data_.lengthInBytes < GimbalManagerSetAttitude.mavlinkEncodedLength) {
       var len =
@@ -35129,17 +37325,17 @@ class GimbalManagerSetAttitude implements MavlinkMessage {
 ///
 /// GIMBAL_DEVICE_INFORMATION
 class GimbalDeviceInformation implements MavlinkMessage {
-  static const int _mavlinkMessageId = 283;
+  static const int msgId = 283;
 
-  static const int _mavlinkCrcExtra = 74;
+  static const int crcExtra = 74;
 
   static const int mavlinkEncodedLength = 145;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// UID of gimbal hardware (0 if unknown).
   ///
@@ -35328,6 +37524,27 @@ class GimbalDeviceInformation implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'uid': uid,
+        'timeBootMs': timeBootMs,
+        'firmwareVersion': firmwareVersion,
+        'hardwareVersion': hardwareVersion,
+        'rollMin': rollMin,
+        'rollMax': rollMax,
+        'pitchMin': pitchMin,
+        'pitchMax': pitchMax,
+        'yawMin': yawMin,
+        'yawMax': yawMax,
+        'capFlags': capFlags,
+        'customCapFlags': customCapFlags,
+        'vendorName': vendorName,
+        'modelName': modelName,
+        'customName': customName,
+        'gimbalDeviceId': gimbalDeviceId,
+      };
+
   factory GimbalDeviceInformation.parse(ByteData data_) {
     if (data_.lengthInBytes < GimbalDeviceInformation.mavlinkEncodedLength) {
       var len =
@@ -35410,17 +37627,17 @@ class GimbalDeviceInformation implements MavlinkMessage {
 ///
 /// GIMBAL_DEVICE_SET_ATTITUDE
 class GimbalDeviceSetAttitude implements MavlinkMessage {
-  static const int _mavlinkMessageId = 284;
+  static const int msgId = 284;
 
-  static const int _mavlinkCrcExtra = 99;
+  static const int crcExtra = 99;
 
   static const int mavlinkEncodedLength = 32;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Quaternion components, w, x, y, z (1 0 0 0 is the null-rotation). The frame is described in the message description. Set fields to NaN to be ignored.
   ///
@@ -35509,6 +37726,18 @@ class GimbalDeviceSetAttitude implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'q': q,
+        'angularVelocityX': angularVelocityX,
+        'angularVelocityY': angularVelocityY,
+        'angularVelocityZ': angularVelocityZ,
+        'flags': flags,
+        'targetSystem': targetSystem,
+        'targetComponent': targetComponent,
+      };
+
   factory GimbalDeviceSetAttitude.parse(ByteData data_) {
     if (data_.lengthInBytes < GimbalDeviceSetAttitude.mavlinkEncodedLength) {
       var len =
@@ -35567,17 +37796,17 @@ class GimbalDeviceSetAttitude implements MavlinkMessage {
 ///
 /// GIMBAL_DEVICE_ATTITUDE_STATUS
 class GimbalDeviceAttitudeStatus implements MavlinkMessage {
-  static const int _mavlinkMessageId = 285;
+  static const int msgId = 285;
 
-  static const int _mavlinkCrcExtra = 137;
+  static const int crcExtra = 137;
 
   static const int mavlinkEncodedLength = 49;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (time since system boot).
   ///
@@ -35730,6 +37959,23 @@ class GimbalDeviceAttitudeStatus implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeBootMs': timeBootMs,
+        'q': q,
+        'angularVelocityX': angularVelocityX,
+        'angularVelocityY': angularVelocityY,
+        'angularVelocityZ': angularVelocityZ,
+        'failureFlags': failureFlags,
+        'flags': flags,
+        'targetSystem': targetSystem,
+        'targetComponent': targetComponent,
+        'deltaYaw': deltaYaw,
+        'deltaYawVelocity': deltaYawVelocity,
+        'gimbalDeviceId': gimbalDeviceId,
+      };
+
   factory GimbalDeviceAttitudeStatus.parse(ByteData data_) {
     if (data_.lengthInBytes < GimbalDeviceAttitudeStatus.mavlinkEncodedLength) {
       var len =
@@ -35789,17 +38035,17 @@ class GimbalDeviceAttitudeStatus implements MavlinkMessage {
 ///
 /// AUTOPILOT_STATE_FOR_GIMBAL_DEVICE
 class AutopilotStateForGimbalDevice implements MavlinkMessage {
-  static const int _mavlinkMessageId = 286;
+  static const int msgId = 286;
 
-  static const int _mavlinkCrcExtra = 210;
+  static const int crcExtra = 210;
 
   static const int mavlinkEncodedLength = 57;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (time since system boot).
   ///
@@ -35963,6 +38209,24 @@ class AutopilotStateForGimbalDevice implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeBootUs': timeBootUs,
+        'q': q,
+        'qEstimatedDelayUs': qEstimatedDelayUs,
+        'vx': vx,
+        'vy': vy,
+        'vz': vz,
+        'vEstimatedDelayUs': vEstimatedDelayUs,
+        'feedForwardAngularVelocityZ': feedForwardAngularVelocityZ,
+        'estimatorStatus': estimatorStatus,
+        'targetSystem': targetSystem,
+        'targetComponent': targetComponent,
+        'landedState': landedState,
+        'angularVelocityZ': angularVelocityZ,
+      };
+
   factory AutopilotStateForGimbalDevice.parse(ByteData data_) {
     if (data_.lengthInBytes <
         AutopilotStateForGimbalDevice.mavlinkEncodedLength) {
@@ -36026,17 +38290,17 @@ class AutopilotStateForGimbalDevice implements MavlinkMessage {
 ///
 /// GIMBAL_MANAGER_SET_PITCHYAW
 class GimbalManagerSetPitchyaw implements MavlinkMessage {
-  static const int _mavlinkMessageId = 287;
+  static const int msgId = 287;
 
-  static const int _mavlinkCrcExtra = 1;
+  static const int crcExtra = 1;
 
   static const int mavlinkEncodedLength = 23;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// High level gimbal manager flags to use.
   ///
@@ -36137,6 +38401,19 @@ class GimbalManagerSetPitchyaw implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'flags': flags,
+        'pitch': pitch,
+        'yaw': yaw,
+        'pitchRate': pitchRate,
+        'yawRate': yawRate,
+        'targetSystem': targetSystem,
+        'targetComponent': targetComponent,
+        'gimbalDeviceId': gimbalDeviceId,
+      };
+
   factory GimbalManagerSetPitchyaw.parse(ByteData data_) {
     if (data_.lengthInBytes < GimbalManagerSetPitchyaw.mavlinkEncodedLength) {
       var len =
@@ -36184,17 +38461,17 @@ class GimbalManagerSetPitchyaw implements MavlinkMessage {
 ///
 /// GIMBAL_MANAGER_SET_MANUAL_CONTROL
 class GimbalManagerSetManualControl implements MavlinkMessage {
-  static const int _mavlinkMessageId = 288;
+  static const int msgId = 288;
 
-  static const int _mavlinkCrcExtra = 20;
+  static const int crcExtra = 20;
 
   static const int mavlinkEncodedLength = 23;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// High level gimbal manager flags.
   ///
@@ -36287,6 +38564,19 @@ class GimbalManagerSetManualControl implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'flags': flags,
+        'pitch': pitch,
+        'yaw': yaw,
+        'pitchRate': pitchRate,
+        'yawRate': yawRate,
+        'targetSystem': targetSystem,
+        'targetComponent': targetComponent,
+        'gimbalDeviceId': gimbalDeviceId,
+      };
+
   factory GimbalManagerSetManualControl.parse(ByteData data_) {
     if (data_.lengthInBytes <
         GimbalManagerSetManualControl.mavlinkEncodedLength) {
@@ -36335,17 +38625,17 @@ class GimbalManagerSetManualControl implements MavlinkMessage {
 ///
 /// ESC_INFO
 class EscInfo implements MavlinkMessage {
-  static const int _mavlinkMessageId = 290;
+  static const int msgId = 290;
 
-  static const int _mavlinkCrcExtra = 251;
+  static const int crcExtra = 251;
 
   static const int mavlinkEncodedLength = 46;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
   ///
@@ -36454,6 +38744,20 @@ class EscInfo implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeUsec': timeUsec,
+        'errorCount': errorCount,
+        'counter': counter,
+        'failureFlags': failureFlags,
+        'temperature': temperature,
+        'index': index,
+        'count': count,
+        'connectionType': connectionType,
+        'info': info,
+      };
+
   factory EscInfo.parse(ByteData data_) {
     if (data_.lengthInBytes < EscInfo.mavlinkEncodedLength) {
       var len = EscInfo.mavlinkEncodedLength - data_.lengthInBytes;
@@ -36503,17 +38807,17 @@ class EscInfo implements MavlinkMessage {
 ///
 /// ESC_STATUS
 class EscStatus implements MavlinkMessage {
-  static const int _mavlinkMessageId = 291;
+  static const int msgId = 291;
 
-  static const int _mavlinkCrcExtra = 10;
+  static const int crcExtra = 10;
 
   static const int mavlinkEncodedLength = 57;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
   ///
@@ -36582,6 +38886,16 @@ class EscStatus implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeUsec': timeUsec,
+        'rpm': rpm,
+        'voltage': voltage,
+        'current': current,
+        'index': index,
+      };
+
   factory EscStatus.parse(ByteData data_) {
     if (data_.lengthInBytes < EscStatus.mavlinkEncodedLength) {
       var len = EscStatus.mavlinkEncodedLength - data_.lengthInBytes;
@@ -36619,17 +38933,17 @@ class EscStatus implements MavlinkMessage {
 ///
 /// WIFI_CONFIG_AP
 class WifiConfigAp implements MavlinkMessage {
-  static const int _mavlinkMessageId = 299;
+  static const int msgId = 299;
 
-  static const int _mavlinkCrcExtra = 19;
+  static const int crcExtra = 19;
 
   static const int mavlinkEncodedLength = 98;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Name of Wi-Fi network (SSID). Blank to leave it unchanged when setting. Current SSID when sent back as a response.
   ///
@@ -36688,6 +39002,15 @@ class WifiConfigAp implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'ssid': ssid,
+        'password': password,
+        'mode': mode,
+        'response': response,
+      };
+
   factory WifiConfigAp.parse(ByteData data_) {
     if (data_.lengthInBytes < WifiConfigAp.mavlinkEncodedLength) {
       var len = WifiConfigAp.mavlinkEncodedLength - data_.lengthInBytes;
@@ -36719,17 +39042,17 @@ class WifiConfigAp implements MavlinkMessage {
 ///
 /// AIS_VESSEL
 class AisVessel implements MavlinkMessage {
-  static const int _mavlinkMessageId = 301;
+  static const int msgId = 301;
 
-  static const int _mavlinkCrcExtra = 243;
+  static const int crcExtra = 243;
 
   static const int mavlinkEncodedLength = 58;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Mobile Marine Service Identifier, 9 decimal digits
   ///
@@ -36938,6 +39261,28 @@ class AisVessel implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'mmsi': mmsi,
+        'lat': lat,
+        'lon': lon,
+        'cog': cog,
+        'heading': heading,
+        'velocity': velocity,
+        'dimensionBow': dimensionBow,
+        'dimensionStern': dimensionStern,
+        'tslc': tslc,
+        'flags': flags,
+        'turnRate': turnRate,
+        'navigationalStatus': navigationalStatus,
+        'type': type,
+        'dimensionPort': dimensionPort,
+        'dimensionStarboard': dimensionStarboard,
+        'callsign': callsign,
+        'name': name,
+      };
+
   factory AisVessel.parse(ByteData data_) {
     if (data_.lengthInBytes < AisVessel.mavlinkEncodedLength) {
       var len = AisVessel.mavlinkEncodedLength - data_.lengthInBytes;
@@ -37011,17 +39356,17 @@ class AisVessel implements MavlinkMessage {
 ///
 /// UAVCAN_NODE_STATUS
 class UavcanNodeStatus implements MavlinkMessage {
-  static const int _mavlinkMessageId = 310;
+  static const int msgId = 310;
 
-  static const int _mavlinkCrcExtra = 28;
+  static const int crcExtra = 28;
 
   static const int mavlinkEncodedLength = 17;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
   ///
@@ -37101,6 +39446,17 @@ class UavcanNodeStatus implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeUsec': timeUsec,
+        'uptimeSec': uptimeSec,
+        'vendorSpecificStatusCode': vendorSpecificStatusCode,
+        'health': health,
+        'mode': mode,
+        'subMode': subMode,
+      };
+
   factory UavcanNodeStatus.parse(ByteData data_) {
     if (data_.lengthInBytes < UavcanNodeStatus.mavlinkEncodedLength) {
       var len = UavcanNodeStatus.mavlinkEncodedLength - data_.lengthInBytes;
@@ -37141,17 +39497,17 @@ class UavcanNodeStatus implements MavlinkMessage {
 ///
 /// UAVCAN_NODE_INFO
 class UavcanNodeInfo implements MavlinkMessage {
-  static const int _mavlinkMessageId = 311;
+  static const int msgId = 311;
 
-  static const int _mavlinkCrcExtra = 95;
+  static const int crcExtra = 95;
 
   static const int mavlinkEncodedLength = 116;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
   ///
@@ -37256,6 +39612,20 @@ class UavcanNodeInfo implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeUsec': timeUsec,
+        'uptimeSec': uptimeSec,
+        'swVcsCommit': swVcsCommit,
+        'name': name,
+        'hwVersionMajor': hwVersionMajor,
+        'hwVersionMinor': hwVersionMinor,
+        'hwUniqueId': hwUniqueId,
+        'swVersionMajor': swVersionMajor,
+        'swVersionMinor': swVersionMinor,
+      };
+
   factory UavcanNodeInfo.parse(ByteData data_) {
     if (data_.lengthInBytes < UavcanNodeInfo.mavlinkEncodedLength) {
       var len = UavcanNodeInfo.mavlinkEncodedLength - data_.lengthInBytes;
@@ -37305,17 +39675,17 @@ class UavcanNodeInfo implements MavlinkMessage {
 ///
 /// PARAM_EXT_REQUEST_READ
 class ParamExtRequestRead implements MavlinkMessage {
-  static const int _mavlinkMessageId = 320;
+  static const int msgId = 320;
 
-  static const int _mavlinkCrcExtra = 243;
+  static const int crcExtra = 243;
 
   static const int mavlinkEncodedLength = 20;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Parameter index. Set to -1 to use the Parameter ID field as identifier (else param_id will be ignored)
   ///
@@ -37366,6 +39736,15 @@ class ParamExtRequestRead implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'paramIndex': paramIndex,
+        'targetSystem': targetSystem,
+        'targetComponent': targetComponent,
+        'paramId': paramId,
+      };
+
   factory ParamExtRequestRead.parse(ByteData data_) {
     if (data_.lengthInBytes < ParamExtRequestRead.mavlinkEncodedLength) {
       var len = ParamExtRequestRead.mavlinkEncodedLength - data_.lengthInBytes;
@@ -37400,17 +39779,17 @@ class ParamExtRequestRead implements MavlinkMessage {
 ///
 /// PARAM_EXT_REQUEST_LIST
 class ParamExtRequestList implements MavlinkMessage {
-  static const int _mavlinkMessageId = 321;
+  static const int msgId = 321;
 
-  static const int _mavlinkCrcExtra = 88;
+  static const int crcExtra = 88;
 
   static const int mavlinkEncodedLength = 2;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// System ID
   ///
@@ -37441,6 +39820,13 @@ class ParamExtRequestList implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'targetSystem': targetSystem,
+        'targetComponent': targetComponent,
+      };
+
   factory ParamExtRequestList.parse(ByteData data_) {
     if (data_.lengthInBytes < ParamExtRequestList.mavlinkEncodedLength) {
       var len = ParamExtRequestList.mavlinkEncodedLength - data_.lengthInBytes;
@@ -37468,17 +39854,17 @@ class ParamExtRequestList implements MavlinkMessage {
 ///
 /// PARAM_EXT_VALUE
 class ParamExtValue implements MavlinkMessage {
-  static const int _mavlinkMessageId = 322;
+  static const int msgId = 322;
 
-  static const int _mavlinkCrcExtra = 243;
+  static const int crcExtra = 243;
 
   static const int mavlinkEncodedLength = 149;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Total number of parameters
   ///
@@ -37541,6 +39927,16 @@ class ParamExtValue implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'paramCount': paramCount,
+        'paramIndex': paramIndex,
+        'paramId': paramId,
+        'paramValue': paramValue,
+        'paramType': paramType,
+      };
+
   factory ParamExtValue.parse(ByteData data_) {
     if (data_.lengthInBytes < ParamExtValue.mavlinkEncodedLength) {
       var len = ParamExtValue.mavlinkEncodedLength - data_.lengthInBytes;
@@ -37578,17 +39974,17 @@ class ParamExtValue implements MavlinkMessage {
 ///
 /// PARAM_EXT_SET
 class ParamExtSet implements MavlinkMessage {
-  static const int _mavlinkMessageId = 323;
+  static const int msgId = 323;
 
-  static const int _mavlinkCrcExtra = 78;
+  static const int crcExtra = 78;
 
   static const int mavlinkEncodedLength = 147;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// System ID
   ///
@@ -37651,6 +40047,16 @@ class ParamExtSet implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'targetSystem': targetSystem,
+        'targetComponent': targetComponent,
+        'paramId': paramId,
+        'paramValue': paramValue,
+        'paramType': paramType,
+      };
+
   factory ParamExtSet.parse(ByteData data_) {
     if (data_.lengthInBytes < ParamExtSet.mavlinkEncodedLength) {
       var len = ParamExtSet.mavlinkEncodedLength - data_.lengthInBytes;
@@ -37688,17 +40094,17 @@ class ParamExtSet implements MavlinkMessage {
 ///
 /// PARAM_EXT_ACK
 class ParamExtAck implements MavlinkMessage {
-  static const int _mavlinkMessageId = 324;
+  static const int msgId = 324;
 
-  static const int _mavlinkCrcExtra = 132;
+  static const int crcExtra = 132;
 
   static const int mavlinkEncodedLength = 146;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Parameter id, terminated by NULL if the length is less than 16 human-readable chars and WITHOUT null termination (NULL) byte if the length is exactly 16 chars - applications have to provide 16+1 bytes storage if the ID is stored as string
   ///
@@ -37753,6 +40159,15 @@ class ParamExtAck implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'paramId': paramId,
+        'paramValue': paramValue,
+        'paramType': paramType,
+        'paramResult': paramResult,
+      };
+
   factory ParamExtAck.parse(ByteData data_) {
     if (data_.lengthInBytes < ParamExtAck.mavlinkEncodedLength) {
       var len = ParamExtAck.mavlinkEncodedLength - data_.lengthInBytes;
@@ -37787,17 +40202,17 @@ class ParamExtAck implements MavlinkMessage {
 ///
 /// OBSTACLE_DISTANCE
 class ObstacleDistance implements MavlinkMessage {
-  static const int _mavlinkMessageId = 330;
+  static const int msgId = 330;
 
-  static const int _mavlinkCrcExtra = 23;
+  static const int crcExtra = 23;
 
   static const int mavlinkEncodedLength = 167;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
   ///
@@ -37922,6 +40337,20 @@ class ObstacleDistance implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeUsec': timeUsec,
+        'distances': distances,
+        'minDistance': minDistance,
+        'maxDistance': maxDistance,
+        'sensorType': sensorType,
+        'increment': increment,
+        'incrementF': incrementF,
+        'angleOffset': angleOffset,
+        'frame': frame,
+      };
+
   factory ObstacleDistance.parse(ByteData data_) {
     if (data_.lengthInBytes < ObstacleDistance.mavlinkEncodedLength) {
       var len = ObstacleDistance.mavlinkEncodedLength - data_.lengthInBytes;
@@ -37971,17 +40400,17 @@ class ObstacleDistance implements MavlinkMessage {
 ///
 /// ODOMETRY
 class Odometry implements MavlinkMessage {
-  static const int _mavlinkMessageId = 331;
+  static const int msgId = 331;
 
-  static const int _mavlinkCrcExtra = 91;
+  static const int crcExtra = 91;
 
   static const int mavlinkEncodedLength = 233;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
   ///
@@ -38206,6 +40635,29 @@ class Odometry implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeUsec': timeUsec,
+        'x': x,
+        'y': y,
+        'z': z,
+        'q': q,
+        'vx': vx,
+        'vy': vy,
+        'vz': vz,
+        'rollspeed': rollspeed,
+        'pitchspeed': pitchspeed,
+        'yawspeed': yawspeed,
+        'poseCovariance': poseCovariance,
+        'velocityCovariance': velocityCovariance,
+        'frameId': frameId,
+        'childFrameId': childFrameId,
+        'resetCounter': resetCounter,
+        'estimatorType': estimatorType,
+        'quality': quality,
+      };
+
   factory Odometry.parse(ByteData data_) {
     if (data_.lengthInBytes < Odometry.mavlinkEncodedLength) {
       var len = Odometry.mavlinkEncodedLength - data_.lengthInBytes;
@@ -38282,17 +40734,17 @@ class Odometry implements MavlinkMessage {
 ///
 /// TRAJECTORY_REPRESENTATION_WAYPOINTS
 class TrajectoryRepresentationWaypoints implements MavlinkMessage {
-  static const int _mavlinkMessageId = 332;
+  static const int msgId = 332;
 
-  static const int _mavlinkCrcExtra = 236;
+  static const int crcExtra = 236;
 
   static const int mavlinkEncodedLength = 239;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
   ///
@@ -38469,6 +40921,25 @@ class TrajectoryRepresentationWaypoints implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeUsec': timeUsec,
+        'posX': posX,
+        'posY': posY,
+        'posZ': posZ,
+        'velX': velX,
+        'velY': velY,
+        'velZ': velZ,
+        'accX': accX,
+        'accY': accY,
+        'accZ': accZ,
+        'posYaw': posYaw,
+        'velYaw': velYaw,
+        'command': command,
+        'validPoints': validPoints,
+      };
+
   factory TrajectoryRepresentationWaypoints.parse(ByteData data_) {
     if (data_.lengthInBytes <
         TrajectoryRepresentationWaypoints.mavlinkEncodedLength) {
@@ -38535,17 +41006,17 @@ class TrajectoryRepresentationWaypoints implements MavlinkMessage {
 ///
 /// TRAJECTORY_REPRESENTATION_BEZIER
 class TrajectoryRepresentationBezier implements MavlinkMessage {
-  static const int _mavlinkMessageId = 333;
+  static const int msgId = 333;
 
-  static const int _mavlinkCrcExtra = 231;
+  static const int crcExtra = 231;
 
   static const int mavlinkEncodedLength = 109;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
   ///
@@ -38638,6 +41109,18 @@ class TrajectoryRepresentationBezier implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeUsec': timeUsec,
+        'posX': posX,
+        'posY': posY,
+        'posZ': posZ,
+        'delta': delta,
+        'posYaw': posYaw,
+        'validPoints': validPoints,
+      };
+
   factory TrajectoryRepresentationBezier.parse(ByteData data_) {
     if (data_.lengthInBytes <
         TrajectoryRepresentationBezier.mavlinkEncodedLength) {
@@ -38683,17 +41166,17 @@ class TrajectoryRepresentationBezier implements MavlinkMessage {
 ///
 /// CELLULAR_STATUS
 class CellularStatus implements MavlinkMessage {
-  static const int _mavlinkMessageId = 334;
+  static const int msgId = 334;
 
-  static const int _mavlinkCrcExtra = 72;
+  static const int crcExtra = 72;
 
   static const int mavlinkEncodedLength = 10;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Mobile country code. If unknown, set to UINT16_MAX
   ///
@@ -38780,6 +41263,18 @@ class CellularStatus implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'mcc': mcc,
+        'mnc': mnc,
+        'lac': lac,
+        'status': status,
+        'failureReason': failureReason,
+        'type': type,
+        'quality': quality,
+      };
+
   factory CellularStatus.parse(ByteData data_) {
     if (data_.lengthInBytes < CellularStatus.mavlinkEncodedLength) {
       var len = CellularStatus.mavlinkEncodedLength - data_.lengthInBytes;
@@ -38823,17 +41318,17 @@ class CellularStatus implements MavlinkMessage {
 ///
 /// ISBD_LINK_STATUS
 class IsbdLinkStatus implements MavlinkMessage {
-  static const int _mavlinkMessageId = 335;
+  static const int msgId = 335;
 
-  static const int _mavlinkCrcExtra = 225;
+  static const int crcExtra = 225;
 
   static const int mavlinkEncodedLength = 24;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
   ///
@@ -38928,6 +41423,19 @@ class IsbdLinkStatus implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timestamp': timestamp,
+        'lastHeartbeat': lastHeartbeat,
+        'failedSessions': failedSessions,
+        'successfulSessions': successfulSessions,
+        'signalQuality': signalQuality,
+        'ringPending': ringPending,
+        'txSessionPending': txSessionPending,
+        'rxSessionPending': rxSessionPending,
+      };
+
   factory IsbdLinkStatus.parse(ByteData data_) {
     if (data_.lengthInBytes < IsbdLinkStatus.mavlinkEncodedLength) {
       var len = IsbdLinkStatus.mavlinkEncodedLength - data_.lengthInBytes;
@@ -38976,17 +41484,17 @@ class IsbdLinkStatus implements MavlinkMessage {
 ///
 /// CELLULAR_CONFIG
 class CellularConfig implements MavlinkMessage {
-  static const int _mavlinkMessageId = 336;
+  static const int msgId = 336;
 
-  static const int _mavlinkCrcExtra = 245;
+  static const int crcExtra = 245;
 
   static const int mavlinkEncodedLength = 84;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Enable/disable LTE. 0: setting unchanged, 1: disabled, 2: enabled. Current setting when sent back as a response.
   ///
@@ -39079,6 +41587,19 @@ class CellularConfig implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'enableLte': enableLte,
+        'enablePin': enablePin,
+        'pin': pin,
+        'newPin': newPin,
+        'apn': apn,
+        'puk': puk,
+        'roaming': roaming,
+        'response': response,
+      };
+
   factory CellularConfig.parse(ByteData data_) {
     if (data_.lengthInBytes < CellularConfig.mavlinkEncodedLength) {
       var len = CellularConfig.mavlinkEncodedLength - data_.lengthInBytes;
@@ -39125,17 +41646,17 @@ class CellularConfig implements MavlinkMessage {
 ///
 /// RAW_RPM
 class RawRpm implements MavlinkMessage {
-  static const int _mavlinkMessageId = 339;
+  static const int msgId = 339;
 
-  static const int _mavlinkCrcExtra = 199;
+  static const int crcExtra = 199;
 
   static const int mavlinkEncodedLength = 5;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Indicated rate
   ///
@@ -39168,6 +41689,13 @@ class RawRpm implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'frequency': frequency,
+        'index': index,
+      };
+
   factory RawRpm.parse(ByteData data_) {
     if (data_.lengthInBytes < RawRpm.mavlinkEncodedLength) {
       var len = RawRpm.mavlinkEncodedLength - data_.lengthInBytes;
@@ -39194,17 +41722,17 @@ class RawRpm implements MavlinkMessage {
 ///
 /// UTM_GLOBAL_POSITION
 class UtmGlobalPosition implements MavlinkMessage {
-  static const int _mavlinkMessageId = 340;
+  static const int msgId = 340;
 
-  static const int _mavlinkCrcExtra = 99;
+  static const int crcExtra = 99;
 
   static const int mavlinkEncodedLength = 70;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Time of applicability of position (microseconds since UNIX epoch).
   ///
@@ -39429,6 +41957,29 @@ class UtmGlobalPosition implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'time': time,
+        'lat': lat,
+        'lon': lon,
+        'alt': alt,
+        'relativeAlt': relativeAlt,
+        'nextLat': nextLat,
+        'nextLon': nextLon,
+        'nextAlt': nextAlt,
+        'vx': vx,
+        'vy': vy,
+        'vz': vz,
+        'hAcc': hAcc,
+        'vAcc': vAcc,
+        'velAcc': velAcc,
+        'updateRate': updateRate,
+        'uasId': uasId,
+        'flightState': flightState,
+        'flags': flags,
+      };
+
   factory UtmGlobalPosition.parse(ByteData data_) {
     if (data_.lengthInBytes < UtmGlobalPosition.mavlinkEncodedLength) {
       var len = UtmGlobalPosition.mavlinkEncodedLength - data_.lengthInBytes;
@@ -39505,17 +42056,17 @@ class UtmGlobalPosition implements MavlinkMessage {
 ///
 /// DEBUG_FLOAT_ARRAY
 class DebugFloatArray implements MavlinkMessage {
-  static const int _mavlinkMessageId = 350;
+  static const int msgId = 350;
 
-  static const int _mavlinkCrcExtra = 232;
+  static const int crcExtra = 232;
 
   static const int mavlinkEncodedLength = 252;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
   ///
@@ -39570,6 +42121,15 @@ class DebugFloatArray implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeUsec': timeUsec,
+        'arrayId': arrayId,
+        'name': name,
+        'data': data,
+      };
+
   factory DebugFloatArray.parse(ByteData data_) {
     if (data_.lengthInBytes < DebugFloatArray.mavlinkEncodedLength) {
       var len = DebugFloatArray.mavlinkEncodedLength - data_.lengthInBytes;
@@ -39601,17 +42161,17 @@ class DebugFloatArray implements MavlinkMessage {
 ///
 /// ORBIT_EXECUTION_STATUS
 class OrbitExecutionStatus implements MavlinkMessage {
-  static const int _mavlinkMessageId = 360;
+  static const int msgId = 360;
 
-  static const int _mavlinkCrcExtra = 11;
+  static const int crcExtra = 11;
 
   static const int mavlinkEncodedLength = 25;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
   ///
@@ -39690,6 +42250,17 @@ class OrbitExecutionStatus implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeUsec': timeUsec,
+        'radius': radius,
+        'x': x,
+        'y': y,
+        'z': z,
+        'frame': frame,
+      };
+
   factory OrbitExecutionStatus.parse(ByteData data_) {
     if (data_.lengthInBytes < OrbitExecutionStatus.mavlinkEncodedLength) {
       var len = OrbitExecutionStatus.mavlinkEncodedLength - data_.lengthInBytes;
@@ -39725,17 +42296,17 @@ class OrbitExecutionStatus implements MavlinkMessage {
 ///
 /// SMART_BATTERY_INFO
 class SmartBatteryInfo implements MavlinkMessage {
-  static const int _mavlinkMessageId = 370;
+  static const int msgId = 370;
 
-  static const int _mavlinkCrcExtra = 75;
+  static const int crcExtra = 75;
 
   static const int mavlinkEncodedLength = 109;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Capacity when full according to manufacturer, -1: field not provided.
   ///
@@ -39955,6 +42526,28 @@ class SmartBatteryInfo implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'capacityFullSpecification': capacityFullSpecification,
+        'capacityFull': capacityFull,
+        'cycleCount': cycleCount,
+        'weight': weight,
+        'dischargeMinimumVoltage': dischargeMinimumVoltage,
+        'chargingMinimumVoltage': chargingMinimumVoltage,
+        'restingMinimumVoltage': restingMinimumVoltage,
+        'id': id,
+        'batteryFunction': batteryFunction,
+        'type': type,
+        'serialNumber': serialNumber,
+        'deviceName': deviceName,
+        'chargingMaximumVoltage': chargingMaximumVoltage,
+        'cellsInSeries': cellsInSeries,
+        'dischargeMaximumCurrent': dischargeMaximumCurrent,
+        'dischargeMaximumBurstCurrent': dischargeMaximumBurstCurrent,
+        'manufactureDate': manufactureDate,
+      };
+
   factory SmartBatteryInfo.parse(ByteData data_) {
     if (data_.lengthInBytes < SmartBatteryInfo.mavlinkEncodedLength) {
       var len = SmartBatteryInfo.mavlinkEncodedLength - data_.lengthInBytes;
@@ -40028,17 +42621,17 @@ class SmartBatteryInfo implements MavlinkMessage {
 ///
 /// GENERATOR_STATUS
 class GeneratorStatus implements MavlinkMessage {
-  static const int _mavlinkMessageId = 373;
+  static const int msgId = 373;
 
-  static const int _mavlinkCrcExtra = 117;
+  static const int crcExtra = 117;
 
   static const int mavlinkEncodedLength = 42;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Status flags.
   ///
@@ -40181,6 +42774,22 @@ class GeneratorStatus implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'status': status,
+        'batteryCurrent': batteryCurrent,
+        'loadCurrent': loadCurrent,
+        'powerGenerated': powerGenerated,
+        'busVoltage': busVoltage,
+        'batCurrentSetpoint': batCurrentSetpoint,
+        'runtime': runtime,
+        'timeUntilMaintenance': timeUntilMaintenance,
+        'generatorSpeed': generatorSpeed,
+        'rectifierTemperature': rectifierTemperature,
+        'generatorTemperature': generatorTemperature,
+      };
+
   factory GeneratorStatus.parse(ByteData data_) {
     if (data_.lengthInBytes < GeneratorStatus.mavlinkEncodedLength) {
       var len = GeneratorStatus.mavlinkEncodedLength - data_.lengthInBytes;
@@ -40236,17 +42845,17 @@ class GeneratorStatus implements MavlinkMessage {
 ///
 /// ACTUATOR_OUTPUT_STATUS
 class ActuatorOutputStatus implements MavlinkMessage {
-  static const int _mavlinkMessageId = 375;
+  static const int msgId = 375;
 
-  static const int _mavlinkCrcExtra = 251;
+  static const int crcExtra = 251;
 
   static const int mavlinkEncodedLength = 140;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (since system boot).
   ///
@@ -40289,6 +42898,14 @@ class ActuatorOutputStatus implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeUsec': timeUsec,
+        'active': active,
+        'actuator': actuator,
+      };
+
   factory ActuatorOutputStatus.parse(ByteData data_) {
     if (data_.lengthInBytes < ActuatorOutputStatus.mavlinkEncodedLength) {
       var len = ActuatorOutputStatus.mavlinkEncodedLength - data_.lengthInBytes;
@@ -40318,17 +42935,17 @@ class ActuatorOutputStatus implements MavlinkMessage {
 ///
 /// TIME_ESTIMATE_TO_TARGET
 class TimeEstimateToTarget implements MavlinkMessage {
-  static const int _mavlinkMessageId = 380;
+  static const int msgId = 380;
 
-  static const int _mavlinkCrcExtra = 232;
+  static const int crcExtra = 232;
 
   static const int mavlinkEncodedLength = 20;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Estimated time to complete the vehicle's configured "safe return" action from its current position (e.g. RTL, Smart RTL, etc.). -1 indicates that the vehicle is landed, or that no time estimate available.
   ///
@@ -40399,6 +43016,16 @@ class TimeEstimateToTarget implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'safeReturn': safeReturn,
+        'land': land,
+        'missionNextItem': missionNextItem,
+        'missionEnd': missionEnd,
+        'commandedAction': commandedAction,
+      };
+
   factory TimeEstimateToTarget.parse(ByteData data_) {
     if (data_.lengthInBytes < TimeEstimateToTarget.mavlinkEncodedLength) {
       var len = TimeEstimateToTarget.mavlinkEncodedLength - data_.lengthInBytes;
@@ -40436,17 +43063,17 @@ class TimeEstimateToTarget implements MavlinkMessage {
 ///
 /// TUNNEL
 class Tunnel implements MavlinkMessage {
-  static const int _mavlinkMessageId = 385;
+  static const int msgId = 385;
 
-  static const int _mavlinkCrcExtra = 147;
+  static const int crcExtra = 147;
 
   static const int mavlinkEncodedLength = 133;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// A code that identifies the content of the payload (0 for unknown, which is the default). If this code is less than 32768, it is a 'registered' payload type and the corresponding code should be added to the MAV_TUNNEL_PAYLOAD_TYPE enum. Software creators can register blocks of types as needed. Codes greater than 32767 are considered local experiments and should not be checked in to any widely distributed codebase.
   ///
@@ -40509,6 +43136,16 @@ class Tunnel implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'payloadType': payloadType,
+        'targetSystem': targetSystem,
+        'targetComponent': targetComponent,
+        'payloadLength': payloadLength,
+        'payload': payload,
+      };
+
   factory Tunnel.parse(ByteData data_) {
     if (data_.lengthInBytes < Tunnel.mavlinkEncodedLength) {
       var len = Tunnel.mavlinkEncodedLength - data_.lengthInBytes;
@@ -40546,17 +43183,17 @@ class Tunnel implements MavlinkMessage {
 ///
 /// CAN_FRAME
 class CanFrame implements MavlinkMessage {
-  static const int _mavlinkMessageId = 386;
+  static const int msgId = 386;
 
-  static const int _mavlinkCrcExtra = 132;
+  static const int crcExtra = 132;
 
   static const int mavlinkEncodedLength = 16;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Frame ID
   ///
@@ -40627,6 +43264,17 @@ class CanFrame implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'id': id,
+        'targetSystem': targetSystem,
+        'targetComponent': targetComponent,
+        'bus': bus,
+        'len': len,
+        'data': data,
+      };
+
   factory CanFrame.parse(ByteData data_) {
     if (data_.lengthInBytes < CanFrame.mavlinkEncodedLength) {
       var len = CanFrame.mavlinkEncodedLength - data_.lengthInBytes;
@@ -40667,17 +43315,17 @@ class CanFrame implements MavlinkMessage {
 ///
 /// ONBOARD_COMPUTER_STATUS
 class OnboardComputerStatus implements MavlinkMessage {
-  static const int _mavlinkMessageId = 390;
+  static const int msgId = 390;
 
-  static const int _mavlinkCrcExtra = 156;
+  static const int crcExtra = 156;
 
   static const int mavlinkEncodedLength = 238;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
   ///
@@ -40914,6 +43562,31 @@ class OnboardComputerStatus implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeUsec': timeUsec,
+        'uptime': uptime,
+        'ramUsage': ramUsage,
+        'ramTotal': ramTotal,
+        'storageType': storageType,
+        'storageUsage': storageUsage,
+        'storageTotal': storageTotal,
+        'linkType': linkType,
+        'linkTxRate': linkTxRate,
+        'linkRxRate': linkRxRate,
+        'linkTxMax': linkTxMax,
+        'linkRxMax': linkRxMax,
+        'fanSpeed': fanSpeed,
+        'type': type,
+        'cpuCores': cpuCores,
+        'cpuCombined': cpuCombined,
+        'gpuCores': gpuCores,
+        'gpuCombined': gpuCombined,
+        'temperatureBoard': temperatureBoard,
+        'temperatureCore': temperatureCore,
+      };
+
   factory OnboardComputerStatus.parse(ByteData data_) {
     if (data_.lengthInBytes < OnboardComputerStatus.mavlinkEncodedLength) {
       var len =
@@ -40999,17 +43672,17 @@ class OnboardComputerStatus implements MavlinkMessage {
 ///
 /// COMPONENT_INFORMATION
 class ComponentInformation implements MavlinkMessage {
-  static const int _mavlinkMessageId = 395;
+  static const int msgId = 395;
 
-  static const int _mavlinkCrcExtra = 0;
+  static const int crcExtra = 0;
 
   static const int mavlinkEncodedLength = 212;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (time since system boot).
   ///
@@ -41075,6 +43748,16 @@ class ComponentInformation implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeBootMs': timeBootMs,
+        'generalMetadataFileCrc': generalMetadataFileCrc,
+        'peripheralsMetadataFileCrc': peripheralsMetadataFileCrc,
+        'generalMetadataUri': generalMetadataUri,
+        'peripheralsMetadataUri': peripheralsMetadataUri,
+      };
+
   factory ComponentInformation.parse(ByteData data_) {
     if (data_.lengthInBytes < ComponentInformation.mavlinkEncodedLength) {
       var len = ComponentInformation.mavlinkEncodedLength - data_.lengthInBytes;
@@ -41123,17 +43806,17 @@ class ComponentInformation implements MavlinkMessage {
 ///
 /// COMPONENT_METADATA
 class ComponentMetadata implements MavlinkMessage {
-  static const int _mavlinkMessageId = 397;
+  static const int msgId = 397;
 
-  static const int _mavlinkCrcExtra = 182;
+  static const int crcExtra = 182;
 
   static const int mavlinkEncodedLength = 108;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (time since system boot).
   ///
@@ -41176,6 +43859,14 @@ class ComponentMetadata implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeBootMs': timeBootMs,
+        'fileCrc': fileCrc,
+        'uri': uri,
+      };
+
   factory ComponentMetadata.parse(ByteData data_) {
     if (data_.lengthInBytes < ComponentMetadata.mavlinkEncodedLength) {
       var len = ComponentMetadata.mavlinkEncodedLength - data_.lengthInBytes;
@@ -41205,17 +43896,17 @@ class ComponentMetadata implements MavlinkMessage {
 ///
 /// PLAY_TUNE_V2
 class PlayTuneV2 implements MavlinkMessage {
-  static const int _mavlinkMessageId = 400;
+  static const int msgId = 400;
 
-  static const int _mavlinkCrcExtra = 110;
+  static const int crcExtra = 110;
 
   static const int mavlinkEncodedLength = 254;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Tune format
   ///
@@ -41268,6 +43959,15 @@ class PlayTuneV2 implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'format': format,
+        'targetSystem': targetSystem,
+        'targetComponent': targetComponent,
+        'tune': tune,
+      };
+
   factory PlayTuneV2.parse(ByteData data_) {
     if (data_.lengthInBytes < PlayTuneV2.mavlinkEncodedLength) {
       var len = PlayTuneV2.mavlinkEncodedLength - data_.lengthInBytes;
@@ -41302,17 +44002,17 @@ class PlayTuneV2 implements MavlinkMessage {
 ///
 /// SUPPORTED_TUNES
 class SupportedTunes implements MavlinkMessage {
-  static const int _mavlinkMessageId = 401;
+  static const int msgId = 401;
 
-  static const int _mavlinkCrcExtra = 183;
+  static const int crcExtra = 183;
 
   static const int mavlinkEncodedLength = 6;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Bitfield of supported tune formats.
   ///
@@ -41355,6 +44055,14 @@ class SupportedTunes implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'format': format,
+        'targetSystem': targetSystem,
+        'targetComponent': targetComponent,
+      };
+
   factory SupportedTunes.parse(ByteData data_) {
     if (data_.lengthInBytes < SupportedTunes.mavlinkEncodedLength) {
       var len = SupportedTunes.mavlinkEncodedLength - data_.lengthInBytes;
@@ -41386,17 +44094,17 @@ class SupportedTunes implements MavlinkMessage {
 ///
 /// EVENT
 class Event implements MavlinkMessage {
-  static const int _mavlinkMessageId = 410;
+  static const int msgId = 410;
 
-  static const int _mavlinkCrcExtra = 160;
+  static const int crcExtra = 160;
 
   static const int mavlinkEncodedLength = 53;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Event ID (as defined in the component metadata)
   ///
@@ -41479,6 +44187,18 @@ class Event implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'id': id,
+        'eventTimeBootMs': eventTimeBootMs,
+        'sequence': sequence,
+        'destinationComponent': destinationComponent,
+        'destinationSystem': destinationSystem,
+        'logLevels': logLevels,
+        'arguments': arguments,
+      };
+
   factory Event.parse(ByteData data_) {
     if (data_.lengthInBytes < Event.mavlinkEncodedLength) {
       var len = Event.mavlinkEncodedLength - data_.lengthInBytes;
@@ -41522,17 +44242,17 @@ class Event implements MavlinkMessage {
 ///
 /// CURRENT_EVENT_SEQUENCE
 class CurrentEventSequence implements MavlinkMessage {
-  static const int _mavlinkMessageId = 411;
+  static const int msgId = 411;
 
-  static const int _mavlinkCrcExtra = 106;
+  static const int crcExtra = 106;
 
   static const int mavlinkEncodedLength = 3;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Sequence number.
   ///
@@ -41565,6 +44285,13 @@ class CurrentEventSequence implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'sequence': sequence,
+        'flags': flags,
+      };
+
   factory CurrentEventSequence.parse(ByteData data_) {
     if (data_.lengthInBytes < CurrentEventSequence.mavlinkEncodedLength) {
       var len = CurrentEventSequence.mavlinkEncodedLength - data_.lengthInBytes;
@@ -41591,17 +44318,17 @@ class CurrentEventSequence implements MavlinkMessage {
 ///
 /// REQUEST_EVENT
 class RequestEvent implements MavlinkMessage {
-  static const int _mavlinkMessageId = 412;
+  static const int msgId = 412;
 
-  static const int _mavlinkCrcExtra = 33;
+  static const int crcExtra = 33;
 
   static const int mavlinkEncodedLength = 6;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// First sequence number of the requested event.
   ///
@@ -41652,6 +44379,15 @@ class RequestEvent implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'firstSequence': firstSequence,
+        'lastSequence': lastSequence,
+        'targetSystem': targetSystem,
+        'targetComponent': targetComponent,
+      };
+
   factory RequestEvent.parse(ByteData data_) {
     if (data_.lengthInBytes < RequestEvent.mavlinkEncodedLength) {
       var len = RequestEvent.mavlinkEncodedLength - data_.lengthInBytes;
@@ -41686,17 +44422,17 @@ class RequestEvent implements MavlinkMessage {
 ///
 /// RESPONSE_EVENT_ERROR
 class ResponseEventError implements MavlinkMessage {
-  static const int _mavlinkMessageId = 413;
+  static const int msgId = 413;
 
-  static const int _mavlinkCrcExtra = 77;
+  static const int crcExtra = 77;
 
   static const int mavlinkEncodedLength = 7;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Sequence number.
   ///
@@ -41760,6 +44496,16 @@ class ResponseEventError implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'sequence': sequence,
+        'sequenceOldestAvailable': sequenceOldestAvailable,
+        'targetSystem': targetSystem,
+        'targetComponent': targetComponent,
+        'reason': reason,
+      };
+
   factory ResponseEventError.parse(ByteData data_) {
     if (data_.lengthInBytes < ResponseEventError.mavlinkEncodedLength) {
       var len = ResponseEventError.mavlinkEncodedLength - data_.lengthInBytes;
@@ -41797,17 +44543,17 @@ class ResponseEventError implements MavlinkMessage {
 ///
 /// CANFD_FRAME
 class CanfdFrame implements MavlinkMessage {
-  static const int _mavlinkMessageId = 387;
+  static const int msgId = 387;
 
-  static const int _mavlinkCrcExtra = 4;
+  static const int crcExtra = 4;
 
   static const int mavlinkEncodedLength = 72;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Frame ID
   ///
@@ -41878,6 +44624,17 @@ class CanfdFrame implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'id': id,
+        'targetSystem': targetSystem,
+        'targetComponent': targetComponent,
+        'bus': bus,
+        'len': len,
+        'data': data,
+      };
+
   factory CanfdFrame.parse(ByteData data_) {
     if (data_.lengthInBytes < CanfdFrame.mavlinkEncodedLength) {
       var len = CanfdFrame.mavlinkEncodedLength - data_.lengthInBytes;
@@ -41918,17 +44675,17 @@ class CanfdFrame implements MavlinkMessage {
 ///
 /// CAN_FILTER_MODIFY
 class CanFilterModify implements MavlinkMessage {
-  static const int _mavlinkMessageId = 388;
+  static const int msgId = 388;
 
-  static const int _mavlinkCrcExtra = 8;
+  static const int crcExtra = 8;
 
   static const int mavlinkEncodedLength = 37;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// filter IDs, length num_ids
   ///
@@ -42001,6 +44758,17 @@ class CanFilterModify implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'ids': ids,
+        'targetSystem': targetSystem,
+        'targetComponent': targetComponent,
+        'bus': bus,
+        'operation': operation,
+        'numIds': numIds,
+      };
+
   factory CanFilterModify.parse(ByteData data_) {
     if (data_.lengthInBytes < CanFilterModify.mavlinkEncodedLength) {
       var len = CanFilterModify.mavlinkEncodedLength - data_.lengthInBytes;
@@ -42041,17 +44809,17 @@ class CanFilterModify implements MavlinkMessage {
 ///
 /// WHEEL_DISTANCE
 class WheelDistance implements MavlinkMessage {
-  static const int _mavlinkMessageId = 9000;
+  static const int msgId = 9000;
 
-  static const int _mavlinkCrcExtra = 113;
+  static const int crcExtra = 113;
 
   static const int mavlinkEncodedLength = 137;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (synced to UNIX time or since system boot).
   ///
@@ -42096,6 +44864,14 @@ class WheelDistance implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeUsec': timeUsec,
+        'distance': distance,
+        'count': count,
+      };
+
   factory WheelDistance.parse(ByteData data_) {
     if (data_.lengthInBytes < WheelDistance.mavlinkEncodedLength) {
       var len = WheelDistance.mavlinkEncodedLength - data_.lengthInBytes;
@@ -42124,17 +44900,17 @@ class WheelDistance implements MavlinkMessage {
 ///
 /// WINCH_STATUS
 class WinchStatus implements MavlinkMessage {
-  static const int _mavlinkMessageId = 9005;
+  static const int msgId = 9005;
 
-  static const int _mavlinkCrcExtra = 117;
+  static const int crcExtra = 117;
 
   static const int mavlinkEncodedLength = 34;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (synced to UNIX time or since system boot).
   ///
@@ -42241,6 +45017,19 @@ class WinchStatus implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeUsec': timeUsec,
+        'lineLength': lineLength,
+        'speed': speed,
+        'tension': tension,
+        'voltage': voltage,
+        'current': current,
+        'status': status,
+        'temperature': temperature,
+      };
+
   factory WinchStatus.parse(ByteData data_) {
     if (data_.lengthInBytes < WinchStatus.mavlinkEncodedLength) {
       var len = WinchStatus.mavlinkEncodedLength - data_.lengthInBytes;
@@ -42287,17 +45076,17 @@ class WinchStatus implements MavlinkMessage {
 ///
 /// OPEN_DRONE_ID_BASIC_ID
 class OpenDroneIdBasicId implements MavlinkMessage {
-  static const int _mavlinkMessageId = 12900;
+  static const int msgId = 12900;
 
-  static const int _mavlinkCrcExtra = 114;
+  static const int crcExtra = 114;
 
   static const int mavlinkEncodedLength = 44;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// System ID (0 for broadcast).
   ///
@@ -42372,6 +45161,17 @@ class OpenDroneIdBasicId implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'targetSystem': targetSystem,
+        'targetComponent': targetComponent,
+        'idOrMac': idOrMac,
+        'idType': idType,
+        'uaType': uaType,
+        'uasId': uasId,
+      };
+
   factory OpenDroneIdBasicId.parse(ByteData data_) {
     if (data_.lengthInBytes < OpenDroneIdBasicId.mavlinkEncodedLength) {
       var len = OpenDroneIdBasicId.mavlinkEncodedLength - data_.lengthInBytes;
@@ -42412,17 +45212,17 @@ class OpenDroneIdBasicId implements MavlinkMessage {
 ///
 /// OPEN_DRONE_ID_LOCATION
 class OpenDroneIdLocation implements MavlinkMessage {
-  static const int _mavlinkMessageId = 12901;
+  static const int msgId = 12901;
 
-  static const int _mavlinkCrcExtra = 254;
+  static const int crcExtra = 254;
 
   static const int mavlinkEncodedLength = 59;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Current latitude of the unmanned aircraft. If unknown: 0 (both Lat/Lon).
   ///
@@ -42655,6 +45455,30 @@ class OpenDroneIdLocation implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'latitude': latitude,
+        'longitude': longitude,
+        'altitudeBarometric': altitudeBarometric,
+        'altitudeGeodetic': altitudeGeodetic,
+        'height': height,
+        'timestamp': timestamp,
+        'direction': direction,
+        'speedHorizontal': speedHorizontal,
+        'speedVertical': speedVertical,
+        'targetSystem': targetSystem,
+        'targetComponent': targetComponent,
+        'idOrMac': idOrMac,
+        'status': status,
+        'heightReference': heightReference,
+        'horizontalAccuracy': horizontalAccuracy,
+        'verticalAccuracy': verticalAccuracy,
+        'barometerAccuracy': barometerAccuracy,
+        'speedAccuracy': speedAccuracy,
+        'timestampAccuracy': timestampAccuracy,
+      };
+
   factory OpenDroneIdLocation.parse(ByteData data_) {
     if (data_.lengthInBytes < OpenDroneIdLocation.mavlinkEncodedLength) {
       var len = OpenDroneIdLocation.mavlinkEncodedLength - data_.lengthInBytes;
@@ -42734,17 +45558,17 @@ class OpenDroneIdLocation implements MavlinkMessage {
 ///
 /// OPEN_DRONE_ID_AUTHENTICATION
 class OpenDroneIdAuthentication implements MavlinkMessage {
-  static const int _mavlinkMessageId = 12902;
+  static const int msgId = 12902;
 
-  static const int _mavlinkCrcExtra = 140;
+  static const int crcExtra = 140;
 
   static const int mavlinkEncodedLength = 53;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// This field is only present for page 0. 32 bit Unix Timestamp in seconds since 00:00:00 01/01/2019.
   ///
@@ -42851,6 +45675,20 @@ class OpenDroneIdAuthentication implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timestamp': timestamp,
+        'targetSystem': targetSystem,
+        'targetComponent': targetComponent,
+        'idOrMac': idOrMac,
+        'authenticationType': authenticationType,
+        'dataPage': dataPage,
+        'lastPageIndex': lastPageIndex,
+        'length': length,
+        'authenticationData': authenticationData,
+      };
+
   factory OpenDroneIdAuthentication.parse(ByteData data_) {
     if (data_.lengthInBytes < OpenDroneIdAuthentication.mavlinkEncodedLength) {
       var len =
@@ -42901,17 +45739,17 @@ class OpenDroneIdAuthentication implements MavlinkMessage {
 ///
 /// OPEN_DRONE_ID_SELF_ID
 class OpenDroneIdSelfId implements MavlinkMessage {
-  static const int _mavlinkMessageId = 12903;
+  static const int msgId = 12903;
 
-  static const int _mavlinkCrcExtra = 249;
+  static const int crcExtra = 249;
 
   static const int mavlinkEncodedLength = 46;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// System ID (0 for broadcast).
   ///
@@ -42974,6 +45812,16 @@ class OpenDroneIdSelfId implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'targetSystem': targetSystem,
+        'targetComponent': targetComponent,
+        'idOrMac': idOrMac,
+        'descriptionType': descriptionType,
+        'description': description,
+      };
+
   factory OpenDroneIdSelfId.parse(ByteData data_) {
     if (data_.lengthInBytes < OpenDroneIdSelfId.mavlinkEncodedLength) {
       var len = OpenDroneIdSelfId.mavlinkEncodedLength - data_.lengthInBytes;
@@ -43011,17 +45859,17 @@ class OpenDroneIdSelfId implements MavlinkMessage {
 ///
 /// OPEN_DRONE_ID_SYSTEM
 class OpenDroneIdSystem implements MavlinkMessage {
-  static const int _mavlinkMessageId = 12904;
+  static const int msgId = 12904;
 
-  static const int _mavlinkCrcExtra = 77;
+  static const int crcExtra = 77;
 
   static const int mavlinkEncodedLength = 54;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Latitude of the operator. If unknown: 0 (both Lat/Lon).
   ///
@@ -43204,6 +46052,26 @@ class OpenDroneIdSystem implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'operatorLatitude': operatorLatitude,
+        'operatorLongitude': operatorLongitude,
+        'areaCeiling': areaCeiling,
+        'areaFloor': areaFloor,
+        'operatorAltitudeGeo': operatorAltitudeGeo,
+        'timestamp': timestamp,
+        'areaCount': areaCount,
+        'areaRadius': areaRadius,
+        'targetSystem': targetSystem,
+        'targetComponent': targetComponent,
+        'idOrMac': idOrMac,
+        'operatorLocationType': operatorLocationType,
+        'classificationType': classificationType,
+        'categoryEu': categoryEu,
+        'classEu': classEu,
+      };
+
   factory OpenDroneIdSystem.parse(ByteData data_) {
     if (data_.lengthInBytes < OpenDroneIdSystem.mavlinkEncodedLength) {
       var len = OpenDroneIdSystem.mavlinkEncodedLength - data_.lengthInBytes;
@@ -43271,17 +46139,17 @@ class OpenDroneIdSystem implements MavlinkMessage {
 ///
 /// OPEN_DRONE_ID_OPERATOR_ID
 class OpenDroneIdOperatorId implements MavlinkMessage {
-  static const int _mavlinkMessageId = 12905;
+  static const int msgId = 12905;
 
-  static const int _mavlinkCrcExtra = 49;
+  static const int crcExtra = 49;
 
   static const int mavlinkEncodedLength = 43;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// System ID (0 for broadcast).
   ///
@@ -43344,6 +46212,16 @@ class OpenDroneIdOperatorId implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'targetSystem': targetSystem,
+        'targetComponent': targetComponent,
+        'idOrMac': idOrMac,
+        'operatorIdType': operatorIdType,
+        'operatorId': operatorId,
+      };
+
   factory OpenDroneIdOperatorId.parse(ByteData data_) {
     if (data_.lengthInBytes < OpenDroneIdOperatorId.mavlinkEncodedLength) {
       var len =
@@ -43382,17 +46260,17 @@ class OpenDroneIdOperatorId implements MavlinkMessage {
 ///
 /// OPEN_DRONE_ID_MESSAGE_PACK
 class OpenDroneIdMessagePack implements MavlinkMessage {
-  static const int _mavlinkMessageId = 12915;
+  static const int msgId = 12915;
 
-  static const int _mavlinkCrcExtra = 94;
+  static const int crcExtra = 94;
 
   static const int mavlinkEncodedLength = 249;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// System ID (0 for broadcast).
   ///
@@ -43465,6 +46343,17 @@ class OpenDroneIdMessagePack implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'targetSystem': targetSystem,
+        'targetComponent': targetComponent,
+        'idOrMac': idOrMac,
+        'singleMessageSize': singleMessageSize,
+        'msgPackSize': msgPackSize,
+        'messages': messages,
+      };
+
   factory OpenDroneIdMessagePack.parse(ByteData data_) {
     if (data_.lengthInBytes < OpenDroneIdMessagePack.mavlinkEncodedLength) {
       var len =
@@ -43506,17 +46395,17 @@ class OpenDroneIdMessagePack implements MavlinkMessage {
 ///
 /// OPEN_DRONE_ID_ARM_STATUS
 class OpenDroneIdArmStatus implements MavlinkMessage {
-  static const int _mavlinkMessageId = 12918;
+  static const int msgId = 12918;
 
-  static const int _mavlinkCrcExtra = 139;
+  static const int crcExtra = 139;
 
   static const int mavlinkEncodedLength = 51;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Status level indicating if arming is allowed.
   ///
@@ -43549,6 +46438,13 @@ class OpenDroneIdArmStatus implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'status': status,
+        'error': error,
+      };
+
   factory OpenDroneIdArmStatus.parse(ByteData data_) {
     if (data_.lengthInBytes < OpenDroneIdArmStatus.mavlinkEncodedLength) {
       var len = OpenDroneIdArmStatus.mavlinkEncodedLength - data_.lengthInBytes;
@@ -43575,17 +46471,17 @@ class OpenDroneIdArmStatus implements MavlinkMessage {
 ///
 /// OPEN_DRONE_ID_SYSTEM_UPDATE
 class OpenDroneIdSystemUpdate implements MavlinkMessage {
-  static const int _mavlinkMessageId = 12919;
+  static const int msgId = 12919;
 
-  static const int _mavlinkCrcExtra = 7;
+  static const int crcExtra = 7;
 
   static const int mavlinkEncodedLength = 18;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Latitude of the operator. If unknown: 0 (both Lat/Lon).
   ///
@@ -43664,6 +46560,17 @@ class OpenDroneIdSystemUpdate implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'operatorLatitude': operatorLatitude,
+        'operatorLongitude': operatorLongitude,
+        'operatorAltitudeGeo': operatorAltitudeGeo,
+        'timestamp': timestamp,
+        'targetSystem': targetSystem,
+        'targetComponent': targetComponent,
+      };
+
   factory OpenDroneIdSystemUpdate.parse(ByteData data_) {
     if (data_.lengthInBytes < OpenDroneIdSystemUpdate.mavlinkEncodedLength) {
       var len =
@@ -43705,17 +46612,17 @@ class OpenDroneIdSystemUpdate implements MavlinkMessage {
 ///
 /// HYGROMETER_SENSOR
 class HygrometerSensor implements MavlinkMessage {
-  static const int _mavlinkMessageId = 12920;
+  static const int msgId = 12920;
 
-  static const int _mavlinkCrcExtra = 20;
+  static const int crcExtra = 20;
 
   static const int mavlinkEncodedLength = 5;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Temperature
   ///
@@ -43760,6 +46667,14 @@ class HygrometerSensor implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'temperature': temperature,
+        'humidity': humidity,
+        'id': id,
+      };
+
   factory HygrometerSensor.parse(ByteData data_) {
     if (data_.lengthInBytes < HygrometerSensor.mavlinkEncodedLength) {
       var len = HygrometerSensor.mavlinkEncodedLength - data_.lengthInBytes;
@@ -43789,17 +46704,17 @@ class HygrometerSensor implements MavlinkMessage {
 ///
 /// FLEXIFUNCTION_SET
 class FlexifunctionSet implements MavlinkMessage {
-  static const int _mavlinkMessageId = 150;
+  static const int msgId = 150;
 
-  static const int _mavlinkCrcExtra = 181;
+  static const int crcExtra = 181;
 
   static const int mavlinkEncodedLength = 2;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// System ID
   ///
@@ -43830,6 +46745,13 @@ class FlexifunctionSet implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'targetSystem': targetSystem,
+        'targetComponent': targetComponent,
+      };
+
   factory FlexifunctionSet.parse(ByteData data_) {
     if (data_.lengthInBytes < FlexifunctionSet.mavlinkEncodedLength) {
       var len = FlexifunctionSet.mavlinkEncodedLength - data_.lengthInBytes;
@@ -43857,17 +46779,17 @@ class FlexifunctionSet implements MavlinkMessage {
 ///
 /// FLEXIFUNCTION_READ_REQ
 class FlexifunctionReadReq implements MavlinkMessage {
-  static const int _mavlinkMessageId = 151;
+  static const int msgId = 151;
 
-  static const int _mavlinkCrcExtra = 26;
+  static const int crcExtra = 26;
 
   static const int mavlinkEncodedLength = 6;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Type of flexifunction data requested
   ///
@@ -43918,6 +46840,15 @@ class FlexifunctionReadReq implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'readReqType': readReqType,
+        'dataIndex': dataIndex,
+        'targetSystem': targetSystem,
+        'targetComponent': targetComponent,
+      };
+
   factory FlexifunctionReadReq.parse(ByteData data_) {
     if (data_.lengthInBytes < FlexifunctionReadReq.mavlinkEncodedLength) {
       var len = FlexifunctionReadReq.mavlinkEncodedLength - data_.lengthInBytes;
@@ -43952,17 +46883,17 @@ class FlexifunctionReadReq implements MavlinkMessage {
 ///
 /// FLEXIFUNCTION_BUFFER_FUNCTION
 class FlexifunctionBufferFunction implements MavlinkMessage {
-  static const int _mavlinkMessageId = 152;
+  static const int msgId = 152;
 
-  static const int _mavlinkCrcExtra = 101;
+  static const int crcExtra = 101;
 
   static const int mavlinkEncodedLength = 58;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Function index
   ///
@@ -44043,6 +46974,18 @@ class FlexifunctionBufferFunction implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'funcIndex': funcIndex,
+        'funcCount': funcCount,
+        'dataAddress': dataAddress,
+        'dataSize': dataSize,
+        'targetSystem': targetSystem,
+        'targetComponent': targetComponent,
+        'data': data,
+      };
+
   factory FlexifunctionBufferFunction.parse(ByteData data_) {
     if (data_.lengthInBytes <
         FlexifunctionBufferFunction.mavlinkEncodedLength) {
@@ -44088,17 +47031,17 @@ class FlexifunctionBufferFunction implements MavlinkMessage {
 ///
 /// FLEXIFUNCTION_BUFFER_FUNCTION_ACK
 class FlexifunctionBufferFunctionAck implements MavlinkMessage {
-  static const int _mavlinkMessageId = 153;
+  static const int msgId = 153;
 
-  static const int _mavlinkCrcExtra = 109;
+  static const int crcExtra = 109;
 
   static const int mavlinkEncodedLength = 6;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Function index
   ///
@@ -44149,6 +47092,15 @@ class FlexifunctionBufferFunctionAck implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'funcIndex': funcIndex,
+        'result': result,
+        'targetSystem': targetSystem,
+        'targetComponent': targetComponent,
+      };
+
   factory FlexifunctionBufferFunctionAck.parse(ByteData data_) {
     if (data_.lengthInBytes <
         FlexifunctionBufferFunctionAck.mavlinkEncodedLength) {
@@ -44185,17 +47137,17 @@ class FlexifunctionBufferFunctionAck implements MavlinkMessage {
 ///
 /// FLEXIFUNCTION_DIRECTORY
 class FlexifunctionDirectory implements MavlinkMessage {
-  static const int _mavlinkMessageId = 155;
+  static const int msgId = 155;
 
-  static const int _mavlinkCrcExtra = 12;
+  static const int crcExtra = 12;
 
   static const int mavlinkEncodedLength = 53;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// System ID
   ///
@@ -44266,6 +47218,17 @@ class FlexifunctionDirectory implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'targetSystem': targetSystem,
+        'targetComponent': targetComponent,
+        'directoryType': directoryType,
+        'startIndex': startIndex,
+        'count': count,
+        'directoryData': directoryData,
+      };
+
   factory FlexifunctionDirectory.parse(ByteData data_) {
     if (data_.lengthInBytes < FlexifunctionDirectory.mavlinkEncodedLength) {
       var len =
@@ -44307,17 +47270,17 @@ class FlexifunctionDirectory implements MavlinkMessage {
 ///
 /// FLEXIFUNCTION_DIRECTORY_ACK
 class FlexifunctionDirectoryAck implements MavlinkMessage {
-  static const int _mavlinkMessageId = 156;
+  static const int msgId = 156;
 
-  static const int _mavlinkCrcExtra = 218;
+  static const int crcExtra = 218;
 
   static const int mavlinkEncodedLength = 7;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// result of acknowledge, 0=fail, 1=good
   ///
@@ -44388,6 +47351,17 @@ class FlexifunctionDirectoryAck implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'result': result,
+        'targetSystem': targetSystem,
+        'targetComponent': targetComponent,
+        'directoryType': directoryType,
+        'startIndex': startIndex,
+        'count': count,
+      };
+
   factory FlexifunctionDirectoryAck.parse(ByteData data_) {
     if (data_.lengthInBytes < FlexifunctionDirectoryAck.mavlinkEncodedLength) {
       var len =
@@ -44429,17 +47403,17 @@ class FlexifunctionDirectoryAck implements MavlinkMessage {
 ///
 /// FLEXIFUNCTION_COMMAND
 class FlexifunctionCommand implements MavlinkMessage {
-  static const int _mavlinkMessageId = 157;
+  static const int msgId = 157;
 
-  static const int _mavlinkCrcExtra = 133;
+  static const int crcExtra = 133;
 
   static const int mavlinkEncodedLength = 3;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// System ID
   ///
@@ -44480,6 +47454,14 @@ class FlexifunctionCommand implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'targetSystem': targetSystem,
+        'targetComponent': targetComponent,
+        'commandType': commandType,
+      };
+
   factory FlexifunctionCommand.parse(ByteData data_) {
     if (data_.lengthInBytes < FlexifunctionCommand.mavlinkEncodedLength) {
       var len = FlexifunctionCommand.mavlinkEncodedLength - data_.lengthInBytes;
@@ -44511,17 +47493,17 @@ class FlexifunctionCommand implements MavlinkMessage {
 ///
 /// FLEXIFUNCTION_COMMAND_ACK
 class FlexifunctionCommandAck implements MavlinkMessage {
-  static const int _mavlinkMessageId = 158;
+  static const int msgId = 158;
 
-  static const int _mavlinkCrcExtra = 208;
+  static const int crcExtra = 208;
 
   static const int mavlinkEncodedLength = 4;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Command acknowledged
   ///
@@ -44552,6 +47534,13 @@ class FlexifunctionCommandAck implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'commandType': commandType,
+        'result': result,
+      };
+
   factory FlexifunctionCommandAck.parse(ByteData data_) {
     if (data_.lengthInBytes < FlexifunctionCommandAck.mavlinkEncodedLength) {
       var len =
@@ -44579,17 +47568,17 @@ class FlexifunctionCommandAck implements MavlinkMessage {
 ///
 /// SERIAL_UDB_EXTRA_F2_A
 class SerialUdbExtraF2A implements MavlinkMessage {
-  static const int _mavlinkMessageId = 170;
+  static const int msgId = 170;
 
-  static const int _mavlinkCrcExtra = 103;
+  static const int crcExtra = 103;
 
   static const int mavlinkEncodedLength = 61;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Serial UDB Extra Time
   ///
@@ -44870,6 +47859,38 @@ class SerialUdbExtraF2A implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'sueTime': sueTime,
+        'sueLatitude': sueLatitude,
+        'sueLongitude': sueLongitude,
+        'sueAltitude': sueAltitude,
+        'sueWaypointIndex': sueWaypointIndex,
+        'sueRmat0': sueRmat0,
+        'sueRmat1': sueRmat1,
+        'sueRmat2': sueRmat2,
+        'sueRmat3': sueRmat3,
+        'sueRmat4': sueRmat4,
+        'sueRmat5': sueRmat5,
+        'sueRmat6': sueRmat6,
+        'sueRmat7': sueRmat7,
+        'sueRmat8': sueRmat8,
+        'sueCog': sueCog,
+        'sueSog': sueSog,
+        'sueCpuLoad': sueCpuLoad,
+        'sueAirSpeed3dimu': sueAirSpeed3dimu,
+        'sueEstimatedWind0': sueEstimatedWind0,
+        'sueEstimatedWind1': sueEstimatedWind1,
+        'sueEstimatedWind2': sueEstimatedWind2,
+        'sueMagfieldearth0': sueMagfieldearth0,
+        'sueMagfieldearth1': sueMagfieldearth1,
+        'sueMagfieldearth2': sueMagfieldearth2,
+        'sueSvs': sueSvs,
+        'sueHdop': sueHdop,
+        'sueStatus': sueStatus,
+      };
+
   factory SerialUdbExtraF2A.parse(ByteData data_) {
     if (data_.lengthInBytes < SerialUdbExtraF2A.mavlinkEncodedLength) {
       var len = SerialUdbExtraF2A.mavlinkEncodedLength - data_.lengthInBytes;
@@ -44973,17 +47994,17 @@ class SerialUdbExtraF2A implements MavlinkMessage {
 ///
 /// SERIAL_UDB_EXTRA_F2_B
 class SerialUdbExtraF2B implements MavlinkMessage {
-  static const int _mavlinkMessageId = 171;
+  static const int msgId = 171;
 
-  static const int _mavlinkCrcExtra = 139;
+  static const int crcExtra = 139;
 
   static const int mavlinkEncodedLength = 108;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// SUE barometer altitude
   ///
@@ -45497,6 +48518,61 @@ class SerialUdbExtraF2B implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'sueBaromAlt': sueBaromAlt,
+        'sueTime': sueTime,
+        'sueFlags': sueFlags,
+        'sueBaromPress': sueBaromPress,
+        'suePwmOutput4': suePwmOutput4,
+        'suePwmInput5': suePwmInput5,
+        'suePwmInput6': suePwmInput6,
+        'suePwmInput7': suePwmInput7,
+        'suePwmInput8': suePwmInput8,
+        'suePwmInput9': suePwmInput9,
+        'suePwmInput10': suePwmInput10,
+        'suePwmInput11': suePwmInput11,
+        'suePwmInput12': suePwmInput12,
+        'suePwmOutput1': suePwmOutput1,
+        'suePwmOutput2': suePwmOutput2,
+        'suePwmOutput3': suePwmOutput3,
+        'suePwmInput1': suePwmInput1,
+        'suePwmOutput5': suePwmOutput5,
+        'suePwmOutput6': suePwmOutput6,
+        'suePwmOutput7': suePwmOutput7,
+        'suePwmOutput8': suePwmOutput8,
+        'suePwmOutput9': suePwmOutput9,
+        'suePwmOutput10': suePwmOutput10,
+        'suePwmOutput11': suePwmOutput11,
+        'suePwmOutput12': suePwmOutput12,
+        'sueImuLocationX': sueImuLocationX,
+        'sueImuLocationY': sueImuLocationY,
+        'sueImuLocationZ': sueImuLocationZ,
+        'sueLocationErrorEarthX': sueLocationErrorEarthX,
+        'sueLocationErrorEarthY': sueLocationErrorEarthY,
+        'sueLocationErrorEarthZ': sueLocationErrorEarthZ,
+        'suePwmInput2': suePwmInput2,
+        'sueMemoryStackFree': sueMemoryStackFree,
+        'sueImuVelocityX': sueImuVelocityX,
+        'sueImuVelocityY': sueImuVelocityY,
+        'sueImuVelocityZ': sueImuVelocityZ,
+        'sueWaypointGoalX': sueWaypointGoalX,
+        'sueWaypointGoalY': sueWaypointGoalY,
+        'sueWaypointGoalZ': sueWaypointGoalZ,
+        'sueAeroX': sueAeroX,
+        'sueAeroY': sueAeroY,
+        'sueAeroZ': sueAeroZ,
+        'sueBaromTemp': sueBaromTemp,
+        'suePwmInput3': suePwmInput3,
+        'suePwmInput4': suePwmInput4,
+        'sueBatVolt': sueBatVolt,
+        'sueBatAmp': sueBatAmp,
+        'sueBatAmpHours': sueBatAmpHours,
+        'sueDesiredHeight': sueDesiredHeight,
+        'sueOscFails': sueOscFails,
+      };
+
   factory SerialUdbExtraF2B.parse(ByteData data_) {
     if (data_.lengthInBytes < SerialUdbExtraF2B.mavlinkEncodedLength) {
       var len = SerialUdbExtraF2B.mavlinkEncodedLength - data_.lengthInBytes;
@@ -45669,17 +48745,17 @@ class SerialUdbExtraF2B implements MavlinkMessage {
 ///
 /// SERIAL_UDB_EXTRA_F4
 class SerialUdbExtraF4 implements MavlinkMessage {
-  static const int _mavlinkMessageId = 172;
+  static const int msgId = 172;
 
-  static const int _mavlinkCrcExtra = 191;
+  static const int crcExtra = 191;
 
   static const int mavlinkEncodedLength = 10;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Serial UDB Extra Roll Stabilization with Ailerons Enabled
   ///
@@ -45797,6 +48873,21 @@ class SerialUdbExtraF4 implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'sueRollStabilizationAilerons': sueRollStabilizationAilerons,
+        'sueRollStabilizationRudder': sueRollStabilizationRudder,
+        'suePitchStabilization': suePitchStabilization,
+        'sueYawStabilizationRudder': sueYawStabilizationRudder,
+        'sueYawStabilizationAileron': sueYawStabilizationAileron,
+        'sueAileronNavigation': sueAileronNavigation,
+        'sueRudderNavigation': sueRudderNavigation,
+        'sueAltitudeholdStabilized': sueAltitudeholdStabilized,
+        'sueAltitudeholdWaypoint': sueAltitudeholdWaypoint,
+        'sueRacingMode': sueRacingMode,
+      };
+
   factory SerialUdbExtraF4.parse(ByteData data_) {
     if (data_.lengthInBytes < SerialUdbExtraF4.mavlinkEncodedLength) {
       var len = SerialUdbExtraF4.mavlinkEncodedLength - data_.lengthInBytes;
@@ -45849,17 +48940,17 @@ class SerialUdbExtraF4 implements MavlinkMessage {
 ///
 /// SERIAL_UDB_EXTRA_F5
 class SerialUdbExtraF5 implements MavlinkMessage {
-  static const int _mavlinkMessageId = 173;
+  static const int msgId = 173;
 
-  static const int _mavlinkCrcExtra = 54;
+  static const int crcExtra = 54;
 
   static const int mavlinkEncodedLength = 16;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Serial UDB YAWKP_AILERON Gain for Proporional control of navigation
   ///
@@ -45910,6 +49001,15 @@ class SerialUdbExtraF5 implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'sueYawkpAileron': sueYawkpAileron,
+        'sueYawkdAileron': sueYawkdAileron,
+        'sueRollkp': sueRollkp,
+        'sueRollkd': sueRollkd,
+      };
+
   factory SerialUdbExtraF5.parse(ByteData data_) {
     if (data_.lengthInBytes < SerialUdbExtraF5.mavlinkEncodedLength) {
       var len = SerialUdbExtraF5.mavlinkEncodedLength - data_.lengthInBytes;
@@ -45944,17 +49044,17 @@ class SerialUdbExtraF5 implements MavlinkMessage {
 ///
 /// SERIAL_UDB_EXTRA_F6
 class SerialUdbExtraF6 implements MavlinkMessage {
-  static const int _mavlinkMessageId = 174;
+  static const int msgId = 174;
 
-  static const int _mavlinkCrcExtra = 54;
+  static const int crcExtra = 54;
 
   static const int mavlinkEncodedLength = 20;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Serial UDB Extra PITCHGAIN Proportional Control
   ///
@@ -46015,6 +49115,16 @@ class SerialUdbExtraF6 implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'suePitchgain': suePitchgain,
+        'suePitchkd': suePitchkd,
+        'sueRudderElevMix': sueRudderElevMix,
+        'sueRollElevMix': sueRollElevMix,
+        'sueElevatorBoost': sueElevatorBoost,
+      };
+
   factory SerialUdbExtraF6.parse(ByteData data_) {
     if (data_.lengthInBytes < SerialUdbExtraF6.mavlinkEncodedLength) {
       var len = SerialUdbExtraF6.mavlinkEncodedLength - data_.lengthInBytes;
@@ -46052,17 +49162,17 @@ class SerialUdbExtraF6 implements MavlinkMessage {
 ///
 /// SERIAL_UDB_EXTRA_F7
 class SerialUdbExtraF7 implements MavlinkMessage {
-  static const int _mavlinkMessageId = 175;
+  static const int msgId = 175;
 
-  static const int _mavlinkCrcExtra = 171;
+  static const int crcExtra = 171;
 
   static const int mavlinkEncodedLength = 24;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Serial UDB YAWKP_RUDDER Gain for Proporional control of navigation
   ///
@@ -46133,6 +49243,17 @@ class SerialUdbExtraF7 implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'sueYawkpRudder': sueYawkpRudder,
+        'sueYawkdRudder': sueYawkdRudder,
+        'sueRollkpRudder': sueRollkpRudder,
+        'sueRollkdRudder': sueRollkdRudder,
+        'sueRudderBoost': sueRudderBoost,
+        'sueRtlPitchDown': sueRtlPitchDown,
+      };
+
   factory SerialUdbExtraF7.parse(ByteData data_) {
     if (data_.lengthInBytes < SerialUdbExtraF7.mavlinkEncodedLength) {
       var len = SerialUdbExtraF7.mavlinkEncodedLength - data_.lengthInBytes;
@@ -46173,17 +49294,17 @@ class SerialUdbExtraF7 implements MavlinkMessage {
 ///
 /// SERIAL_UDB_EXTRA_F8
 class SerialUdbExtraF8 implements MavlinkMessage {
-  static const int _mavlinkMessageId = 176;
+  static const int msgId = 176;
 
-  static const int _mavlinkCrcExtra = 142;
+  static const int crcExtra = 142;
 
   static const int mavlinkEncodedLength = 28;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Serial UDB Extra HEIGHT_TARGET_MAX
   ///
@@ -46266,6 +49387,18 @@ class SerialUdbExtraF8 implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'sueHeightTargetMax': sueHeightTargetMax,
+        'sueHeightTargetMin': sueHeightTargetMin,
+        'sueAltHoldThrottleMin': sueAltHoldThrottleMin,
+        'sueAltHoldThrottleMax': sueAltHoldThrottleMax,
+        'sueAltHoldPitchMin': sueAltHoldPitchMin,
+        'sueAltHoldPitchMax': sueAltHoldPitchMax,
+        'sueAltHoldPitchHigh': sueAltHoldPitchHigh,
+      };
+
   factory SerialUdbExtraF8.parse(ByteData data_) {
     if (data_.lengthInBytes < SerialUdbExtraF8.mavlinkEncodedLength) {
       var len = SerialUdbExtraF8.mavlinkEncodedLength - data_.lengthInBytes;
@@ -46309,17 +49442,17 @@ class SerialUdbExtraF8 implements MavlinkMessage {
 ///
 /// SERIAL_UDB_EXTRA_F13
 class SerialUdbExtraF13 implements MavlinkMessage {
-  static const int _mavlinkMessageId = 177;
+  static const int msgId = 177;
 
-  static const int _mavlinkCrcExtra = 249;
+  static const int crcExtra = 249;
 
   static const int mavlinkEncodedLength = 14;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Serial UDB Extra MP Origin Latitude
   ///
@@ -46370,6 +49503,15 @@ class SerialUdbExtraF13 implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'sueLatOrigin': sueLatOrigin,
+        'sueLonOrigin': sueLonOrigin,
+        'sueAltOrigin': sueAltOrigin,
+        'sueWeekNo': sueWeekNo,
+      };
+
   factory SerialUdbExtraF13.parse(ByteData data_) {
     if (data_.lengthInBytes < SerialUdbExtraF13.mavlinkEncodedLength) {
       var len = SerialUdbExtraF13.mavlinkEncodedLength - data_.lengthInBytes;
@@ -46404,17 +49546,17 @@ class SerialUdbExtraF13 implements MavlinkMessage {
 ///
 /// SERIAL_UDB_EXTRA_F14
 class SerialUdbExtraF14 implements MavlinkMessage {
-  static const int _mavlinkMessageId = 178;
+  static const int msgId = 178;
 
-  static const int _mavlinkCrcExtra = 123;
+  static const int crcExtra = 123;
 
   static const int mavlinkEncodedLength = 17;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Serial UDB Extra Type Program Address of Last Trap
   ///
@@ -46535,6 +49677,22 @@ class SerialUdbExtraF14 implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'sueTrapSource': sueTrapSource,
+        'sueRcon': sueRcon,
+        'sueTrapFlags': sueTrapFlags,
+        'sueOscFailCount': sueOscFailCount,
+        'sueWindEstimation': sueWindEstimation,
+        'sueGpsType': sueGpsType,
+        'sueDr': sueDr,
+        'sueBoardType': sueBoardType,
+        'sueAirframe': sueAirframe,
+        'sueClockConfig': sueClockConfig,
+        'sueFlightPlanType': sueFlightPlanType,
+      };
+
   factory SerialUdbExtraF14.parse(ByteData data_) {
     if (data_.lengthInBytes < SerialUdbExtraF14.mavlinkEncodedLength) {
       var len = SerialUdbExtraF14.mavlinkEncodedLength - data_.lengthInBytes;
@@ -46590,17 +49748,17 @@ class SerialUdbExtraF14 implements MavlinkMessage {
 ///
 /// SERIAL_UDB_EXTRA_F15
 class SerialUdbExtraF15 implements MavlinkMessage {
-  static const int _mavlinkMessageId = 179;
+  static const int msgId = 179;
 
-  static const int _mavlinkCrcExtra = 7;
+  static const int crcExtra = 7;
 
   static const int mavlinkEncodedLength = 60;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Serial UDB Extra Model Name Of Vehicle
   ///
@@ -46633,6 +49791,13 @@ class SerialUdbExtraF15 implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'sueIdVehicleModelName': sueIdVehicleModelName,
+        'sueIdVehicleRegistration': sueIdVehicleRegistration,
+      };
+
   factory SerialUdbExtraF15.parse(ByteData data_) {
     if (data_.lengthInBytes < SerialUdbExtraF15.mavlinkEncodedLength) {
       var len = SerialUdbExtraF15.mavlinkEncodedLength - data_.lengthInBytes;
@@ -46661,17 +49826,17 @@ class SerialUdbExtraF15 implements MavlinkMessage {
 ///
 /// SERIAL_UDB_EXTRA_F16
 class SerialUdbExtraF16 implements MavlinkMessage {
-  static const int _mavlinkMessageId = 180;
+  static const int msgId = 180;
 
-  static const int _mavlinkCrcExtra = 222;
+  static const int crcExtra = 222;
 
   static const int mavlinkEncodedLength = 110;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Serial UDB Extra Name of Expected Lead Pilot
   ///
@@ -46702,6 +49867,13 @@ class SerialUdbExtraF16 implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'sueIdLeadPilot': sueIdLeadPilot,
+        'sueIdDiyDronesUrl': sueIdDiyDronesUrl,
+      };
+
   factory SerialUdbExtraF16.parse(ByteData data_) {
     if (data_.lengthInBytes < SerialUdbExtraF16.mavlinkEncodedLength) {
       var len = SerialUdbExtraF16.mavlinkEncodedLength - data_.lengthInBytes;
@@ -46729,17 +49901,17 @@ class SerialUdbExtraF16 implements MavlinkMessage {
 ///
 /// ALTITUDES
 class Altitudes implements MavlinkMessage {
-  static const int _mavlinkMessageId = 181;
+  static const int msgId = 181;
 
-  static const int _mavlinkCrcExtra = 55;
+  static const int crcExtra = 55;
 
   static const int mavlinkEncodedLength = 28;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (milliseconds since system boot)
   ///
@@ -46820,6 +49992,18 @@ class Altitudes implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeBootMs': timeBootMs,
+        'altGps': altGps,
+        'altImu': altImu,
+        'altBarometric': altBarometric,
+        'altOpticalFlow': altOpticalFlow,
+        'altRangeFinder': altRangeFinder,
+        'altExtra': altExtra,
+      };
+
   factory Altitudes.parse(ByteData data_) {
     if (data_.lengthInBytes < Altitudes.mavlinkEncodedLength) {
       var len = Altitudes.mavlinkEncodedLength - data_.lengthInBytes;
@@ -46863,17 +50047,17 @@ class Altitudes implements MavlinkMessage {
 ///
 /// AIRSPEEDS
 class Airspeeds implements MavlinkMessage {
-  static const int _mavlinkMessageId = 182;
+  static const int msgId = 182;
 
-  static const int _mavlinkCrcExtra = 154;
+  static const int crcExtra = 154;
 
   static const int mavlinkEncodedLength = 16;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Timestamp (milliseconds since system boot)
   ///
@@ -46954,6 +50138,18 @@ class Airspeeds implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'timeBootMs': timeBootMs,
+        'airspeedImu': airspeedImu,
+        'airspeedPitot': airspeedPitot,
+        'airspeedHotWire': airspeedHotWire,
+        'airspeedUltrasonic': airspeedUltrasonic,
+        'aoa': aoa,
+        'aoy': aoy,
+      };
+
   factory Airspeeds.parse(ByteData data_) {
     if (data_.lengthInBytes < Airspeeds.mavlinkEncodedLength) {
       var len = Airspeeds.mavlinkEncodedLength - data_.lengthInBytes;
@@ -46997,17 +50193,17 @@ class Airspeeds implements MavlinkMessage {
 ///
 /// SERIAL_UDB_EXTRA_F17
 class SerialUdbExtraF17 implements MavlinkMessage {
-  static const int _mavlinkMessageId = 183;
+  static const int msgId = 183;
 
-  static const int _mavlinkCrcExtra = 175;
+  static const int crcExtra = 175;
 
   static const int mavlinkEncodedLength = 12;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// SUE Feed Forward Gain
   ///
@@ -47048,6 +50244,14 @@ class SerialUdbExtraF17 implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'sueFeedForward': sueFeedForward,
+        'sueTurnRateNav': sueTurnRateNav,
+        'sueTurnRateFbw': sueTurnRateFbw,
+      };
+
   factory SerialUdbExtraF17.parse(ByteData data_) {
     if (data_.lengthInBytes < SerialUdbExtraF17.mavlinkEncodedLength) {
       var len = SerialUdbExtraF17.mavlinkEncodedLength - data_.lengthInBytes;
@@ -47079,17 +50283,17 @@ class SerialUdbExtraF17 implements MavlinkMessage {
 ///
 /// SERIAL_UDB_EXTRA_F18
 class SerialUdbExtraF18 implements MavlinkMessage {
-  static const int _mavlinkMessageId = 184;
+  static const int msgId = 184;
 
-  static const int _mavlinkCrcExtra = 41;
+  static const int crcExtra = 41;
 
   static const int mavlinkEncodedLength = 20;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// SUE Angle of Attack Normal
   ///
@@ -47151,6 +50355,16 @@ class SerialUdbExtraF18 implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'angleOfAttackNormal': angleOfAttackNormal,
+        'angleOfAttackInverted': angleOfAttackInverted,
+        'elevatorTrimNormal': elevatorTrimNormal,
+        'elevatorTrimInverted': elevatorTrimInverted,
+        'referenceSpeed': referenceSpeed,
+      };
+
   factory SerialUdbExtraF18.parse(ByteData data_) {
     if (data_.lengthInBytes < SerialUdbExtraF18.mavlinkEncodedLength) {
       var len = SerialUdbExtraF18.mavlinkEncodedLength - data_.lengthInBytes;
@@ -47188,17 +50402,17 @@ class SerialUdbExtraF18 implements MavlinkMessage {
 ///
 /// SERIAL_UDB_EXTRA_F19
 class SerialUdbExtraF19 implements MavlinkMessage {
-  static const int _mavlinkMessageId = 185;
+  static const int msgId = 185;
 
-  static const int _mavlinkCrcExtra = 87;
+  static const int crcExtra = 87;
 
   static const int mavlinkEncodedLength = 8;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// SUE aileron output channel
   ///
@@ -47293,6 +50507,19 @@ class SerialUdbExtraF19 implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'sueAileronOutputChannel': sueAileronOutputChannel,
+        'sueAileronReversed': sueAileronReversed,
+        'sueElevatorOutputChannel': sueElevatorOutputChannel,
+        'sueElevatorReversed': sueElevatorReversed,
+        'sueThrottleOutputChannel': sueThrottleOutputChannel,
+        'sueThrottleReversed': sueThrottleReversed,
+        'sueRudderOutputChannel': sueRudderOutputChannel,
+        'sueRudderReversed': sueRudderReversed,
+      };
+
   factory SerialUdbExtraF19.parse(ByteData data_) {
     if (data_.lengthInBytes < SerialUdbExtraF19.mavlinkEncodedLength) {
       var len = SerialUdbExtraF19.mavlinkEncodedLength - data_.lengthInBytes;
@@ -47339,17 +50566,17 @@ class SerialUdbExtraF19 implements MavlinkMessage {
 ///
 /// SERIAL_UDB_EXTRA_F20
 class SerialUdbExtraF20 implements MavlinkMessage {
-  static const int _mavlinkMessageId = 186;
+  static const int msgId = 186;
 
-  static const int _mavlinkCrcExtra = 144;
+  static const int crcExtra = 144;
 
   static const int mavlinkEncodedLength = 25;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// SUE UDB PWM Trim Value on Input 1
   ///
@@ -47490,6 +50717,24 @@ class SerialUdbExtraF20 implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'sueTrimValueInput1': sueTrimValueInput1,
+        'sueTrimValueInput2': sueTrimValueInput2,
+        'sueTrimValueInput3': sueTrimValueInput3,
+        'sueTrimValueInput4': sueTrimValueInput4,
+        'sueTrimValueInput5': sueTrimValueInput5,
+        'sueTrimValueInput6': sueTrimValueInput6,
+        'sueTrimValueInput7': sueTrimValueInput7,
+        'sueTrimValueInput8': sueTrimValueInput8,
+        'sueTrimValueInput9': sueTrimValueInput9,
+        'sueTrimValueInput10': sueTrimValueInput10,
+        'sueTrimValueInput11': sueTrimValueInput11,
+        'sueTrimValueInput12': sueTrimValueInput12,
+        'sueNumberOfInputs': sueNumberOfInputs,
+      };
+
   factory SerialUdbExtraF20.parse(ByteData data_) {
     if (data_.lengthInBytes < SerialUdbExtraF20.mavlinkEncodedLength) {
       var len = SerialUdbExtraF20.mavlinkEncodedLength - data_.lengthInBytes;
@@ -47551,17 +50796,17 @@ class SerialUdbExtraF20 implements MavlinkMessage {
 ///
 /// SERIAL_UDB_EXTRA_F21
 class SerialUdbExtraF21 implements MavlinkMessage {
-  static const int _mavlinkMessageId = 187;
+  static const int msgId = 187;
 
-  static const int _mavlinkCrcExtra = 134;
+  static const int crcExtra = 134;
 
   static const int mavlinkEncodedLength = 12;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// SUE X accelerometer offset
   ///
@@ -47632,6 +50877,17 @@ class SerialUdbExtraF21 implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'sueAccelXOffset': sueAccelXOffset,
+        'sueAccelYOffset': sueAccelYOffset,
+        'sueAccelZOffset': sueAccelZOffset,
+        'sueGyroXOffset': sueGyroXOffset,
+        'sueGyroYOffset': sueGyroYOffset,
+        'sueGyroZOffset': sueGyroZOffset,
+      };
+
   factory SerialUdbExtraF21.parse(ByteData data_) {
     if (data_.lengthInBytes < SerialUdbExtraF21.mavlinkEncodedLength) {
       var len = SerialUdbExtraF21.mavlinkEncodedLength - data_.lengthInBytes;
@@ -47672,17 +50928,17 @@ class SerialUdbExtraF21 implements MavlinkMessage {
 ///
 /// SERIAL_UDB_EXTRA_F22
 class SerialUdbExtraF22 implements MavlinkMessage {
-  static const int _mavlinkMessageId = 188;
+  static const int msgId = 188;
 
-  static const int _mavlinkCrcExtra = 91;
+  static const int crcExtra = 91;
 
   static const int mavlinkEncodedLength = 12;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// SUE X accelerometer at calibration time
   ///
@@ -47758,6 +51014,17 @@ class SerialUdbExtraF22 implements MavlinkMessage {
           sueGyroZAtCalibration ?? this.sueGyroZAtCalibration,
     );
   }
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'sueAccelXAtCalibration': sueAccelXAtCalibration,
+        'sueAccelYAtCalibration': sueAccelYAtCalibration,
+        'sueAccelZAtCalibration': sueAccelZAtCalibration,
+        'sueGyroXAtCalibration': sueGyroXAtCalibration,
+        'sueGyroYAtCalibration': sueGyroYAtCalibration,
+        'sueGyroZAtCalibration': sueGyroZAtCalibration,
+      };
 
   factory SerialUdbExtraF22.parse(ByteData data_) {
     if (data_.lengthInBytes < SerialUdbExtraF22.mavlinkEncodedLength) {
@@ -48309,501 +51576,501 @@ class MavlinkDialectMatrixpilot implements MavlinkDialect {
   int crcExtra(int messageID) {
     switch (messageID) {
       case 0:
-        return Heartbeat._mavlinkCrcExtra;
+        return Heartbeat.crcExtra;
       case 300:
-        return ProtocolVersion._mavlinkCrcExtra;
+        return ProtocolVersion.crcExtra;
       case 1:
-        return SysStatus._mavlinkCrcExtra;
+        return SysStatus.crcExtra;
       case 2:
-        return SystemTime._mavlinkCrcExtra;
+        return SystemTime.crcExtra;
       case 4:
-        return Ping._mavlinkCrcExtra;
+        return Ping.crcExtra;
       case 5:
-        return ChangeOperatorControl._mavlinkCrcExtra;
+        return ChangeOperatorControl.crcExtra;
       case 6:
-        return ChangeOperatorControlAck._mavlinkCrcExtra;
+        return ChangeOperatorControlAck.crcExtra;
       case 7:
-        return AuthKey._mavlinkCrcExtra;
+        return AuthKey.crcExtra;
       case 8:
-        return LinkNodeStatus._mavlinkCrcExtra;
+        return LinkNodeStatus.crcExtra;
       case 11:
-        return SetMode._mavlinkCrcExtra;
+        return SetMode.crcExtra;
       case 20:
-        return ParamRequestRead._mavlinkCrcExtra;
+        return ParamRequestRead.crcExtra;
       case 21:
-        return ParamRequestList._mavlinkCrcExtra;
+        return ParamRequestList.crcExtra;
       case 22:
-        return ParamValue._mavlinkCrcExtra;
+        return ParamValue.crcExtra;
       case 23:
-        return ParamSet._mavlinkCrcExtra;
+        return ParamSet.crcExtra;
       case 24:
-        return GpsRawInt._mavlinkCrcExtra;
+        return GpsRawInt.crcExtra;
       case 25:
-        return GpsStatus._mavlinkCrcExtra;
+        return GpsStatus.crcExtra;
       case 26:
-        return ScaledImu._mavlinkCrcExtra;
+        return ScaledImu.crcExtra;
       case 27:
-        return RawImu._mavlinkCrcExtra;
+        return RawImu.crcExtra;
       case 28:
-        return RawPressure._mavlinkCrcExtra;
+        return RawPressure.crcExtra;
       case 29:
-        return ScaledPressure._mavlinkCrcExtra;
+        return ScaledPressure.crcExtra;
       case 30:
-        return Attitude._mavlinkCrcExtra;
+        return Attitude.crcExtra;
       case 31:
-        return AttitudeQuaternion._mavlinkCrcExtra;
+        return AttitudeQuaternion.crcExtra;
       case 32:
-        return LocalPositionNed._mavlinkCrcExtra;
+        return LocalPositionNed.crcExtra;
       case 33:
-        return GlobalPositionInt._mavlinkCrcExtra;
+        return GlobalPositionInt.crcExtra;
       case 34:
-        return RcChannelsScaled._mavlinkCrcExtra;
+        return RcChannelsScaled.crcExtra;
       case 35:
-        return RcChannelsRaw._mavlinkCrcExtra;
+        return RcChannelsRaw.crcExtra;
       case 36:
-        return ServoOutputRaw._mavlinkCrcExtra;
+        return ServoOutputRaw.crcExtra;
       case 37:
-        return MissionRequestPartialList._mavlinkCrcExtra;
+        return MissionRequestPartialList.crcExtra;
       case 38:
-        return MissionWritePartialList._mavlinkCrcExtra;
+        return MissionWritePartialList.crcExtra;
       case 39:
-        return MissionItem._mavlinkCrcExtra;
+        return MissionItem.crcExtra;
       case 40:
-        return MissionRequest._mavlinkCrcExtra;
+        return MissionRequest.crcExtra;
       case 41:
-        return MissionSetCurrent._mavlinkCrcExtra;
+        return MissionSetCurrent.crcExtra;
       case 42:
-        return MissionCurrent._mavlinkCrcExtra;
+        return MissionCurrent.crcExtra;
       case 43:
-        return MissionRequestList._mavlinkCrcExtra;
+        return MissionRequestList.crcExtra;
       case 44:
-        return MissionCount._mavlinkCrcExtra;
+        return MissionCount.crcExtra;
       case 45:
-        return MissionClearAll._mavlinkCrcExtra;
+        return MissionClearAll.crcExtra;
       case 46:
-        return MissionItemReached._mavlinkCrcExtra;
+        return MissionItemReached.crcExtra;
       case 47:
-        return MissionAck._mavlinkCrcExtra;
+        return MissionAck.crcExtra;
       case 48:
-        return SetGpsGlobalOrigin._mavlinkCrcExtra;
+        return SetGpsGlobalOrigin.crcExtra;
       case 49:
-        return GpsGlobalOrigin._mavlinkCrcExtra;
+        return GpsGlobalOrigin.crcExtra;
       case 50:
-        return ParamMapRc._mavlinkCrcExtra;
+        return ParamMapRc.crcExtra;
       case 51:
-        return MissionRequestInt._mavlinkCrcExtra;
+        return MissionRequestInt.crcExtra;
       case 54:
-        return SafetySetAllowedArea._mavlinkCrcExtra;
+        return SafetySetAllowedArea.crcExtra;
       case 55:
-        return SafetyAllowedArea._mavlinkCrcExtra;
+        return SafetyAllowedArea.crcExtra;
       case 61:
-        return AttitudeQuaternionCov._mavlinkCrcExtra;
+        return AttitudeQuaternionCov.crcExtra;
       case 62:
-        return NavControllerOutput._mavlinkCrcExtra;
+        return NavControllerOutput.crcExtra;
       case 63:
-        return GlobalPositionIntCov._mavlinkCrcExtra;
+        return GlobalPositionIntCov.crcExtra;
       case 64:
-        return LocalPositionNedCov._mavlinkCrcExtra;
+        return LocalPositionNedCov.crcExtra;
       case 65:
-        return RcChannels._mavlinkCrcExtra;
+        return RcChannels.crcExtra;
       case 66:
-        return RequestDataStream._mavlinkCrcExtra;
+        return RequestDataStream.crcExtra;
       case 67:
-        return DataStream._mavlinkCrcExtra;
+        return DataStream.crcExtra;
       case 69:
-        return ManualControl._mavlinkCrcExtra;
+        return ManualControl.crcExtra;
       case 70:
-        return RcChannelsOverride._mavlinkCrcExtra;
+        return RcChannelsOverride.crcExtra;
       case 73:
-        return MissionItemInt._mavlinkCrcExtra;
+        return MissionItemInt.crcExtra;
       case 74:
-        return VfrHud._mavlinkCrcExtra;
+        return VfrHud.crcExtra;
       case 75:
-        return CommandInt._mavlinkCrcExtra;
+        return CommandInt.crcExtra;
       case 76:
-        return CommandLong._mavlinkCrcExtra;
+        return CommandLong.crcExtra;
       case 77:
-        return CommandAck._mavlinkCrcExtra;
+        return CommandAck.crcExtra;
       case 80:
-        return CommandCancel._mavlinkCrcExtra;
+        return CommandCancel.crcExtra;
       case 81:
-        return ManualSetpoint._mavlinkCrcExtra;
+        return ManualSetpoint.crcExtra;
       case 82:
-        return SetAttitudeTarget._mavlinkCrcExtra;
+        return SetAttitudeTarget.crcExtra;
       case 83:
-        return AttitudeTarget._mavlinkCrcExtra;
+        return AttitudeTarget.crcExtra;
       case 84:
-        return SetPositionTargetLocalNed._mavlinkCrcExtra;
+        return SetPositionTargetLocalNed.crcExtra;
       case 85:
-        return PositionTargetLocalNed._mavlinkCrcExtra;
+        return PositionTargetLocalNed.crcExtra;
       case 86:
-        return SetPositionTargetGlobalInt._mavlinkCrcExtra;
+        return SetPositionTargetGlobalInt.crcExtra;
       case 87:
-        return PositionTargetGlobalInt._mavlinkCrcExtra;
+        return PositionTargetGlobalInt.crcExtra;
       case 89:
-        return LocalPositionNedSystemGlobalOffset._mavlinkCrcExtra;
+        return LocalPositionNedSystemGlobalOffset.crcExtra;
       case 90:
-        return HilState._mavlinkCrcExtra;
+        return HilState.crcExtra;
       case 91:
-        return HilControls._mavlinkCrcExtra;
+        return HilControls.crcExtra;
       case 92:
-        return HilRcInputsRaw._mavlinkCrcExtra;
+        return HilRcInputsRaw.crcExtra;
       case 93:
-        return HilActuatorControls._mavlinkCrcExtra;
+        return HilActuatorControls.crcExtra;
       case 100:
-        return OpticalFlow._mavlinkCrcExtra;
+        return OpticalFlow.crcExtra;
       case 101:
-        return GlobalVisionPositionEstimate._mavlinkCrcExtra;
+        return GlobalVisionPositionEstimate.crcExtra;
       case 102:
-        return VisionPositionEstimate._mavlinkCrcExtra;
+        return VisionPositionEstimate.crcExtra;
       case 103:
-        return VisionSpeedEstimate._mavlinkCrcExtra;
+        return VisionSpeedEstimate.crcExtra;
       case 104:
-        return ViconPositionEstimate._mavlinkCrcExtra;
+        return ViconPositionEstimate.crcExtra;
       case 105:
-        return HighresImu._mavlinkCrcExtra;
+        return HighresImu.crcExtra;
       case 106:
-        return OpticalFlowRad._mavlinkCrcExtra;
+        return OpticalFlowRad.crcExtra;
       case 107:
-        return HilSensor._mavlinkCrcExtra;
+        return HilSensor.crcExtra;
       case 108:
-        return SimState._mavlinkCrcExtra;
+        return SimState.crcExtra;
       case 109:
-        return RadioStatus._mavlinkCrcExtra;
+        return RadioStatus.crcExtra;
       case 110:
-        return FileTransferProtocol._mavlinkCrcExtra;
+        return FileTransferProtocol.crcExtra;
       case 111:
-        return Timesync._mavlinkCrcExtra;
+        return Timesync.crcExtra;
       case 112:
-        return CameraTrigger._mavlinkCrcExtra;
+        return CameraTrigger.crcExtra;
       case 113:
-        return HilGps._mavlinkCrcExtra;
+        return HilGps.crcExtra;
       case 114:
-        return HilOpticalFlow._mavlinkCrcExtra;
+        return HilOpticalFlow.crcExtra;
       case 115:
-        return HilStateQuaternion._mavlinkCrcExtra;
+        return HilStateQuaternion.crcExtra;
       case 116:
-        return ScaledImu2._mavlinkCrcExtra;
+        return ScaledImu2.crcExtra;
       case 117:
-        return LogRequestList._mavlinkCrcExtra;
+        return LogRequestList.crcExtra;
       case 118:
-        return LogEntry._mavlinkCrcExtra;
+        return LogEntry.crcExtra;
       case 119:
-        return LogRequestData._mavlinkCrcExtra;
+        return LogRequestData.crcExtra;
       case 120:
-        return LogData._mavlinkCrcExtra;
+        return LogData.crcExtra;
       case 121:
-        return LogErase._mavlinkCrcExtra;
+        return LogErase.crcExtra;
       case 122:
-        return LogRequestEnd._mavlinkCrcExtra;
+        return LogRequestEnd.crcExtra;
       case 123:
-        return GpsInjectData._mavlinkCrcExtra;
+        return GpsInjectData.crcExtra;
       case 124:
-        return Gps2Raw._mavlinkCrcExtra;
+        return Gps2Raw.crcExtra;
       case 125:
-        return PowerStatus._mavlinkCrcExtra;
+        return PowerStatus.crcExtra;
       case 126:
-        return SerialControl._mavlinkCrcExtra;
+        return SerialControl.crcExtra;
       case 127:
-        return GpsRtk._mavlinkCrcExtra;
+        return GpsRtk.crcExtra;
       case 128:
-        return Gps2Rtk._mavlinkCrcExtra;
+        return Gps2Rtk.crcExtra;
       case 129:
-        return ScaledImu3._mavlinkCrcExtra;
+        return ScaledImu3.crcExtra;
       case 130:
-        return DataTransmissionHandshake._mavlinkCrcExtra;
+        return DataTransmissionHandshake.crcExtra;
       case 131:
-        return EncapsulatedData._mavlinkCrcExtra;
+        return EncapsulatedData.crcExtra;
       case 132:
-        return DistanceSensor._mavlinkCrcExtra;
+        return DistanceSensor.crcExtra;
       case 133:
-        return TerrainRequest._mavlinkCrcExtra;
+        return TerrainRequest.crcExtra;
       case 134:
-        return TerrainData._mavlinkCrcExtra;
+        return TerrainData.crcExtra;
       case 135:
-        return TerrainCheck._mavlinkCrcExtra;
+        return TerrainCheck.crcExtra;
       case 136:
-        return TerrainReport._mavlinkCrcExtra;
+        return TerrainReport.crcExtra;
       case 137:
-        return ScaledPressure2._mavlinkCrcExtra;
+        return ScaledPressure2.crcExtra;
       case 138:
-        return AttPosMocap._mavlinkCrcExtra;
+        return AttPosMocap.crcExtra;
       case 139:
-        return SetActuatorControlTarget._mavlinkCrcExtra;
+        return SetActuatorControlTarget.crcExtra;
       case 140:
-        return ActuatorControlTarget._mavlinkCrcExtra;
+        return ActuatorControlTarget.crcExtra;
       case 141:
-        return Altitude._mavlinkCrcExtra;
+        return Altitude.crcExtra;
       case 142:
-        return ResourceRequest._mavlinkCrcExtra;
+        return ResourceRequest.crcExtra;
       case 143:
-        return ScaledPressure3._mavlinkCrcExtra;
+        return ScaledPressure3.crcExtra;
       case 144:
-        return FollowTarget._mavlinkCrcExtra;
+        return FollowTarget.crcExtra;
       case 146:
-        return ControlSystemState._mavlinkCrcExtra;
+        return ControlSystemState.crcExtra;
       case 147:
-        return BatteryStatus._mavlinkCrcExtra;
+        return BatteryStatus.crcExtra;
       case 148:
-        return AutopilotVersion._mavlinkCrcExtra;
+        return AutopilotVersion.crcExtra;
       case 149:
-        return LandingTarget._mavlinkCrcExtra;
+        return LandingTarget.crcExtra;
       case 162:
-        return FenceStatus._mavlinkCrcExtra;
+        return FenceStatus.crcExtra;
       case 192:
-        return MagCalReport._mavlinkCrcExtra;
+        return MagCalReport.crcExtra;
       case 225:
-        return EfiStatus._mavlinkCrcExtra;
+        return EfiStatus.crcExtra;
       case 230:
-        return EstimatorStatus._mavlinkCrcExtra;
+        return EstimatorStatus.crcExtra;
       case 231:
-        return WindCov._mavlinkCrcExtra;
+        return WindCov.crcExtra;
       case 232:
-        return GpsInput._mavlinkCrcExtra;
+        return GpsInput.crcExtra;
       case 233:
-        return GpsRtcmData._mavlinkCrcExtra;
+        return GpsRtcmData.crcExtra;
       case 234:
-        return HighLatency._mavlinkCrcExtra;
+        return HighLatency.crcExtra;
       case 235:
-        return HighLatency2._mavlinkCrcExtra;
+        return HighLatency2.crcExtra;
       case 241:
-        return Vibration._mavlinkCrcExtra;
+        return Vibration.crcExtra;
       case 242:
-        return HomePosition._mavlinkCrcExtra;
+        return HomePosition.crcExtra;
       case 243:
-        return SetHomePosition._mavlinkCrcExtra;
+        return SetHomePosition.crcExtra;
       case 244:
-        return MessageInterval._mavlinkCrcExtra;
+        return MessageInterval.crcExtra;
       case 245:
-        return ExtendedSysState._mavlinkCrcExtra;
+        return ExtendedSysState.crcExtra;
       case 246:
-        return AdsbVehicle._mavlinkCrcExtra;
+        return AdsbVehicle.crcExtra;
       case 247:
-        return Collision._mavlinkCrcExtra;
+        return Collision.crcExtra;
       case 248:
-        return V2Extension._mavlinkCrcExtra;
+        return V2Extension.crcExtra;
       case 249:
-        return MemoryVect._mavlinkCrcExtra;
+        return MemoryVect.crcExtra;
       case 250:
-        return DebugVect._mavlinkCrcExtra;
+        return DebugVect.crcExtra;
       case 251:
-        return NamedValueFloat._mavlinkCrcExtra;
+        return NamedValueFloat.crcExtra;
       case 252:
-        return NamedValueInt._mavlinkCrcExtra;
+        return NamedValueInt.crcExtra;
       case 253:
-        return Statustext._mavlinkCrcExtra;
+        return Statustext.crcExtra;
       case 254:
-        return Debug._mavlinkCrcExtra;
+        return Debug.crcExtra;
       case 256:
-        return SetupSigning._mavlinkCrcExtra;
+        return SetupSigning.crcExtra;
       case 257:
-        return ButtonChange._mavlinkCrcExtra;
+        return ButtonChange.crcExtra;
       case 258:
-        return PlayTune._mavlinkCrcExtra;
+        return PlayTune.crcExtra;
       case 259:
-        return CameraInformation._mavlinkCrcExtra;
+        return CameraInformation.crcExtra;
       case 260:
-        return CameraSettings._mavlinkCrcExtra;
+        return CameraSettings.crcExtra;
       case 261:
-        return StorageInformation._mavlinkCrcExtra;
+        return StorageInformation.crcExtra;
       case 262:
-        return CameraCaptureStatus._mavlinkCrcExtra;
+        return CameraCaptureStatus.crcExtra;
       case 263:
-        return CameraImageCaptured._mavlinkCrcExtra;
+        return CameraImageCaptured.crcExtra;
       case 264:
-        return FlightInformation._mavlinkCrcExtra;
+        return FlightInformation.crcExtra;
       case 265:
-        return MountOrientation._mavlinkCrcExtra;
+        return MountOrientation.crcExtra;
       case 266:
-        return LoggingData._mavlinkCrcExtra;
+        return LoggingData.crcExtra;
       case 267:
-        return LoggingDataAcked._mavlinkCrcExtra;
+        return LoggingDataAcked.crcExtra;
       case 268:
-        return LoggingAck._mavlinkCrcExtra;
+        return LoggingAck.crcExtra;
       case 269:
-        return VideoStreamInformation._mavlinkCrcExtra;
+        return VideoStreamInformation.crcExtra;
       case 270:
-        return VideoStreamStatus._mavlinkCrcExtra;
+        return VideoStreamStatus.crcExtra;
       case 271:
-        return CameraFovStatus._mavlinkCrcExtra;
+        return CameraFovStatus.crcExtra;
       case 275:
-        return CameraTrackingImageStatus._mavlinkCrcExtra;
+        return CameraTrackingImageStatus.crcExtra;
       case 276:
-        return CameraTrackingGeoStatus._mavlinkCrcExtra;
+        return CameraTrackingGeoStatus.crcExtra;
       case 280:
-        return GimbalManagerInformation._mavlinkCrcExtra;
+        return GimbalManagerInformation.crcExtra;
       case 281:
-        return GimbalManagerStatus._mavlinkCrcExtra;
+        return GimbalManagerStatus.crcExtra;
       case 282:
-        return GimbalManagerSetAttitude._mavlinkCrcExtra;
+        return GimbalManagerSetAttitude.crcExtra;
       case 283:
-        return GimbalDeviceInformation._mavlinkCrcExtra;
+        return GimbalDeviceInformation.crcExtra;
       case 284:
-        return GimbalDeviceSetAttitude._mavlinkCrcExtra;
+        return GimbalDeviceSetAttitude.crcExtra;
       case 285:
-        return GimbalDeviceAttitudeStatus._mavlinkCrcExtra;
+        return GimbalDeviceAttitudeStatus.crcExtra;
       case 286:
-        return AutopilotStateForGimbalDevice._mavlinkCrcExtra;
+        return AutopilotStateForGimbalDevice.crcExtra;
       case 287:
-        return GimbalManagerSetPitchyaw._mavlinkCrcExtra;
+        return GimbalManagerSetPitchyaw.crcExtra;
       case 288:
-        return GimbalManagerSetManualControl._mavlinkCrcExtra;
+        return GimbalManagerSetManualControl.crcExtra;
       case 290:
-        return EscInfo._mavlinkCrcExtra;
+        return EscInfo.crcExtra;
       case 291:
-        return EscStatus._mavlinkCrcExtra;
+        return EscStatus.crcExtra;
       case 299:
-        return WifiConfigAp._mavlinkCrcExtra;
+        return WifiConfigAp.crcExtra;
       case 301:
-        return AisVessel._mavlinkCrcExtra;
+        return AisVessel.crcExtra;
       case 310:
-        return UavcanNodeStatus._mavlinkCrcExtra;
+        return UavcanNodeStatus.crcExtra;
       case 311:
-        return UavcanNodeInfo._mavlinkCrcExtra;
+        return UavcanNodeInfo.crcExtra;
       case 320:
-        return ParamExtRequestRead._mavlinkCrcExtra;
+        return ParamExtRequestRead.crcExtra;
       case 321:
-        return ParamExtRequestList._mavlinkCrcExtra;
+        return ParamExtRequestList.crcExtra;
       case 322:
-        return ParamExtValue._mavlinkCrcExtra;
+        return ParamExtValue.crcExtra;
       case 323:
-        return ParamExtSet._mavlinkCrcExtra;
+        return ParamExtSet.crcExtra;
       case 324:
-        return ParamExtAck._mavlinkCrcExtra;
+        return ParamExtAck.crcExtra;
       case 330:
-        return ObstacleDistance._mavlinkCrcExtra;
+        return ObstacleDistance.crcExtra;
       case 331:
-        return Odometry._mavlinkCrcExtra;
+        return Odometry.crcExtra;
       case 332:
-        return TrajectoryRepresentationWaypoints._mavlinkCrcExtra;
+        return TrajectoryRepresentationWaypoints.crcExtra;
       case 333:
-        return TrajectoryRepresentationBezier._mavlinkCrcExtra;
+        return TrajectoryRepresentationBezier.crcExtra;
       case 334:
-        return CellularStatus._mavlinkCrcExtra;
+        return CellularStatus.crcExtra;
       case 335:
-        return IsbdLinkStatus._mavlinkCrcExtra;
+        return IsbdLinkStatus.crcExtra;
       case 336:
-        return CellularConfig._mavlinkCrcExtra;
+        return CellularConfig.crcExtra;
       case 339:
-        return RawRpm._mavlinkCrcExtra;
+        return RawRpm.crcExtra;
       case 340:
-        return UtmGlobalPosition._mavlinkCrcExtra;
+        return UtmGlobalPosition.crcExtra;
       case 350:
-        return DebugFloatArray._mavlinkCrcExtra;
+        return DebugFloatArray.crcExtra;
       case 360:
-        return OrbitExecutionStatus._mavlinkCrcExtra;
+        return OrbitExecutionStatus.crcExtra;
       case 370:
-        return SmartBatteryInfo._mavlinkCrcExtra;
+        return SmartBatteryInfo.crcExtra;
       case 373:
-        return GeneratorStatus._mavlinkCrcExtra;
+        return GeneratorStatus.crcExtra;
       case 375:
-        return ActuatorOutputStatus._mavlinkCrcExtra;
+        return ActuatorOutputStatus.crcExtra;
       case 380:
-        return TimeEstimateToTarget._mavlinkCrcExtra;
+        return TimeEstimateToTarget.crcExtra;
       case 385:
-        return Tunnel._mavlinkCrcExtra;
+        return Tunnel.crcExtra;
       case 386:
-        return CanFrame._mavlinkCrcExtra;
+        return CanFrame.crcExtra;
       case 390:
-        return OnboardComputerStatus._mavlinkCrcExtra;
+        return OnboardComputerStatus.crcExtra;
       case 395:
-        return ComponentInformation._mavlinkCrcExtra;
+        return ComponentInformation.crcExtra;
       case 397:
-        return ComponentMetadata._mavlinkCrcExtra;
+        return ComponentMetadata.crcExtra;
       case 400:
-        return PlayTuneV2._mavlinkCrcExtra;
+        return PlayTuneV2.crcExtra;
       case 401:
-        return SupportedTunes._mavlinkCrcExtra;
+        return SupportedTunes.crcExtra;
       case 410:
-        return Event._mavlinkCrcExtra;
+        return Event.crcExtra;
       case 411:
-        return CurrentEventSequence._mavlinkCrcExtra;
+        return CurrentEventSequence.crcExtra;
       case 412:
-        return RequestEvent._mavlinkCrcExtra;
+        return RequestEvent.crcExtra;
       case 413:
-        return ResponseEventError._mavlinkCrcExtra;
+        return ResponseEventError.crcExtra;
       case 387:
-        return CanfdFrame._mavlinkCrcExtra;
+        return CanfdFrame.crcExtra;
       case 388:
-        return CanFilterModify._mavlinkCrcExtra;
+        return CanFilterModify.crcExtra;
       case 9000:
-        return WheelDistance._mavlinkCrcExtra;
+        return WheelDistance.crcExtra;
       case 9005:
-        return WinchStatus._mavlinkCrcExtra;
+        return WinchStatus.crcExtra;
       case 12900:
-        return OpenDroneIdBasicId._mavlinkCrcExtra;
+        return OpenDroneIdBasicId.crcExtra;
       case 12901:
-        return OpenDroneIdLocation._mavlinkCrcExtra;
+        return OpenDroneIdLocation.crcExtra;
       case 12902:
-        return OpenDroneIdAuthentication._mavlinkCrcExtra;
+        return OpenDroneIdAuthentication.crcExtra;
       case 12903:
-        return OpenDroneIdSelfId._mavlinkCrcExtra;
+        return OpenDroneIdSelfId.crcExtra;
       case 12904:
-        return OpenDroneIdSystem._mavlinkCrcExtra;
+        return OpenDroneIdSystem.crcExtra;
       case 12905:
-        return OpenDroneIdOperatorId._mavlinkCrcExtra;
+        return OpenDroneIdOperatorId.crcExtra;
       case 12915:
-        return OpenDroneIdMessagePack._mavlinkCrcExtra;
+        return OpenDroneIdMessagePack.crcExtra;
       case 12918:
-        return OpenDroneIdArmStatus._mavlinkCrcExtra;
+        return OpenDroneIdArmStatus.crcExtra;
       case 12919:
-        return OpenDroneIdSystemUpdate._mavlinkCrcExtra;
+        return OpenDroneIdSystemUpdate.crcExtra;
       case 12920:
-        return HygrometerSensor._mavlinkCrcExtra;
+        return HygrometerSensor.crcExtra;
       case 150:
-        return FlexifunctionSet._mavlinkCrcExtra;
+        return FlexifunctionSet.crcExtra;
       case 151:
-        return FlexifunctionReadReq._mavlinkCrcExtra;
+        return FlexifunctionReadReq.crcExtra;
       case 152:
-        return FlexifunctionBufferFunction._mavlinkCrcExtra;
+        return FlexifunctionBufferFunction.crcExtra;
       case 153:
-        return FlexifunctionBufferFunctionAck._mavlinkCrcExtra;
+        return FlexifunctionBufferFunctionAck.crcExtra;
       case 155:
-        return FlexifunctionDirectory._mavlinkCrcExtra;
+        return FlexifunctionDirectory.crcExtra;
       case 156:
-        return FlexifunctionDirectoryAck._mavlinkCrcExtra;
+        return FlexifunctionDirectoryAck.crcExtra;
       case 157:
-        return FlexifunctionCommand._mavlinkCrcExtra;
+        return FlexifunctionCommand.crcExtra;
       case 158:
-        return FlexifunctionCommandAck._mavlinkCrcExtra;
+        return FlexifunctionCommandAck.crcExtra;
       case 170:
-        return SerialUdbExtraF2A._mavlinkCrcExtra;
+        return SerialUdbExtraF2A.crcExtra;
       case 171:
-        return SerialUdbExtraF2B._mavlinkCrcExtra;
+        return SerialUdbExtraF2B.crcExtra;
       case 172:
-        return SerialUdbExtraF4._mavlinkCrcExtra;
+        return SerialUdbExtraF4.crcExtra;
       case 173:
-        return SerialUdbExtraF5._mavlinkCrcExtra;
+        return SerialUdbExtraF5.crcExtra;
       case 174:
-        return SerialUdbExtraF6._mavlinkCrcExtra;
+        return SerialUdbExtraF6.crcExtra;
       case 175:
-        return SerialUdbExtraF7._mavlinkCrcExtra;
+        return SerialUdbExtraF7.crcExtra;
       case 176:
-        return SerialUdbExtraF8._mavlinkCrcExtra;
+        return SerialUdbExtraF8.crcExtra;
       case 177:
-        return SerialUdbExtraF13._mavlinkCrcExtra;
+        return SerialUdbExtraF13.crcExtra;
       case 178:
-        return SerialUdbExtraF14._mavlinkCrcExtra;
+        return SerialUdbExtraF14.crcExtra;
       case 179:
-        return SerialUdbExtraF15._mavlinkCrcExtra;
+        return SerialUdbExtraF15.crcExtra;
       case 180:
-        return SerialUdbExtraF16._mavlinkCrcExtra;
+        return SerialUdbExtraF16.crcExtra;
       case 181:
-        return Altitudes._mavlinkCrcExtra;
+        return Altitudes.crcExtra;
       case 182:
-        return Airspeeds._mavlinkCrcExtra;
+        return Airspeeds.crcExtra;
       case 183:
-        return SerialUdbExtraF17._mavlinkCrcExtra;
+        return SerialUdbExtraF17.crcExtra;
       case 184:
-        return SerialUdbExtraF18._mavlinkCrcExtra;
+        return SerialUdbExtraF18.crcExtra;
       case 185:
-        return SerialUdbExtraF19._mavlinkCrcExtra;
+        return SerialUdbExtraF19.crcExtra;
       case 186:
-        return SerialUdbExtraF20._mavlinkCrcExtra;
+        return SerialUdbExtraF20.crcExtra;
       case 187:
-        return SerialUdbExtraF21._mavlinkCrcExtra;
+        return SerialUdbExtraF21.crcExtra;
       case 188:
-        return SerialUdbExtraF22._mavlinkCrcExtra;
+        return SerialUdbExtraF22.crcExtra;
       default:
         return -1;
     }

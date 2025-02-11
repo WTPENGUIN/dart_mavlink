@@ -73,17 +73,17 @@ const AirlinkEyeTurnInitType airlinkTurnInitBad = 2;
 ///
 /// AIRLINK_AUTH
 class AirlinkAuth implements MavlinkMessage {
-  static const int _mavlinkMessageId = 52000;
+  static const int msgId = 52000;
 
-  static const int _mavlinkCrcExtra = 13;
+  static const int crcExtra = 13;
 
   static const int mavlinkEncodedLength = 100;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Login
   ///
@@ -114,6 +114,13 @@ class AirlinkAuth implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'login': login,
+        'password': password,
+      };
+
   factory AirlinkAuth.parse(ByteData data_) {
     if (data_.lengthInBytes < AirlinkAuth.mavlinkEncodedLength) {
       var len = AirlinkAuth.mavlinkEncodedLength - data_.lengthInBytes;
@@ -140,17 +147,17 @@ class AirlinkAuth implements MavlinkMessage {
 ///
 /// AIRLINK_AUTH_RESPONSE
 class AirlinkAuthResponse implements MavlinkMessage {
-  static const int _mavlinkMessageId = 52001;
+  static const int msgId = 52001;
 
-  static const int _mavlinkCrcExtra = 239;
+  static const int crcExtra = 239;
 
   static const int mavlinkEncodedLength = 1;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Response type
   ///
@@ -172,6 +179,12 @@ class AirlinkAuthResponse implements MavlinkMessage {
       respType: respType ?? this.respType,
     );
   }
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'respType': respType,
+      };
 
   factory AirlinkAuthResponse.parse(ByteData data_) {
     if (data_.lengthInBytes < AirlinkAuthResponse.mavlinkEncodedLength) {
@@ -197,17 +210,17 @@ class AirlinkAuthResponse implements MavlinkMessage {
 ///
 /// AIRLINK_EYE_GS_HOLE_PUSH_REQUEST
 class AirlinkEyeGsHolePushRequest implements MavlinkMessage {
-  static const int _mavlinkMessageId = 52002;
+  static const int msgId = 52002;
 
-  static const int _mavlinkCrcExtra = 24;
+  static const int crcExtra = 24;
 
   static const int mavlinkEncodedLength = 1;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Hole push response type
   ///
@@ -229,6 +242,12 @@ class AirlinkEyeGsHolePushRequest implements MavlinkMessage {
       respType: respType ?? this.respType,
     );
   }
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'respType': respType,
+      };
 
   factory AirlinkEyeGsHolePushRequest.parse(ByteData data_) {
     if (data_.lengthInBytes <
@@ -256,17 +275,17 @@ class AirlinkEyeGsHolePushRequest implements MavlinkMessage {
 ///
 /// AIRLINK_EYE_GS_HOLE_PUSH_RESPONSE
 class AirlinkEyeGsHolePushResponse implements MavlinkMessage {
-  static const int _mavlinkMessageId = 52003;
+  static const int msgId = 52003;
 
-  static const int _mavlinkCrcExtra = 166;
+  static const int crcExtra = 166;
 
   static const int mavlinkEncodedLength = 26;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// port
   ///
@@ -331,6 +350,16 @@ class AirlinkEyeGsHolePushResponse implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'ipPort': ipPort,
+        'respType': respType,
+        'ipVersion': ipVersion,
+        'ipAddress4': ipAddress4,
+        'ipAddress6': ipAddress6,
+      };
+
   factory AirlinkEyeGsHolePushResponse.parse(ByteData data_) {
     if (data_.lengthInBytes <
         AirlinkEyeGsHolePushResponse.mavlinkEncodedLength) {
@@ -370,17 +399,17 @@ class AirlinkEyeGsHolePushResponse implements MavlinkMessage {
 ///
 /// AIRLINK_EYE_HP
 class AirlinkEyeHp implements MavlinkMessage {
-  static const int _mavlinkMessageId = 52004;
+  static const int msgId = 52004;
 
-  static const int _mavlinkCrcExtra = 39;
+  static const int crcExtra = 39;
 
   static const int mavlinkEncodedLength = 1;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Hole push response type
   ///
@@ -402,6 +431,12 @@ class AirlinkEyeHp implements MavlinkMessage {
       respType: respType ?? this.respType,
     );
   }
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'respType': respType,
+      };
 
   factory AirlinkEyeHp.parse(ByteData data_) {
     if (data_.lengthInBytes < AirlinkEyeHp.mavlinkEncodedLength) {
@@ -427,17 +462,17 @@ class AirlinkEyeHp implements MavlinkMessage {
 ///
 /// AIRLINK_EYE_TURN_INIT
 class AirlinkEyeTurnInit implements MavlinkMessage {
-  static const int _mavlinkMessageId = 52005;
+  static const int msgId = 52005;
 
-  static const int _mavlinkCrcExtra = 145;
+  static const int crcExtra = 145;
 
   static const int mavlinkEncodedLength = 1;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// Turn init type
   ///
@@ -459,6 +494,12 @@ class AirlinkEyeTurnInit implements MavlinkMessage {
       respType: respType ?? this.respType,
     );
   }
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'respType': respType,
+      };
 
   factory AirlinkEyeTurnInit.parse(ByteData data_) {
     if (data_.lengthInBytes < AirlinkEyeTurnInit.mavlinkEncodedLength) {
@@ -510,17 +551,17 @@ class MavlinkDialectCsairlink implements MavlinkDialect {
   int crcExtra(int messageID) {
     switch (messageID) {
       case 52000:
-        return AirlinkAuth._mavlinkCrcExtra;
+        return AirlinkAuth.crcExtra;
       case 52001:
-        return AirlinkAuthResponse._mavlinkCrcExtra;
+        return AirlinkAuthResponse.crcExtra;
       case 52002:
-        return AirlinkEyeGsHolePushRequest._mavlinkCrcExtra;
+        return AirlinkEyeGsHolePushRequest.crcExtra;
       case 52003:
-        return AirlinkEyeGsHolePushResponse._mavlinkCrcExtra;
+        return AirlinkEyeGsHolePushResponse.crcExtra;
       case 52004:
-        return AirlinkEyeHp._mavlinkCrcExtra;
+        return AirlinkEyeHp.crcExtra;
       case 52005:
-        return AirlinkEyeTurnInit._mavlinkCrcExtra;
+        return AirlinkEyeTurnInit.crcExtra;
       default:
         return -1;
     }

@@ -51,17 +51,17 @@ const IcarousFmsState icarousFmsStateLand = 5;
 ///
 /// ICAROUS_HEARTBEAT
 class IcarousHeartbeat implements MavlinkMessage {
-  static const int _mavlinkMessageId = 42000;
+  static const int msgId = 42000;
 
-  static const int _mavlinkCrcExtra = 227;
+  static const int crcExtra = 227;
 
   static const int mavlinkEncodedLength = 1;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// See the FMS_STATE enum.
   ///
@@ -83,6 +83,12 @@ class IcarousHeartbeat implements MavlinkMessage {
       status: status ?? this.status,
     );
   }
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'status': status,
+      };
 
   factory IcarousHeartbeat.parse(ByteData data_) {
     if (data_.lengthInBytes < IcarousHeartbeat.mavlinkEncodedLength) {
@@ -108,17 +114,17 @@ class IcarousHeartbeat implements MavlinkMessage {
 ///
 /// ICAROUS_KINEMATIC_BANDS
 class IcarousKinematicBands implements MavlinkMessage {
-  static const int _mavlinkMessageId = 42001;
+  static const int msgId = 42001;
 
-  static const int _mavlinkCrcExtra = 239;
+  static const int crcExtra = 239;
 
   static const int mavlinkEncodedLength = 46;
 
   @override
-  int get mavlinkMessageId => _mavlinkMessageId;
+  int get mavlinkMessageId => msgId;
 
   @override
-  int get mavlinkCrcExtra => _mavlinkCrcExtra;
+  int get mavlinkCrcExtra => crcExtra;
 
   /// min angle (degrees)
   ///
@@ -319,6 +325,27 @@ class IcarousKinematicBands implements MavlinkMessage {
     );
   }
 
+  @override
+  Map<String, dynamic> toJson() => {
+        'msgId': msgId,
+        'min1': min1,
+        'max1': max1,
+        'min2': min2,
+        'max2': max2,
+        'min3': min3,
+        'max3': max3,
+        'min4': min4,
+        'max4': max4,
+        'min5': min5,
+        'max5': max5,
+        'numbands': numbands,
+        'type1': type1,
+        'type2': type2,
+        'type3': type3,
+        'type4': type4,
+        'type5': type5,
+      };
+
   factory IcarousKinematicBands.parse(ByteData data_) {
     if (data_.lengthInBytes < IcarousKinematicBands.mavlinkEncodedLength) {
       var len =
@@ -408,9 +435,9 @@ class MavlinkDialectIcarous implements MavlinkDialect {
   int crcExtra(int messageID) {
     switch (messageID) {
       case 42000:
-        return IcarousHeartbeat._mavlinkCrcExtra;
+        return IcarousHeartbeat.crcExtra;
       case 42001:
-        return IcarousKinematicBands._mavlinkCrcExtra;
+        return IcarousKinematicBands.crcExtra;
       default:
         return -1;
     }
